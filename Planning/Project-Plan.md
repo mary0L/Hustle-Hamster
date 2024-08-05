@@ -1,8 +1,5 @@
 # Project Plan
 
-Deliver a written report on: 
-Name your groups and name your app.
-
 ## The team
 **Katie Wink**\
 Third year Computer Science student. Experience in Java, C/C++, Python and web development. Also have lots of experience in science communication and digital media which has developed my skills in effectively explaining complex problems to an audience. 
