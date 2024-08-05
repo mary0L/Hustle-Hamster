@@ -51,7 +51,7 @@ To ensure that the Hustle Hangout application is on schedule and frequently deli
   - Template for this can be found in the Google Drive: COSC345 > Monitoring > Formal Catch Ups. *can this just be linked?*
 
 ## Schedule
-[Gantt Chart Schedule](https://github.com/mary0L/Hustle-Hamster/blob/087578cdfdc71fb069ca3d1217d2e26d74d86620/Planning/COSC345-Gantt-V2-Draft.pdf)
+[Gantt Chart Schedule](COSC345-Gantt-Chart.pdf)
 
 ## Market research
 ### What already exists
