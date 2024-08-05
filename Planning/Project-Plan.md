@@ -11,7 +11,7 @@ Third year Computer Science and Information Science student. Previous experience
 Currently a third year majoring in computer science. Strengths: write lots of reports for my other major (Neuroscience) so comfortable taking on that line of tasks if needed, lots of agile teamwork experience, experience coding in object oriented languages and writing command line programs. 
 
 **Abby Fernandes**\
-Third year computer science and biochemistry student. Strengths: enjoys planning things out, which is useful for the first assignment as well as general teamwork. Past experience in Java, and C.
+Third year computer science and biochemistry student with experience in Java, C/C++ and web development. Enjoys comprehensive planning, which is useful for the first assignment and the general software development process. 
 
 ## What we are building
 We are building a simple command line program that provides an interactive “conversation” for users to record various aspects of their day. These will be of a range of categories: mood, sleep, activities, and more. This app will save these records for users to come back to, compare previous statistics in various categories from previous records, and give motivation to hopefully make a more personalised and enjoyable journaling experience.
