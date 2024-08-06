@@ -30,7 +30,7 @@ We will aim to develop this application using the agile software development met
 We will use our due dates for assignments as sprints, which will give us 3 weeks each sprint to complete the tasks that we scheduled. We will also use the Trello board similarly to a kanban board, uploading tasks and issues when they arise.
 
 ### Requirement analysis
-*Add link here*
+[Requirements Analysis](https://github.com/mary0L/Hustle-Hamster/blob/42e30d10332fa478a60209feb9cb33cdc6c2683d/Planning/Requirements%20and%20use%20cases%20-%20Version%202.pdf)
 
 ### Risk analysis
 *Add link here*
