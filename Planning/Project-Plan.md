@@ -33,7 +33,7 @@ We will use our due dates for assignments as sprints, which will give us 3 weeks
 [Requirements Analysis](https://github.com/mary0L/Hustle-Hamster/blob/42e30d10332fa478a60209feb9cb33cdc6c2683d/Planning/Requirements%20and%20use%20cases%20-%20Version%202.pdf)
 
 ### Risk analysis
-*Add link here*
+[Risk Analysis](https://github.com/mary0L/Hustle-Hamster/blob/0a1a329f04ad468632122a4182489c9a2b11ca3f/Planning/Risk%20analysis.pdf)
 
 ### Monitoring process
 To ensure that the Hustle Hangout application is on schedule and frequently delivering working software we will implement the following monitoring processes and documentation:
