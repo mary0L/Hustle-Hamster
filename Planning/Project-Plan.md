@@ -54,10 +54,6 @@ To ensure that the Hustle Hangout application is on schedule and frequently deli
 [Gantt Chart Schedule](COSC345-Gantt-Chart.pdf)
 
 ## Market research
-### Customer interest
-
-Many studies have been done and proven that there are so many benefits to daily journaling. Despite this many people either don’t journal or don’t have the time to fit this into their daily schedule. With our app we propose a command line “Chatbot” that makes journaling an easy and positive experience! This way the journaling can be done simple, just after doing work and will prompt users to answer either yes/no or pick a number rating on a scale. This way we can still get valuable user information, without asking the user to think too hard. It will be an easy wind-down and reflection of the day. 
-
 ### What already exists
 **Day One (IOS)**\
 Day One is a journaling app that works more similarly to a traditional paper and pen journal. This app allows you to have multiple journals and add journal entries whenever you please. This app does not track anything more than keeping storage for the user submitted blurbs. It is more similar to the IOS notes app. This application is also pay to use. 
@@ -67,6 +63,9 @@ Grid diary is a journaling app that gives the user prompts to fill in. It will a
 
 **Journey.Cloud**\
 Journey.Cloud is a tracking app that also works as a cloud app. You can journal, add photos, videos, track your mood and see how this has changed over the last month. This app is more similar to a social media cloud that combined with a tracking app, which is somewhat more complicated. However, tracking mood and being able to look back over how the user's mood has changed over a certain amount of time is something we want to develop. 
+
+### Customer interest
+Many studies have been done and proven that there are so many benefits to daily journaling. Despite this many people either don’t journal or don’t have the time to fit this into their daily schedule. With our app we propose a command line “Chatbot” that makes journaling an easy and positive experience! This way the journaling can be done simple, just after doing work and will prompt users to answer either yes/no or pick a number rating on a scale. This way we can still get valuable user information, without asking the user to think too hard. It will be an easy wind-down and reflection of the day. 
 
 ## Project details
 **Our Group**: Hustle Hamsters\
