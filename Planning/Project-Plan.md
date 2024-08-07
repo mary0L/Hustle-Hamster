@@ -54,10 +54,11 @@ To ensure that the Hustle Hangout application is on schedule and frequently deli
 [Gantt Chart Schedule](COSC345-Gantt-Chart.pdf)
 
 ## Market research
-### What already exists
+### Customer interest
+
 Many studies have been done and proven that there are so many benefits to daily journaling. Despite this many people either don’t journal or don’t have the time to fit this into their daily schedule. With our app we propose a command line “Chatbot” that makes journaling an easy and positive experience! This way the journaling can be done simple, just after doing work and will prompt users to answer either yes/no or pick a number rating on a scale. This way we can still get valuable user information, without asking the user to think too hard. It will be an easy wind-down and reflection of the day. 
 
-## Customer interest
+### What already exists
 **Day One (IOS)**\
 Day One is a journaling app that works more similarly to a traditional paper and pen journal. This app allows you to have multiple journals and add journal entries whenever you please. This app does not track anything more than keeping storage for the user submitted blurbs. It is more similar to the IOS notes app. This application is also pay to use. 
 
