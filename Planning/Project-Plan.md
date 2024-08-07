@@ -19,7 +19,7 @@ We are building a simple command line program that provides an interactive “co
 ## Back to basics
 This application will be built purely on C++ with no external libraries, running in the command line interface.
 
-Alongside the environment it is built in, the functioning of this app is very “basic” with the user simply responding to prompts from the program to create journal entries. There are no complex UI functions or concepts to figure out before the app is usable. Our application will function as a basic conversation, something that (most) users will be very familiar with.
+Alongside the environment it is built in, the functioning of this app is very “basic” with the user simply responding to prompts from the program to create journal entries. There are no complex UI functions or concepts to figure out before the app is usable. Our application will function as a basic conversation, which will be intuitive and require minimal effort from the user to enter their data. 
 
 ## How we are going to build our application
 ### Methodology
