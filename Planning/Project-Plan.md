@@ -30,10 +30,10 @@ We will aim to develop this application using the agile software development met
 We will use our due dates for assignments as sprints, which will give us 3 weeks each sprint to complete the tasks that we scheduled. We will also use the Trello board similarly to a kanban board, uploading tasks and issues when they arise.
 
 ### Requirement analysis
-[Requirements Analysis](https://github.com/mary0L/Hustle-Hamster/blob/42e30d10332fa478a60209feb9cb33cdc6c2683d/Planning/Requirements%20and%20use%20cases%20-%20Version%202.pdf)
+[Requirements Analysis](Requirements%20and%20use%20cases%20-%20Version%202.pdf)
 
 ### Risk analysis
-[Risk Analysis](https://github.com/mary0L/Hustle-Hamster/blob/0a1a329f04ad468632122a4182489c9a2b11ca3f/Planning/Risk%20analysis.pdf)
+[Risk Analysis](Risk%20analysis.pdf)
 
 ### Monitoring process
 To ensure that the Hustle Hangout application is on schedule and frequently delivering working software we will implement the following monitoring processes and documentation:
