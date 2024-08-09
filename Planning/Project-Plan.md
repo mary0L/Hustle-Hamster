@@ -30,7 +30,10 @@ We will aim to develop this application using the agile software development met
 We will use our due dates for assignments as sprints, which will give us 3 weeks each sprint to complete the tasks that we scheduled. We will also use the Trello board similarly to a kanban board, uploading tasks and issues when they arise.
 
 ### Requirement analysis
-[Requirements Analysis](Requirements%20and%20use%20cases%20-%20Version%202.pdf)
+[Requirements Analysis](Requirements%20and%20Use%20cases%20-%20V2.pdf)
+
+### Deliverables
+[Deliverables] (Deliverables.pdf)
 
 ### Risk analysis
 [Risk Analysis](Risk%20analysis.pdf)
