@@ -8,18 +8,18 @@ Third year Computer Science student. Experience in Java, C/C++, Python and web d
 Third year Computer Science and Information Science student. Previous experience in website development for friends businesses as well as work experience in event management and planning. University experience largely in Java, as well as some Python and R for Data Science, and basic understanding of C.
 
 **Mary O’Leary**\
-Currently a third year majoring in computer science. Strengths: write lots of reports for my other major (Neuroscience) so comfortable taking on that line of tasks if needed, lots of agile teamwork experience, experience coding in object oriented languages and writing command line programs. 
+Currently in my final year of my computer science and neuroscience degree. I have lots of experience writing reports, coding in object oriented languages and writing command line programs. Have also had the opportunity to do lots of team groupwork using an Agile methodology. 
 
 **Abby Fernandes**\
 Third year computer science and biochemistry student with experience in Java, C/C++ and web development. Enjoys comprehensive planning, which is useful for the first assignment and the general software development process. 
 
 ## What we are building
-We are building a simple command line program that provides an interactive “conversation” for users to record various aspects of their day. These will be of a range of categories: mood, sleep, activities, and more. This app will save these records for users to come back to, compare previous statistics in various categories from previous records, and give motivation to hopefully make a more personalised and enjoyable journaling experience.
+We are building a simple command line program that provides an interactive “conversation” to allow users to record various aspects of their day. These aspectes will be from a range of categories: mood, sleep, activities, and more. This app will save these records for users to come back to, compare previous statistics in various categories from previous records, and give motivation to hopefully make a more personalised and enjoyable journaling experience.
 
 ## Back to basics
-This application will be built purely on C++ with no external libraries, running in the command line interface.
+This application will be built purely in C++ with no external libraries, running in the command line interface.
 
-Alongside the environment it is built in, the functioning of this app is very “basic” with the user simply responding to prompts from the program to create journal entries. There are no complex UI functions or concepts to figure out before the app is usable. Our application will function as a basic conversation, which will be intuitive and require minimal effort from the user to enter their data. 
+Alongside the environment it is built in, the functioning of this app is very “basic” with the user simply responding to prompts from the program to create journal entries. There are no complex UI functions or concepts to figure out before the app is usable. Our application will function as a basic conversation, which will be intuitive and require minimal effort on the users behalf to enter their data. 
 
 ## How we are going to build our application
 ### Methodology
