@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-#include<unistd.h>
+#include <windows.h>
 #include <cctype> 
 #include <sstream>
 #include <vector>
@@ -11,7 +11,7 @@ using namespace std;
 
 int dayRating = 0; 
 char newLine[] = "\n\n";
-unsigned int stdDelay = 1000000;
+unsigned int stdDelay = 10;
 vector<string> completedActivities; 
 char separater[] = "----------------------------------------------------------"; 
 
@@ -81,7 +81,7 @@ void printReport(){
 }
 
 void delay(int time){
-    usleep(time);
+    Sleep(time);
 }
 
 void didActivity(string activity){
@@ -104,7 +104,7 @@ void TYPE(const string &p){
     cout << "       "; 
     for (char c : p) {
         cout << c << flush;
-        delay(30000);
+        delay(30);
     }
     cout << endl;
 

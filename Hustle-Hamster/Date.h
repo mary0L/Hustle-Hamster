@@ -7,10 +7,10 @@ using namespace std;
 
 class Date {
 private:
-	int day;
-	int month;
-	int year;
-	int wkDay;
+	int day = 0;
+	int month = 0;
+	int year = 0;
+	int wkDay = 0;
 
 	vector<string> wkDays = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 
