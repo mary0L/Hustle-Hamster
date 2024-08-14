@@ -1,11 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-#include <windows.h>
 #include <cctype> 
 #include <sstream>
 #include <vector>
 
+/**
+ *  Development Process only so that developers
+ *  can use MACOS and Windows
+ * 
+*/
+#ifdef _WINDOWS
+#include <windows.h>
+#else
+#include <unistd.h>
+#define Sleep(x) usleep((x)*1000)
+#endif
 
 using namespace std;
 
