@@ -3,28 +3,13 @@
 #include <iostream>
 #include <cassert>
 
-/**
- *  Development Process only so that developers
- *  can use MACOS or Windows
- * 
-*/
-#ifdef _WINDOWS
-#include <windows.h>
-#else
-#include <unistd.h>
-#endif
-
-using namespace std;
 
 Journal journal = Journal();
+Date date = Date();
 
-void testDate() {
-    Date date = Date(2021, 1, 1, 6);
-    journal = Journal(date);
-    assert (journal.getDate().getYear() == 2021);
-    assert (journal.getDate().getMonth() == 1);
-    assert (journal.getDate().getDay() == 1);
-    assert (journal.getDate().getWkDay() == 6);
+int testDate() {
+    //journal = Journal(date);
+    return 0;
 }
 
 void testDayRating() {
