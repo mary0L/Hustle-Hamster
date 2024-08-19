@@ -7,6 +7,7 @@
 
 #include "Journal.h"
 #include "Date.h"
+#undef max
 
 /**
  *  Development Process only so that developers
@@ -29,7 +30,7 @@ unsigned int stdDelay = 100;
 /* The Inital default activities */
 vector<string> defaultActivities = {"Study", "Work", "Socialise", "Exercise", "Drink Water", "Go outside"}; 
 /* Separator for formatting */
-char separater[] = "----------------------------------------------------------"; 
+char separator[] = "----------------------------------------------------------"; 
 
 /**
  * Method to print Hammy the Hamster Friend
@@ -233,7 +234,7 @@ void menu(){
     
     if (temp == 1){
         TYPE("Lets see how your day went!");
-        cout << separater << "\n"; 
+        cout << separator << "\n"; 
         Sleep(stdDelay);
         dailyLog();
     }
@@ -250,6 +251,6 @@ int main(){
     Sleep(stdDelay);
     printHammy();
     TYPE("Hi there!! It's so good to see you <3");
-    cout << separater << "\n";
+    cout << separator << "\n";
     menu();
 }
