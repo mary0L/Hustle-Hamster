@@ -21,16 +21,15 @@
 #define Sleep(x) usleep((x)*1000)
 #endif
 
+/* Defines namespace*/
 using namespace std;
 
 /* The standard delay used for printing */
-unsigned int stdDelay = 10;
+unsigned int stdDelay = 100;
 /* The Inital default activities */
 vector<string> defaultActivities = {"Study", "Work", "Socialise", "Exercise", "Drink Water", "Go outside"}; 
 /* Separator for formatting */
 char separater[] = "----------------------------------------------------------"; 
-/* Journal Initialisation */
-Journal dailyEntry = Journal(); 
 
 /**
  * Method to print Hammy the Hamster Friend
@@ -62,18 +61,11 @@ void TYPE(const string &p){
 }
 
 /**
- * Method to handle user input
-*/
-void userInputHandling(){
-
-}
-
-/**
  * Method to print out report (unformatted as of 14/8/24)
  * 
  * @param dailyEntry the daily Journal entry
 */
-void printReport(Journal dailyEntry){
+void printReport(Journal &dailyEntry){
     stringstream dayRate;
     stringstream sleepRate;
     stringstream moodRate;
@@ -82,7 +74,7 @@ void printReport(Journal dailyEntry){
     TYPE(dayRate.str());
     sleepRate << "You rated your sleep a " << dailyEntry.getSleepRating() << "/5";
     TYPE(sleepRate.str());
-    moodRate << "You said your mood today was: " << dailyEntry.getDayRating();
+    moodRate << "You said your mood today was: " << dailyEntry.getMood();
     TYPE(moodRate.str());
 
     if(!dailyEntry.getActivities().empty()){
@@ -103,12 +95,22 @@ void printReport(Journal dailyEntry){
  * 
  * @param dailyEntry the daily Journal entry
 */
-void dailyRating(Journal dailyEntry){
+void dailyRating(Journal &dailyEntry){
     int temp; 
+    bool validResponse = false; 
     TYPE("How was your day? [1] Terrible [2] Bad [3] Fine [4] Good [5] AMAZING!");
-    cin >> temp;
-    dailyEntry.setDayRating(temp);
-    cout << "Sleep rated: " << dailyEntry.getDayRating() << "\n";
+    while(!validResponse){
+        cin >> temp;
+        if(!cin.fail() && (temp>0 && temp<6)){
+            dailyEntry.setDayRating(temp);
+            validResponse = true;
+            break;
+        }else{
+            TYPE("Please enter a valid number between 1 and 5");
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+    }
 
 }
 
@@ -117,11 +119,22 @@ void dailyRating(Journal dailyEntry){
  * 
  * @param dailyEntry the daily Journal entry
 */
-void sleepRating(Journal dailyEntry){
+void sleepRating(Journal &dailyEntry){
     int temp; 
+    bool validResponse = false; 
     TYPE("How was your Sleep? [1] Terrible [2] Bad [3] Fine [4] Good [5] AMAZING!");
-    cin >> temp;
-    dailyEntry.setSleepRating(temp);
+    while(!validResponse){
+        cin >> temp;
+        if(!cin.fail() && (temp>0 && temp<6)){
+            dailyEntry.setSleepRating(temp);
+            validResponse = true;
+            break;
+        }else{
+            TYPE("Please enter a valid number between 1 and 5");
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+    }
 
 
 }
@@ -131,12 +144,24 @@ void sleepRating(Journal dailyEntry){
  * 
  * @param dailyEntry the daily Journal entry
 */
-void moodRating(Journal dailyEntry){
+void moodRating(Journal &dailyEntry){
     string temp; 
-    TYPE("How would you describe your mood today?");
+    bool validResponse = false;
+    TYPE("How would you describe your mood today? (Enter as a String)");
     cin >> temp;
     dailyEntry.setMood(temp);
-
+    while(!validResponse){
+        cin >> temp;
+        if(!cin.fail()){
+                dailyEntry.setMood(temp);
+                validResponse = true;
+                break;
+            }else{
+                TYPE("Please enter a string");
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+    }
 }
 
 /**
@@ -146,18 +171,29 @@ void moodRating(Journal dailyEntry){
  * @param activity the activity hammy asks user if they performed
  * @param dailyEntry the daily Journal entry
 */
-void didActivity(string activity, Journal dailyEntry){
+void didActivity(string activity, Journal &dailyEntry){
     char response;
     stringstream message;
+    bool validResponse = false;
     message << "Did you " << activity << " today? (y/n)";
-    TYPE(message.str());
-    cin >> response; 
-    char lower = tolower(response); 
-    if(response == 'y'){
-        dailyEntry.addActivity(activity);
-        TYPE("Awesome Job!\n"); 
-    } else {
-        TYPE("Try to complete it tomorrow!\n");
+    while(!validResponse){
+        TYPE(message.str());
+        cin >> response; 
+        char lower = tolower(response); 
+        if(lower == 'y'){
+            dailyEntry.addActivity(activity);
+            TYPE("Awesome Job!\n"); 
+            validResponse = true;
+            break;
+        } if(lower == 'n') {
+            TYPE("Try to complete it tomorrow!\n");
+            validResponse = true;
+            break;
+        }else{
+            TYPE("Please Enter a Valid input");
+            TYPE("y or Y for Yes");
+            TYPE("n or N for No");
+        }
     }
 
 }
@@ -166,6 +202,7 @@ void didActivity(string activity, Journal dailyEntry){
  * Runs through methods to complete the daily log
 */
 int dailyLog(){
+    Journal dailyEntry = Journal(); 
 
     TYPE("We will start by doing some ratings! Everything is Rated out of 5, with 5 being the best!");
     Sleep(stdDelay);
