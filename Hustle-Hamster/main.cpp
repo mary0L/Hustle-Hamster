@@ -171,7 +171,7 @@ void moodRating(Journal &dailyEntry){
  * @param activity the activity hammy asks user if they performed
  * @param dailyEntry the daily Journal entry
 */
-void didActivity(const string activity, Journal &dailyEntry){
+void didActivity(const string &activity, Journal &dailyEntry){
     char response;
     stringstream message;
     bool validResponse = false;
