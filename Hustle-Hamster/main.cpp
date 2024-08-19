@@ -7,7 +7,6 @@
 
 #include "Journal.h"
 #include "Date.h"
-#undef max
 
 /**
  *  Development Process only so that developers
@@ -109,7 +108,7 @@ void dailyRating(Journal &dailyEntry){
         }else{
             TYPE("Please enter a valid number between 1 and 5");
             cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.ignore(INT_MAX, '\n');
         }
     }
 
@@ -133,7 +132,7 @@ void sleepRating(Journal &dailyEntry){
         }else{
             TYPE("Please enter a valid number between 1 and 5");
             cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.ignore(INT_MAX, '\n');
         }
     }
 
@@ -157,10 +156,10 @@ void moodRating(Journal &dailyEntry){
                 dailyEntry.setMood(temp);
                 validResponse = true;
                 break;
-            }else{
-                TYPE("Please enter a string");
-                cin.clear();
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }else{
+            TYPE("Please enter a string");
+            cin.clear();
+            std::cin.ignore(10000, '\n');
             }
     }
 }
