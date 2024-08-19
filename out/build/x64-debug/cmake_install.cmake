@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/babbl/source/repos/Hustle-Hamster
+# Install script for directory: C:/Users/maryo/Hustle-Hamster
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Users/babbl/Source/Repos/Hustle-Hamster/out/install/x64-debug")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/Hustle-Hamster")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/babbl/source/repos/Hustle-Hamster/out/build/x64-debug/Hustle-Hamster/cmake_install.cmake")
+  include("C:/Users/maryo/Hustle-Hamster/out/build/x64-debug/Hustle-Hamster/cmake_install.cmake")
 
 endif()
 
@@ -46,5 +46,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/babbl/source/repos/Hustle-Hamster/out/build/x64-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/maryo/Hustle-Hamster/out/build/x64-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
