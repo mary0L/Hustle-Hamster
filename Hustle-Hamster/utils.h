@@ -2,12 +2,38 @@
 
 #include "Journal.h"
 
-void printJournal(Journal journalEntry);
+/**
+ *  Development Process only so that developers
+ *  can use MACOS and Windows
+ *
+*/
+#ifdef _WINDOWS
+#define WIN32_LEAN_AND_MEAN // Necessary to remove ambiguity errors caused in windows.h library
+#include <windows.h>
+#else
+#include <unistd.h>
+#define Sleep(x) usleep((x)*1000)
+#endif
 
-void exportJournal(Journal journalEntry);
+/**
+ * Print the report for the given journal entry.
+ *
+ * @param dailyEntry the daily Journal entry to print
+*/
+void printReport(Journal &journalEntry);
 
+void exportJournal(Journal &journalEntry);
+
+/**
+ * Method to type out strings in terminal (animation)
+ *
+ * @param p string to print
+*/
 void TYPE(const string& p);
 
 void delay(int time);
 
+/**
+ * Method to print Hammy the Hamster Friend
+*/
 void printHammy();

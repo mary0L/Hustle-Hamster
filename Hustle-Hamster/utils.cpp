@@ -6,19 +6,6 @@
 #include <vector>
 #include "utils.h"
 
-/**
- *  Development Process only so that developers
- *  can use MACOS and Windows
- *
-*/
-#ifdef _WINDOWS
-#define WIN32_LEAN_AND_MEAN // Necessary to remove ambiguity errors caused in windows.h library
-#include <windows.h>
-#else
-#include <unistd.h>
-#define Sleep(x) usleep((x)*1000)
-#endif
-
 using namespace std;
 
 void delay(int time) {
@@ -29,10 +16,9 @@ void TYPE(const string& p) {
     cout << "       ";
     for (char c : p) {
         cout << c << flush;
-        delay(30);
+        Sleep(30);
     }
     cout << endl;
-
 }
 
 void printHammy() {
@@ -40,4 +26,28 @@ void printHammy() {
     cout << "  ( -.-)\n";
     cout << "o_(\")(\")\n";
     cout << "       \\\n";
+}
+
+void printReport(Journal& dailyEntry) {
+    stringstream dayRate;
+    stringstream sleepRate;
+    stringstream moodRate;
+
+    dayRate << "You rated your day a " << dailyEntry.getDayRating() << "/5";
+    TYPE(dayRate.str());
+    sleepRate << "You rated your sleep a " << dailyEntry.getSleepRating() << "/5";
+    TYPE(sleepRate.str());
+    moodRate << "You said your mood today was: " << dailyEntry.getMood();
+    TYPE(moodRate.str());
+
+    if (!dailyEntry.getActivities().empty()) {
+        TYPE("Here are the activities you completed today:");
+        for (const string& activity : dailyEntry.getActivities()) {
+            TYPE(activity);
+        }
+    }
+    else {
+        TYPE("You didn't complete any activities today!");
+        TYPE("Tomorrow is a new day and you can start fresh!");
+    }
 }
