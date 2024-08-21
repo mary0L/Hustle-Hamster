@@ -145,6 +145,7 @@ int dailyLog(){
 
     printHammy();
     printReport(dailyEntry);
+
     return 0;
 }
 
@@ -165,6 +166,10 @@ void menu(){
         cout << separator << "\n"; 
         Sleep(stdDelay);
         dailyLog();
+    }
+    else if (temp == 0) {
+        Journal dailyEntry = Journal();
+        exportJournal(dailyEntry);
     }
 
 

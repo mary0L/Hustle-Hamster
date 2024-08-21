@@ -5,6 +5,7 @@
 #include <sstream>
 #include <vector>
 #include "utils.h"
+#include <fstream>
 
 using namespace std;
 
@@ -50,4 +51,27 @@ void printReport(Journal& dailyEntry) {
         TYPE("You didn't complete any activities today!");
         TYPE("Tomorrow is a new day and you can start fresh!");
     }
+}
+
+void exportJournal(Journal& journalEntry) {
+    string day = to_string(journalEntry.getDate().getDay());
+    string month = to_string(journalEntry.getDate().getMonth());
+    string year = to_string(journalEntry.getDate().getYear());
+
+    string filename = "journal-" + day + "-" + month + "-" + year;
+
+#ifdef _WINDOWS
+    string homeDir = getenv("USERPROFILE");
+    string path = homeDir + "/Desktop/" + filename + ".txt";
+#else
+    string homeDir = getenv("HOME");
+#endif
+
+    cout << homeDir;
+
+    /*ofstream txtFile(path);
+
+    txtFile << "testing...";
+
+    txtFile.close();*/
 }

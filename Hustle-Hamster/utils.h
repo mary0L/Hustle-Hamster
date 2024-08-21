@@ -18,10 +18,15 @@
 /**
  * Print the report for the given journal entry.
  *
- * @param dailyEntry the daily Journal entry to print
+ * @param journalEntry the daily Journal entry to print
 */
 void printReport(Journal &journalEntry);
 
+/**
+* Export the given journal entry to a text file.
+* 
+* @param journalEntry the journal entry to export.
+*/
 void exportJournal(Journal &journalEntry);
 
 /**
