@@ -23,7 +23,7 @@ public:
 	* 
 	* @param date The date to construct the journal for.
 	*/
-	Journal(Date date);
+	Journal(const Date &date);
 
 	/**
 	* Get the date of this journal.
@@ -73,7 +73,7 @@ public:
 	/**
 	* Set the mood from this day. 
 	*/
-	void setMood(string mood);
+	void setMood(const string &mood);
 
 	/**
 	* Add an activity that was completed on this day. 
@@ -88,5 +88,5 @@ public:
 	/**
 	* Set the text entry for this day. 
 	*/
-	void setTextEntry(string textEntry);
+	void setTextEntry(const string &textEntry);
 };
