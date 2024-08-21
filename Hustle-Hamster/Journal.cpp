@@ -4,7 +4,7 @@ Journal:: Journal() {
 	date = Date();
 }
 
-Journal::Journal(const Date date) {
+Journal::Journal(const Date &date) {
 	this->date = date;
 }
 
@@ -44,7 +44,7 @@ void Journal::setSleepRating(int sleepRating) {
 	this->sleepRating = sleepRating;
 }
 
-void Journal::setMood(const string mood) {
+void Journal::setMood(const string &mood) {
 	this->mood = mood;
 }
 
@@ -56,6 +56,6 @@ void Journal::addHammyThoughts(string hammyThought) {
 	this->hammyThoughts.push_back(hammyThought);
 }
 
-void Journal::setTextEntry(const string textEntry) {
+void Journal::setTextEntry(const string &textEntry) {
 	this->textEntry = textEntry;
 }
