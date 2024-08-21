@@ -40,3 +40,7 @@ int Date::getWkDay() {
 string Date::getWkDayString() {
 	return wkDays[wkDay - 1];
 }
+
+string Date::getMonthName() {
+	return monthNames[month - 1];
+}
