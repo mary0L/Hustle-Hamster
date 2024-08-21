@@ -1,0 +1,2 @@
+# Hustle-Hamster
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f12b69a132b944c98672c32c3c33c48b)](https://app.codacy.com/gh/mary0L/Hustle-Hamster?utm_source=github.com&utm_medium=referral&utm_content=mary0L/Hustle-Hamster&utm_campaign=Badge_Grade)
