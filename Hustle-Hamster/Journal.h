@@ -23,7 +23,7 @@ public:
 	* 
 	* @param date The date to construct the journal for.
 	*/
-	Journal(Date date);
+	Journal(const Date date);
 
 	/**
 	* Get the date of this journal.
