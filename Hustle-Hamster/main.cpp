@@ -168,11 +168,17 @@ void menu(){
         dailyLog();
     }
     else if (temp == 0) {
-        Journal dailyEntry = Journal();
-        exportJournal(dailyEntry);
+        Journal devEntry = Journal();
+        devEntry.setDayRating(3);
+        devEntry.setMood("Happy");
+        devEntry.setSleepRating(5);
+        devEntry.setTextEntry("Today was a good day. just hung around tbh.");
+        devEntry.addActivity("Nap");
+        devEntry.addActivity("Art");
+        devEntry.addActivity("Work");
+        
+        exportJournal(devEntry);
     }
-
-
 }
 
 /**

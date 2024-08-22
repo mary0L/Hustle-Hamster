@@ -58,7 +58,7 @@ void exportJournal(Journal& journalEntry) {
     string month = to_string(journalEntry.getDate().getMonth());
     string year = to_string(journalEntry.getDate().getYear());
 
-    string filename = "journal-" + day + "-" + month + "-" + year;
+    string filename = "journal-" + year + "-" + month + "-" + day;
 
 #ifdef _WINDOWS
     string homeDir = getenv("USERPROFILE");
@@ -69,9 +69,26 @@ void exportJournal(Journal& journalEntry) {
 
     cout << homeDir;
 
-    /*ofstream txtFile(path);
+    ofstream txtFile(path);
 
-    txtFile << "testing...";
+    txtFile << "============ " << journalEntry.getDate().getMonthName() << " " << day << " " << year << " ============\n";
+    txtFile << "You rated your day a " << journalEntry.getDayRating() << "/5\n";
+    txtFile << "You rated your sleep a " << journalEntry.getSleepRating() << "/5\n";
+    txtFile << "You said that today you felt: " << journalEntry.getMood() << "\n";
 
-    txtFile.close();*/
+    txtFile << "\n";
+
+    if (!journalEntry.getActivities().empty()) {
+        txtFile << "Here are the activities you completed today:\n";
+        for (string activity : journalEntry.getActivities()) {
+            txtFile << " * " << activity << "\n";
+        }
+    }
+
+    txtFile << "\n";
+
+    txtFile << "And finally, here is your daily journal entry:\n";
+    txtFile << journalEntry.getTextEntry();
+
+    txtFile.close();
 }
