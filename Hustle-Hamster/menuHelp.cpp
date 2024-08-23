@@ -15,6 +15,10 @@ void helpMenu(){
                 if(temp == 1){
                     howToUse();
                 }
+                if(temp == 2){
+                    TYPE("This option is not yet implemented yet! Check back soon!");
+                    helpMenu();
+                }
                 if(temp == 3){
                     menu(); 
                 }
