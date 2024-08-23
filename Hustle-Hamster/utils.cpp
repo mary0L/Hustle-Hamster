@@ -72,24 +72,29 @@ void exportJournal(Journal& journalEntry) {
 
     ofstream txtFile(path);
 
-    txtFile << "============ " << journalEntry.getDate().getMonthName() << " " << day << " " << year << " ============\n";
-    txtFile << "You rated your day a " << journalEntry.getDayRating() << "/5\n";
-    txtFile << "You rated your sleep a " << journalEntry.getSleepRating() << "/5\n";
-    txtFile << "You said that today you felt: " << journalEntry.getMood() << "\n";
+    if (!txtFile.fail()) {
+        txtFile << "============ " << journalEntry.getDate().getMonthName() << " " << day << " " << year << " ============\n";
+        txtFile << "You rated your day a " << journalEntry.getDayRating() << "/5\n";
+        txtFile << "You rated your sleep a " << journalEntry.getSleepRating() << "/5\n";
+        txtFile << "You said that today you felt: " << journalEntry.getMood() << "\n";
 
-    txtFile << "\n";
+        txtFile << "\n";
 
-    if (!journalEntry.getActivities().empty()) {
-        txtFile << "Here are the activities you completed today:\n";
-        for (string activity : journalEntry.getActivities()) {
-            txtFile << " * " << activity << "\n";
+        if (!journalEntry.getActivities().empty()) {
+            txtFile << "Here are the activities you completed today:\n";
+            for (string activity : journalEntry.getActivities()) {
+                txtFile << " * " << activity << "\n";
+            }
         }
+
+        txtFile << "\n";
+
+        txtFile << "And finally, here is your daily journal entry:\n";
+        txtFile << journalEntry.getTextEntry();
+
+        txtFile.close();
     }
-
-    txtFile << "\n";
-
-    txtFile << "And finally, here is your daily journal entry:\n";
-    txtFile << journalEntry.getTextEntry();
-
-    txtFile.close();
+    else {
+        TYPE("Sorry, there was an error writing your journal to a file at this time :(\n");
+    }
 }
