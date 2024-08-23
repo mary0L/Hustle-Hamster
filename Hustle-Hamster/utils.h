@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Journal.h"
+#include "menuHelp.h"
+#include "dailyLog.h"
 
 /**
  *  Development Process only so that developers
@@ -14,6 +16,13 @@
 #include <unistd.h>
 #define Sleep(x) usleep((x)*1000)
 #endif
+
+ /* The standard delay used for printing */
+extern unsigned int stdDelay;
+/* The Inital default activities */
+extern vector<string> defaultActivities; 
+/* Separator for formatting */
+extern char separator[]; 
 
 /**
  * Print the report for the given journal entry.
@@ -42,3 +51,8 @@ void delay(int time);
  * Method to print Hammy the Hamster Friend
 */
 void printHammy();
+
+/**
+ * Prints the menu and calls method based on user input
+*/
+void menu(); 
