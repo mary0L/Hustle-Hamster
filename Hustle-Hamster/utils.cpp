@@ -60,14 +60,15 @@ void exportJournal(Journal& journalEntry) {
 
     string filename = "journal-" + year + "-" + month + "-" + day;
 
+
+    /* For development purposes only, so that we can develop on both mac and windows */
 #ifdef _WINDOWS
     string homeDir = getenv("USERPROFILE");
-    string path = homeDir + "/Desktop/" + filename + ".txt";
 #else
     string homeDir = getenv("HOME");
 #endif
 
-    cout << homeDir;
+    string path = homeDir + "/Desktop/" + filename + ".txt";
 
     ofstream txtFile(path);
 
