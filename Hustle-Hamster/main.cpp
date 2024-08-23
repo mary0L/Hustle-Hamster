@@ -7,19 +7,7 @@
 
 #include "Journal.h"
 #include "Date.h"
-
-/**
- *  Development Process only so that developers
- *  can use MACOS or Windows
- * 
-*/
-#ifdef _WINDOWS
-#define WIN32_LEAN_AND_MEAN // Necessary to remove ambiguity errors caused in windows.h library
-#include <windows.h>
-#else
-#include <unistd.h>
-#define Sleep(x) usleep((x)*1000)
-#endif
+#include "utils.h"
 
 /* Defines namespace*/
 using namespace std;
@@ -30,65 +18,6 @@ unsigned int stdDelay = 100;
 vector<string> defaultActivities = {"Study", "Work", "Socialise", "Exercise", "Drink Water", "Go outside"}; 
 /* Separator for formatting */
 char separator[] = "----------------------------------------------------------"; 
-
-/**
- * Method to print Hammy the Hamster Friend
-*/
-int printHammy(){
-
-    cout << "   o _ o\n";
-    cout << "  ( -.-)\n";
-    cout << "o_(\")(\")\n";
-    cout << "       \\\n";
-    
-
-    return 0; 
-}
-
-/**
- * Method to type out strings in terminal (animation)
- * 
- * @param p string to print
-*/
-void TYPE(const string &p){
-    cout << "       "; 
-    for (char c : p) {
-        cout << c << flush;
-        Sleep(30);
-    }
-    cout << endl;
-
-}
-
-/**
- * Method to print out report (unformatted as of 14/8/24)
- * 
- * @param dailyEntry the daily Journal entry
-*/
-void printReport(Journal &dailyEntry){
-    stringstream dayRate;
-    stringstream sleepRate;
-    stringstream moodRate;
-
-    dayRate << "You rated your day a " << dailyEntry.getDayRating() << "/5";
-    TYPE(dayRate.str());
-    sleepRate << "You rated your sleep a " << dailyEntry.getSleepRating() << "/5";
-    TYPE(sleepRate.str());
-    moodRate << "You said your mood today was: " << dailyEntry.getMood();
-    TYPE(moodRate.str());
-
-    if(!dailyEntry.getActivities().empty()){
-        TYPE("Here are the activities you completed today:");
-        for (const string& activity : dailyEntry.getActivities()) {
-            TYPE(activity);
-        }
-    }else{
-        TYPE("You didn't complete any activities today!");
-        TYPE("Tomorrow is a new day and you can start fresh!");
-    }
-
-
-}
 
 /**
  * Method to ask and set the users daily rating
