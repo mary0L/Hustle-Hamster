@@ -72,7 +72,7 @@ void menu(){
 
     while(!validResponse){
         cin >> temp;
-        if(!cin.fail() && (temp>0 && temp<6)){
+        if(!cin.fail() && (temp>=0 && temp<6)){
             if (temp == 1){
                 TYPE("Lets see how your day went!");
                 cout << separator << "\n"; 
@@ -130,12 +130,17 @@ void exportJournal(Journal& journalEntry) {
 
     /* For development purposes only, so that we can develop on both mac and windows */
 #ifdef _WINDOWS
-    string homeDir = getenv("USERPROFILE");
+    const char* homeDir = getenv("USERPROFILE");
 #else
-    string homeDir = getenv("HOME");
+    const char* homeDir = getenv("HOME");
 #endif
 
-    string path = homeDir + "/Desktop/" + filename + ".txt";
+    if (!homeDir) {
+        TYPE("Sorry, there was an error writing your journal to a file at this time :(\n");
+        return;
+    }
+
+    string path = string(homeDir) + "/Desktop/" + filename + ".txt";
 
     ofstream txtFile(path);
 
