@@ -54,5 +54,7 @@ void printHammy();
 
 /**
  * Prints the menu and calls method based on user input
+ * 
+ * (enter 0 for devs)
 */
 void menu(); 

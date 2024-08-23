@@ -96,6 +96,19 @@ void menu(){
                 TYPE("It was fun hanging out! See you tomorrow!");
                 exit(0);
             }
+            // Dev mode
+            if (temp == 0) {
+                Journal devEntry = Journal();
+                devEntry.setDayRating(3);
+                devEntry.setMood("Happy");
+                devEntry.setSleepRating(5);
+                devEntry.setTextEntry("Today was a good day. just hung around tbh.");
+                devEntry.addActivity("Nap");
+                devEntry.addActivity("Art");
+                devEntry.addActivity("Work");
+
+                exportJournal(devEntry);
+            }
             break;
         }else{
             TYPE("Please enter a valid number between 1 and 5");
