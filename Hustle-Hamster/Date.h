@@ -1,5 +1,3 @@
-// Comment to test PR
-
 #pragma once
 
 #include <string>
@@ -7,6 +5,12 @@
 
 using namespace std;
 
+/**
+* Class for storing dates.
+* 
+* This class is used to make date handling throughout the application simpler by abstracting c++ date mechanisms. 
+* 
+*/
 class Date {
 private:
 	int day = 0;
@@ -29,19 +33,49 @@ public:
 	 * @param day The current day of the month (1 - 31).
 	 * @param month The current month of the year (1 - 12).
 	 * @param year The current year.
-	 * @param wkDay The currend day of the week (1 - 7, where 1 is Monday)
+	 * @param wkDay The current day of the week (1 - 7, where 1 is Monday)
 	 */
 	Date(int day, int month, int year, int wkDay);
 
+	/**
+	* Get the day of the month from this Date object as an integer (1 - 31).
+	* 
+	* @return Day of the month as an integer.
+	*/
 	int getDay();
 
+	/**
+	 * Get the month from this Date object as an integer (1 - 12).
+	 * 
+	 * @return Month as an integer.
+	 */
 	int getMonth();
 
+	/**
+	 * Get the year from this Date object as an integer.
+	 * 
+	 * @return Year as an integer. 
+	 */
 	int getYear();
 
+	/** 
+	 * Get the day of the week from this Date object as an integer (1 - 7, where 1 is Monday).
+	 * 
+	 * @return Day of the week as an integer.
+	 */
 	int getWkDay();
 
+	/** 
+	 * Get the day of the week from this Date object as a string (e.g. Monday).
+	 * 
+	 * @return Day of the week as a string.
+	 */
 	string getWkDayString();
 
+	/** 
+	 * Get the month from this Date object as a string (e.g. January).
+	 * 
+	 * @return Month of the week as a string.
+	 */
 	string getMonthName();
 };
