@@ -57,6 +57,18 @@ void moodRating(Journal &dailyEntry){
     }
 }
 
+void longAnswer(Journal &dailyEntry){
+    string textInput; 
+    TYPE("Anything you want to say about today? (Enter as a String)");
+
+    getline(cin, textInput);
+    if (!textInput.empty()) {
+        dailyEntry.setTextEntry(textInput);
+    } else {
+        cout << "No input provided." << endl;
+    }
+}
+
 void didActivity(const string &activity, Journal &dailyEntry){
     char response;
     stringstream message;
@@ -87,11 +99,14 @@ void didActivity(const string &activity, Journal &dailyEntry){
 int dailyLog(){
     Journal dailyEntry = Journal(); 
 
-    TYPE("We will start by doing some ratings! Everything is Rated out of 5, with 5 being the best!");
+    TYPE("We will start by doing some ratings!");
     delay(stdDelay);
     dailyRating(dailyEntry); 
     sleepRating(dailyEntry);
     moodRating(dailyEntry);
+    std::cin.ignore(10000000, '\n');
+    longAnswer(dailyEntry);
+    std::cin.ignore(10000000, '\n');
 
     for (const string& activity : defaultActivities) {
         didActivity(activity, dailyEntry);

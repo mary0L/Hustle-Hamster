@@ -31,6 +31,13 @@ void sleepRating(Journal &dailyEntry);
 void moodRating(Journal &dailyEntry);
 
 /**
+ * Method to ask and store users text answer to a open ended question
+ * 
+ * @param dailyEntry the daily Journal entry
+*/
+void longAnswer(Journal &dailyEntry);
+
+/**
  * Method to ask the user if they performed an activity
  * Then stores if they have done the activity
  * 
