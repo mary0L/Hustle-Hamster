@@ -99,6 +99,20 @@ build Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir\utils.cpp.obj: CXX_COMPILER__
   TARGET_COMPILE_PDB = Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir\
   TARGET_PDB = Hustle-Hamster\Hustle-Hamster.pdb
 
+build Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir\menuHelp.cpp.obj: CXX_COMPILER__Hustle-Hamster_Debug ..\..\..\Hustle-Hamster\menuHelp.cpp || cmake_object_order_depends_target_Hustle-Hamster
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++latest
+  OBJECT_DIR = Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir
+  OBJECT_FILE_DIR = Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir
+  TARGET_COMPILE_PDB = Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir\
+  TARGET_PDB = Hustle-Hamster\Hustle-Hamster.pdb
+
+build Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir\dailyLog.cpp.obj: CXX_COMPILER__Hustle-Hamster_Debug ..\..\..\Hustle-Hamster\dailyLog.cpp || cmake_object_order_depends_target_Hustle-Hamster
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++latest
+  OBJECT_DIR = Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir
+  OBJECT_FILE_DIR = Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir
+  TARGET_COMPILE_PDB = Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir\
+  TARGET_PDB = Hustle-Hamster\Hustle-Hamster.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Hustle-Hamster
@@ -107,7 +121,7 @@ build Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir\utils.cpp.obj: CXX_COMPILER__
 #############################################
 # Link the executable Hustle-Hamster\Hustle-Hamster.exe
 
-build Hustle-Hamster\Hustle-Hamster.exe: CXX_EXECUTABLE_LINKER__Hustle-Hamster_Debug Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir\Date.cpp.obj Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir\Journal.cpp.obj Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir\main.cpp.obj Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir\utils.cpp.obj
+build Hustle-Hamster\Hustle-Hamster.exe: CXX_EXECUTABLE_LINKER__Hustle-Hamster_Debug Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir\Date.cpp.obj Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir\Journal.cpp.obj Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir\main.cpp.obj Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir\utils.cpp.obj Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir\menuHelp.cpp.obj Hustle-Hamster\CMakeFiles\Hustle-Hamster.dir\dailyLog.cpp.obj
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
