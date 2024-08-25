@@ -42,7 +42,7 @@ void sleepRating(Journal &dailyEntry){
 void moodRating(Journal &dailyEntry){
     string temp; 
     bool validResponse = false;
-    TYPE("How would you describe your mood today? (Enter as a String)");
+    TYPE("How would you describe your mood today in one word? (Enter as a String)");
     while(!validResponse){
         cin >> temp;
         if(!cin.fail()){
@@ -57,7 +57,7 @@ void moodRating(Journal &dailyEntry){
     }
 }
 
-void longAnswer(Journal &dailyEntry){
+void longAnswer(Journal &dailyEntry) {
     string textInput; 
     TYPE("Anything you want to say about today? (Enter as a String)");
 
@@ -68,6 +68,7 @@ void longAnswer(Journal &dailyEntry){
         cout << "No input provided." << endl;
     }
 }
+
 
 void didActivity(const string &activity, Journal &dailyEntry){
     char response;
@@ -106,7 +107,6 @@ int dailyLog(){
     moodRating(dailyEntry);
     std::cin.ignore(10000000, '\n');
     longAnswer(dailyEntry);
-    std::cin.ignore(10000000, '\n');
 
     for (const string& activity : defaultActivities) {
         didActivity(activity, dailyEntry);
