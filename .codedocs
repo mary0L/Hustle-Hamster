@@ -1,14 +1,14 @@
 # CodeDocs.xyz Configuration File
 
 # Optional project name, if left empty the GitHub repository name will be used.
-PROJECT_NAME = "The Hustle Hamster - Hamster Hangout Project"
+PROJECT_NAME = "Hamster Hangout by Hustling Hamsters"
 
 # One or more directories and files that contain example code to be included.
 EXAMPLE_PATH =
 
 # One or more directories and files to exclude from documentation generation.
 # Use relative paths with respect to the repository root directory.
-EXCLUDE = pkg build
+EXCLUDE = out
 
 # One or more wildcard patterns to exclude files and directories from document
 # generation.
