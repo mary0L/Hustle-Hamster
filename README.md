@@ -1,5 +1,3 @@
-\mainpage
-
 # Hamster Hangout
 
 ## Project Overview

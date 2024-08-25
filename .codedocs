@@ -38,4 +38,4 @@ HIDE_UNDOC_CLASSES =
 # Specify a markdown page whose contents should be used as the main page
 # (index.html). This will override a page marked as \mainpage. For example, a
 # README.md file usually serves as a useful main page.
-USE_MDFILE_AS_MAINPAGE = 
+USE_MDFILE_AS_MAINPAGE = README.md
