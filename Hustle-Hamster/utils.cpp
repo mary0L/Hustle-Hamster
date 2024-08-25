@@ -48,10 +48,8 @@ void printReport(Journal& dailyEntry) {
     TYPE(sleepRate.str());
     moodRate << "You said your mood today was: " << dailyEntry.getMood();
     TYPE(moodRate.str());
-    TYPE("Your thoughts on the day:");
-    dailyThoughts << "" << dailyEntry.getTextEntry();
-    TYPE(dailyThoughts.str());
-
+   
+    cout << separator << "\n";
 
     if (!dailyEntry.getActivities().empty()) {
         TYPE("Here are the activities you completed today:");
@@ -63,6 +61,13 @@ void printReport(Journal& dailyEntry) {
         TYPE("You didn't complete any activities today!");
         TYPE("Tomorrow is a new day and you can start fresh!");
     }
+    cout << separator << "\n";
+    
+
+    TYPE("Your thoughts on the day:");
+    dailyThoughts << "" << dailyEntry.getTextEntry();
+    TYPE(dailyThoughts.str());
+    cout << separator << "\n";
 }
 
 void menu(){

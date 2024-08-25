@@ -105,15 +105,17 @@ int dailyLog(){
     dailyRating(dailyEntry); 
     sleepRating(dailyEntry);
     moodRating(dailyEntry);
-    std::cin.ignore(10000000, '\n');
-    longAnswer(dailyEntry);
 
     for (const string& activity : defaultActivities) {
         didActivity(activity, dailyEntry);
     }
 
+    std::cin.ignore(10000000, '\n');
+    longAnswer(dailyEntry);
+
     printHammy();
     printReport(dailyEntry);
+    exportJournal(dailyEntry);
     TYPE("");
     TYPE("I'll return you to the main menu now and you can decide to keep hanging out, or leave whenever you want!\n");
     menu();
