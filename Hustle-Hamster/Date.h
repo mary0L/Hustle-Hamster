@@ -15,6 +15,7 @@ private:
 	int wkDay = 0;
 
 	vector<string> wkDays = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+	vector<string> monthNames = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
 
 public:
 	/*
@@ -41,4 +42,6 @@ public:
 	int getWkDay();
 
 	string getWkDayString();
+
+	string getMonthName();
 };
