@@ -40,6 +40,7 @@ void printReport(Journal& dailyEntry) {
     stringstream dayRate;
     stringstream sleepRate;
     stringstream moodRate;
+    stringstream dailyThoughts;
 
     dayRate << "You rated your day a " << dailyEntry.getDayRating() << "/5";
     TYPE(dayRate.str());
@@ -47,6 +48,10 @@ void printReport(Journal& dailyEntry) {
     TYPE(sleepRate.str());
     moodRate << "You said your mood today was: " << dailyEntry.getMood();
     TYPE(moodRate.str());
+    TYPE("Your thoughts on the day:");
+    dailyThoughts << "" << dailyEntry.getTextEntry();
+    TYPE(dailyThoughts.str());
+
 
     if (!dailyEntry.getActivities().empty()) {
         TYPE("Here are the activities you completed today:");
