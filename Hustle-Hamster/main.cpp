@@ -16,8 +16,10 @@ using namespace std;
 
 /**
  * Main -> calls menu
- * Inital Hammy welcome
-*/
+ * Inital Hammy welcome.
+ * 
+ * @see utils.h main()
+ */
 int main(){
     TYPE("WELCOME TO HAMSTER HANGOUT");
     delay(stdDelay);

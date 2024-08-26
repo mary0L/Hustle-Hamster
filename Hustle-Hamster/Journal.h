@@ -2,6 +2,14 @@
 #include "Date.h"
 #include <vector>
 
+/**
+ * @author Abby Fernandes
+ * 
+ * This class stores all of the associated information for a single Journal entry.
+ * 
+ * Such as the daily ratings, moods, date, etc. 
+ * 
+ */
 class Journal {
 private:
 	Date date;
@@ -9,84 +17,95 @@ private:
 	int sleepRating = 0;
 	string mood = "";
 	vector<string> activities;
-	vector<string> hammyThoughts;
 	string textEntry = "";
 
 public:
 	/**
-	* Default constructor, constructs journal for the current date.
+	* Default constructor, constructs journal for the current date of the system.
 	*/
 	Journal();
 
 	/**
 	* Construct a journal for the provided date.
 	* 
-	* @param date The date to construct the journal for.
+	* @param date The Date to construct the journal for.
 	*/
 	Journal(const Date &date);
 
 	/**
 	* Get the date of this journal.
+	* 
+	* @return Date of this journal.
 	*/
 	Date getDate();
 
 	/**
 	* Get the overall rating of this day.
+	* 
+	* @return The day rating for this journal as an integer. 
 	*/
 	int getDayRating();
 
 	/**
-	* Get the rating for the sleep on this day. 
+	* Get the rating for the sleep on this day.
+	* 
+	* @return The sleep rating for this journal as an integer.  
 	*/
 	int getSleepRating();
 
 	/**
 	* Get the mood from this day.
+	* 
+	* @return The mood for this journal as a string. 
 	*/
 	string getMood();
 
 	/**
 	* Get all of the activities completed on this day.
+	* 
+	* @return The collection of activities done in this journal. 
 	*/
 	vector<string> getActivities();
 
 	/**
-	* Get all of the thoughts provided by Hammy on this day.
-	*/
-	vector<string> getHammyThoughts();
-
-	/**
 	* Get the journal entry from this day. 
+	* 
+	* @return The text entry for this journal as a string. 
 	*/
 	string getTextEntry();
 
 	/**
 	* Set the overall rating for this day. 
+	* 
+	* @param The rating to set. 
 	*/
 	void setDayRating(int dayRating);
 
 	/**
 	* Set the sleep rating for this day.
+	* 
+	* @param The rating to set. 
 	*/
 	void setSleepRating(int sleepRating);
 
 	/**
 	* Set the mood from this day. 
+	* 
+	* @param The mood to set. 
 	*/
 	void setMood(const string &mood);
 
 	/**
 	* Add an activity that was completed on this day. 
+	* 
+	* @param The activity to add. 
 	*/
 	void addActivity(string activity);
 
 	/**
-	* Add a thought shared by Hammy on this day. 
-	*/
-	void addHammyThoughts(string hammyThought);
-
-	/**
 	* Set the text entry for this day. 
+	* 
+	* @param The text entry to add. 
 	*/
 	void setTextEntry(const string &textEntry);
 };

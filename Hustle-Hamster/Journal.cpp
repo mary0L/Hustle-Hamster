@@ -28,9 +28,6 @@ vector<string> Journal::getActivities() {
 	return this->activities;
 }
 
-vector<string> Journal::getHammyThoughts() {
-	return this->hammyThoughts;
-}
 
 string Journal::getTextEntry() {
 	return this->textEntry;
@@ -50,10 +47,6 @@ void Journal::setMood(const string &mood) {
 
 void Journal::addActivity(string activity) {
 	this->activities.push_back(activity);
-}
-
-void Journal::addHammyThoughts(string hammyThought) {
-	this->hammyThoughts.push_back(hammyThought);
 }
 
 void Journal::setTextEntry(const string &textEntry) {

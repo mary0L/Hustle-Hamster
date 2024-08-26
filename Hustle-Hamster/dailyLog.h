@@ -1,3 +1,12 @@
+/**
+ * @file dailyLog.h
+ * @author Katelynn Wink
+ * 
+ * @brief File containing the daily log functions.
+ * 
+ * This file contains the  daily log  functions triggered once user selects daily log, so as to not clutter the main file.
+ */
+
 #pragma once
 
 #include <stdio.h>
