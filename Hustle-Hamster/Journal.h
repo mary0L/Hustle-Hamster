@@ -1,3 +1,11 @@
+/**
+ * @file Journal.h
+ * @author Abby Fernandes
+ *
+ * @brief File containing the class declaration for the Journal class.
+ *
+ */
+
 #pragma once
 #include "Date.h"
 #include <vector>
