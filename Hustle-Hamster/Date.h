@@ -1,3 +1,11 @@
+/**
+ * @file Date.h
+ * @author Abby Fernandes
+ *
+ * @brief File containing the class declaration for the Date class.
+ * 
+ */
+
 #pragma once
 
 #include <string>
@@ -5,9 +13,7 @@
 
 using namespace std;
 
-/**
- * @author Abby Fernandes
- * 
+/** 
 * Class for storing dates.
 * 
 * This class is used to make date handling throughout the application simpler by abstracting c++ date mechanisms. 
