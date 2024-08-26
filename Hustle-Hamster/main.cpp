@@ -21,6 +21,10 @@ using namespace std;
  * @see utils.h main()
  */
 int main(){
+
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
+
     TYPE("WELCOME TO HAMSTER HANGOUT");
     delay(stdDelay);
     printHammy();
