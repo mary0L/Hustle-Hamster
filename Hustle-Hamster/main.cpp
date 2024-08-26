@@ -21,6 +21,15 @@ using namespace std;
  * @see utils.h main()
  */
 int main(){
+    /**
+     *  Development Process only so that developers
+     *  can use MACOS and Windows
+     */
+    #ifdef _WINDOWS
+        SetConsoleCP(CP_UTF8);
+        SetConsoleOutputCP(CP_UTF8);
+    #endif
+
     TYPE("WELCOME TO HAMSTER HANGOUT");
     delay(stdDelay);
     printHammy();
