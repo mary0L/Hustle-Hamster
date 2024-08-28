@@ -9,5 +9,5 @@ if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET Hustle-Hamster PROPERTY CXX_STANDARD 20)
 endif()
 
-add_library(src STATIC "Date.cpp" "Journal.cpp" "utils.cpp" "menuHelp.cpp" "dailyLog.cpp")
-target_include_directories(src PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+add_library(Hustle-Hamster STATIC "Date.cpp" "Journal.cpp" "utils.cpp" "menuHelp.cpp" "dailyLog.cpp")
+target_include_directories(Hustle-Hamster PUBLIC ${CMAKE_CURRENT_LIST_DIR})
