@@ -19,7 +19,8 @@ void testDate() {
     Journal journal = Journal(date);
     
     try
-    {
+    {   
+        
         assert (journal.getDate().getDay() == date.getDay());
         assert (journal.getDate().getMonth() == date.getMonth());
         assert (journal.getDate().getYear() == date.getYear());
@@ -37,7 +38,9 @@ void testDayRating() {
     try
     {
         journal.setDayRating(5);
-        assert (journal.getDayRating() == 5);
+
+        int day = journal.getDayRating();
+        assert (day == 5);
     }
     catch(const std::exception& e)
     {
@@ -53,7 +56,9 @@ void testSleepRating() {
     try
     {
         journal.setSleepRating(5);
-        assert (journal.getSleepRating() == 5);
+
+        int sleep = journal.getSleepRating();
+        assert (sleep == 5);
     }
     catch(const std::exception& e)
     {
@@ -68,7 +73,8 @@ void testMood() {
     try
     {
         journal.setMood("Happy");
-        assert (journal.getMood() == "Happy");
+        string mood = journal.getMood();
+        assert (mood == "Happy");
     }
     catch(const std::exception& e)
     {
@@ -86,10 +92,16 @@ void testActivities() {
         journal.addActivity("Activity 1");
         journal.addActivity("Activity 2");
         journal.addActivity("Activity 3");
-        assert (journal.getActivities().size() == 3);
-        assert (journal.getActivities()[0] == "Activity 1");
-        assert (journal.getActivities()[1] == "Activity 2");
-        assert (journal.getActivities()[2] == "Activity 3");
+
+        int  a_size = journal.getActivities().size();
+        string a1 = journal.getActivities()[0];
+        string a2 = journal.getActivities()[1];
+        string a3 = journal.getActivities()[2];
+
+        assert (a_size == 3);
+        assert (a1 == "Activity 1");
+        assert (a2 == "Activity 2");
+        assert (a3 == "Activity 3");
     }
     catch(const std::exception& e)
     {

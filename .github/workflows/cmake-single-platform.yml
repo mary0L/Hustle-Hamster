@@ -22,3 +22,22 @@ jobs:
     - name: Test
       working-directory: ${{github.workspace}}/build
       run: ctest -C ${{env.BUILD_TYPE}}
+
+    - name: Set up OppCoverage
+      id: setup_opencppcoverage
+      run: |
+        choco install OpenCppCoverage
+        echo "C:\Program Files\OpenCppCoverage" >> $env:GITHUB_PATH
+
+    - name: Generate Report
+      working-directory: ${{github.workspace}}/build
+      shell: cmd
+      run: OpenCppCoverage.exe --sources Hustle-Hamster --export_type cobertura:${{github.workspace}}\Hustle-Hamster.xml --verbose -- ctest -C
+
+    - name: Upload Report to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        fail_ci_if_error: true
+        files: ${{github.workspace}}\Hustle-Hamster.xml
+        token: ${{ secrets.CODECOV_TOKEN }}
+
