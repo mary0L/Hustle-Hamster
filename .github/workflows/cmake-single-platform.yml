@@ -32,7 +32,7 @@ jobs:
     - name: Generate Report
       working-directory: ${{github.workspace}}/build
       shell: cmd
-      run: OpenCppCoverage.exe --sources Hustle-Hamster --export_type cobertura:${{github.workspace}}\Hustle-Hamster.xml --verbose -- ctest -C
+      run: OpenCppCoverage.exe --sources Hustle-Hamster --excluded_modules=C:\Windows\System32\* --export_type cobertura:${{github.workspace}}\Hustle-Hamster.xml --verbose -- ctest -C
 
     - name: Upload Report to Codecov
       uses: codecov/codecov-action@v4
