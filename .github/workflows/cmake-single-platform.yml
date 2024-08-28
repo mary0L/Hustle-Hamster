@@ -27,11 +27,11 @@ jobs:
 
     - name: List Release Directory
       shell: cmd
-      run: dir ${github.workspace}\build\Release
+      run: dir ${github.workspace}\build\Hustle-Hmaster\Release
     
     - name: Generate Report
       shell: cmd
-      run: OpenCppCoverage --modules "${{github.workspace}}\build\Release\*" --export_type cobertura:Hustle-Hamster.xml --verbose --cover_children -- ctest -C ${{env.BUILD_TYPE}} --test-dir build
+      run: OpenCppCoverage --modules "${{github.workspace}}\build\Hustle-Hamster\Release\*" --export_type cobertura:Hustle-Hamster.xml --verbose --cover_children -- ctest -C ${{env.BUILD_TYPE}} --test-dir build
     
     - name: Upload Report to Codecov
       uses: codecov/codecov-action@v4
