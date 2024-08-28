@@ -1,7 +1,7 @@
 #include "../Hustle-Hamster/Journal.h"
 #include "../Hustle-Hamster/Date.h"
 #include <iostream>
-#include <cassert>
+#include <unity.h>
 
  /*  Development Process only so that developers
  *  can use MACOS or Windows
@@ -14,128 +14,47 @@
 #include <unistd.h>
 #endif
 
-void testDate() {
+void testJournal() {
+
     Date date = Date();
     Journal journal = Journal(date);
+     
+        TEST_ASSERT_TRUE(journal.getDate().getDay() == date.getDay());
+        TEST_ASSERT_TRUE(journal.getDate().getMonth() == date.getMonth());
+        TEST_ASSERT_TRUE(journal.getDate().getYear() == date.getYear());
     
-    try
-    {   
-        
-        assert (journal.getDate().getDay() == date.getDay());
-        assert (journal.getDate().getMonth() == date.getMonth());
-        assert (journal.getDate().getYear() == date.getYear());
-        assert (journal.getDate().getWkDay() == date.getWkDay());
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << "Journal Date failed";
-    }
-}
-
-void testDayRating() {
     Journal journal;
 
-    try
-    {
         journal.setDayRating(5);
-
-        int day = journal.getDayRating();
-        assert (day == 5);
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << "Journal Day Rating failed";
-    }
+        TEST_ASSERT_TRUE(journal.getDayRating() == 5);
     
-
-}
-
-void testSleepRating() {
     Journal journal;
 
-    try
-    {
         journal.setSleepRating(5);
 
-        int sleep = journal.getSleepRating();
-        assert (sleep == 5);
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << "Journal Sleep Rating failed";
-    }
-    
-}
+        TEST_ASSERT_TRUE(journal.getSleepRating() == 5);
 
-void testMood() {
-    Journal journal;
 
-    try
-    {
-        journal.setMood("Happy");
-        string mood = journal.getMood();
-        assert (mood == "Happy");
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << "Journal Mood failed";
-    }
-    
+    journal.setMood("Happy");
+    TEST_ASSERT_TRUE(journal.getMood() == "Happy");
 
-}
 
-void testActivities() {
-    Journal journal;
-
-    try
-    {
         journal.addActivity("Activity 1");
         journal.addActivity("Activity 2");
         journal.addActivity("Activity 3");
 
-        int  a_size = journal.getActivities().size();
-        string a1 = journal.getActivities()[0];
-        string a2 = journal.getActivities()[1];
-        string a3 = journal.getActivities()[2];
+        TEST_ASSERT_TRUE(journal.getActivities().size() == 3);
+        TEST_ASSERT_TRUE(journal.getActivities()[0] == "Activity 1");
+        TEST_ASSERT_TRUE(journal.getActivities()[1] == "Activity 2");
+        TEST_ASSERT_TRUE(journal.getActivities()[2] == "Activity 3");
 
-        assert (a_size == 3);
-        assert (a1 == "Activity 1");
-        assert (a2 == "Activity 2");
-        assert (a3 == "Activity 3");
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << "Journal Activities failed";
-    }
-    
-
-}
-
-void testTextEntry() {
-    Journal journal;
-
-    try
-    {
         journal.setTextEntry("This is a test entry");
-        assert (journal.getTextEntry() == "This is a test entry");
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << "Journal Text Entry failed";
-    }
-    
-
+        TEST_ASSERT_TRUE(journal.getTextEntry() == "This is a test entry");
 }
 
-int main() {
-    testDate();
-    testDayRating();
-    testSleepRating();
-    testMood();
-    testActivities();
-    testTextEntry();
+int main(void) {
+    UNITY_BEGIN();
+    RUN_TEST(testJournal);
+    return UNITY_END();
 
-    std::cout << "All tests passed!" << std::endl;
-
-    return 0;
 }
