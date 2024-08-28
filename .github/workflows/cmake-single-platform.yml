@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
-  BUILD_TYPE: Release
+  BUILD_TYPE: Debug
 
 jobs:
   build:
@@ -12,11 +12,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-
-    - name: Install OpenCppCoverage
-      run: |
-        choco install OpenCppCoverage
-        echo "C:\Program Files\OpenCppCoverage" >> $env:GITHUB_PATH
 
     - name: Configure CMake
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
@@ -28,14 +23,20 @@ jobs:
       working-directory: ${{github.workspace}}/build
       run: ctest -C ${{env.BUILD_TYPE}}
 
-    - name: Generate Coverage Report
+    - name: Set up OppCoverage
+      id: setup_opencppcoverage
+      run: |
+        choco install OpenCppCoverage
+        echo "C:\Program Files\OpenCppCoverage" >> $env:GITHUB_PATH
+
+    - name: Generate Report
       shell: cmd
-      run: OpenCppCoverage --modules Release --export_type cobertura:Hustle-Hamster.xml --cover_children -- ctest -C ${{env.BUILD_TYPE}} --test-dir build
-    
+      run: OpenCppCoverage.exe --modules Debug --export_type cobertura:Hustle-Hamster.xml --verbose --cover_children -- ctest -C ${{env.BUILD_TYPE}} --test-dir build
+
     - name: Upload Report to Codecov
       uses: codecov/codecov-action@v4
       with:
         fail_ci_if_error: true
         files: Hustle-Hamster.xml
-        token: ${{ secrets.CODECOV_TOKEN }}
 
+        token: ${{ secrets.CODECOV_TOKEN }}

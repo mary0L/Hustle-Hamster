@@ -16,7 +16,6 @@ set(PROJECT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 add_subdirectory ("Hustle-Hamster")
 add_subdirectory("Testing")
 
+
 include(CTest)
 enable_testing()
-
-# add the tests
