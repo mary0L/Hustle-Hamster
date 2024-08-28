@@ -9,5 +9,10 @@ set(TEST_INC_DIRS
 
 add_executable(Testing ${TEST_SOURCES})
 target_include_directories(Testing PRIVATE ${TEST_INC_DIRS})
+target_link_libraries(Testing src)
+
+if (CMAKE_VERSION VERSION_GREATER 3.12)
+  set_property(TARGET Testing PROPERTY CXX_STANDARD 20)
+endif()
 
 add_test(NAME Testing COMMAND Testing)
