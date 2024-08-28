@@ -10,6 +10,13 @@ if (POLICY CMP0141)
 endif()
 
 project ("Hustle-Hamster")
+set(PROJECT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Include sub-projects.
 add_subdirectory ("Hustle-Hamster")
+
+include(CTest)
+enable_testing()
+
+# add the tests
+add_subdirectory("Testing")

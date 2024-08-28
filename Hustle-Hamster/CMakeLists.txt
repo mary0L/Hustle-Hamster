@@ -10,3 +10,5 @@ if (CMAKE_VERSION VERSION_GREATER 3.12)
 endif()
 
 # TODO: Add tests and install targets if needed.
+add_library(src STATIC "Date.cpp" "Journal.cpp" "utils.cpp" "menuHelp.cpp" "dailyLog.cpp")
+target_include_directories(src PUBLIC ${CMAKE_CURRENT_LIST_DIR})
