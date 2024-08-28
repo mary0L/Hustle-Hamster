@@ -7,7 +7,7 @@ set(TEST_INC_DIRS
     ${PROJECT_DIR}/Hustle-Hamster
     ${PROJECT_DIR}/Testing)
 
-add_executable(TestJournal "Journal-Test.cpp")
+add_executable(TestJournal ${TEST_SOURCES}) 
 target_include_directories(TestJournal PRIVATE ${TEST_INC_DIRS})
 target_link_libraries(TestJournal src)
 
