@@ -15,7 +15,6 @@ set(PROJECT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 # Include sub-projects.
 add_subdirectory ("Hustle-Hamster")
 add_subdirectory("Testing")
-add_subdirectory("Unity")
 
 include(CTest)
 enable_testing()

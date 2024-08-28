@@ -9,7 +9,7 @@ set(TEST_INC_DIRS
 
 add_executable(Testing ${TEST_SOURCES})
 target_include_directories(Testing PRIVATE ${TEST_INC_DIRS})
-target_link_libraries(Testing src unity)
+target_link_libraries(Testing src)
 
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
