@@ -27,7 +27,7 @@ jobs:
 
     - name: List Release Directory
       shell: cmd
-      run: dir ${github.workspace}\build\Hustle-Hmaster\Release
+      run: dir ${github.workspace}\build\Hustle-Hamster\Release
     
     - name: Generate Report
       shell: cmd
