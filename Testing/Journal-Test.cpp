@@ -70,7 +70,9 @@ void testTextEntry(Journal &journal)
 {
     journal.setTextEntry("This is a test entry");
 
-    assert(journal.getTextEntry() == "This is a test entry");
+    string text = journal.getTextEntry();
+    
+    assert(text == "This is a test entry");
 }
 
 int main()
