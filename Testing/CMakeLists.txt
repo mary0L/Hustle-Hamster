@@ -8,12 +8,12 @@ set(TEST_INC_DIRS
     ${PROJECT_DIR}/Testing)
 
 add_executable(TestJournal "Journal-Test.cpp")
-target_include_directories(Testing PRIVATE ${TEST_INC_DIRS})
-target_link_libraries(Testing src)
+target_include_directories(TestJournal PRIVATE ${TEST_INC_DIRS})
+target_link_libraries(TestJournal src)
 
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET Testing PROPERTY CXX_STANDARD 20)
+  set_property(TARGET TestJournal PROPERTY CXX_STANDARD 20)
 endif()
 
 add_test(NAME TestJournal COMMAND TestJournal)
