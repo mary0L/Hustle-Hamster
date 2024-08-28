@@ -27,7 +27,7 @@ jobs:
     
     - name: Generate Report
       shell: cmd
-      run: OpenCppCoverage.exe --modules Release --export_type cobertura:${{github.workspace}}\Hustle-Hamster.xml --verbose --cover_children -- ctest -C ${{env.BUILD_TYPE}} --test-dir build
+      run: OpenCppCoverage --modules Release --export_type cobertura:Hustle-Hamster.xml --cover_children -- ctest -C ${{env.BUILD_TYPE}} --test-dir build
     
     - name: Upload Report to Codecov
       uses: codecov/codecov-action@v4
