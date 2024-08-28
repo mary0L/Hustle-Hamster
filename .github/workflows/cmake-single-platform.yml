@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
-  BUILD_TYPE: Release
+  BUILD_TYPE: Debug
 
 jobs:
   build:
@@ -31,7 +31,7 @@ jobs:
 
     - name: Generate Report
       shell: cmd
-      run: OpenCppCoverage.exe --modules Release --export_type cobertura:Hustle-Hamster.xml --verbose --cover_children -- ctest -C ${{env.BUILD_TYPE}} --test-dir build
+      run: OpenCppCoverage.exe --modules Debug --export_type cobertura:Hustle-Hamster.xml --verbose --cover_children -- ctest -C ${{env.BUILD_TYPE}} --test-dir build
 
     - name: Upload Report to Codecov
       uses: codecov/codecov-action@v4
