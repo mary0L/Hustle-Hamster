@@ -30,9 +30,8 @@ jobs:
         echo "C:\Program Files\OpenCppCoverage" >> $env:GITHUB_PATH
 
     - name: Generate Report
-      working-directory: ${{github.workspace}}/build
       shell: cmd
-      run: OpenCppCoverage.exe --sources Hustle-Hamster --excluded_modules=C:\Windows\System32\* --export_type cobertura:${{github.workspace}}\Hustle-Hamster.xml --verbose -- ctest -C ${{env.BUILD_TYPE}}
+      run: OpenCppCoverage.exe --excluded_modules=C:\Windows\System32\* --export_type cobertura:${{github.workspace}}\Hustle-Hamster.xml --verbose -- ctest -C ${{env.BUILD_TYPE}}
 
     - name: Upload Report to Codecov
       uses: codecov/codecov-action@v4
