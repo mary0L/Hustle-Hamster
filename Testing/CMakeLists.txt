@@ -1,7 +1,7 @@
 set(TEST_SOURCES
     ${PROJECT_DIR}/Testing/Testing.cpp
-    ${PROJECT_DIR}/Hustle-Hamster/Date.cpp
-    ${PROJECT_DIR}/Hustle-Hamster/Journal.cpp)
+    ${PROJECT_DIR}/src/Date.cpp
+    ${PROJECT_DIR}/src/Journal.cpp)
     
 set(TEST_INC_DIRS
     ${PROJECT_DIR}/Hustle-Hamster
