@@ -24,10 +24,6 @@ jobs:
 
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
-
-    - name: List Release Directory
-      shell: cmd
-      run: dir ${github.workspace}\build\Hustle-Hamster\Release
     
     - name: Generate Report
       shell: cmd
