@@ -7,7 +7,7 @@ set(TEST_INC_DIRS
     ${PROJECT_DIR}/Hustle-Hamster
     ${PROJECT_DIR}/Testing)
 
-add_executable(Testing Testing.cpp)
+add_executable(Testing "Testing.cpp")
 target_include_directories(Testing PRIVATE ${TEST_INC_DIRS})
 target_link_libraries(Testing src)
 
