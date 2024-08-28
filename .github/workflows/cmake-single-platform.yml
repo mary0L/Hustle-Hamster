@@ -24,14 +24,18 @@ jobs:
 
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+    - name: List Release Directory
+      shell: cmd
+      run: dir ${github.workspace}\build\Release
     
     - name: Generate Report
       shell: cmd
-      run: OpenCppCoverage.exe --modules Release --export_type cobertura:Hustle-Hamster.xml --verbose --cover_children -- ctest -C ${{env.BUILD_TYPE}} --test-dir build
+      run: OpenCppCoverage --modules "${{github.workspace}}\build\Release\*" --export_type cobertura:Hustle-Hamster.xml --verbose --cover_children -- ctest -C ${{env.BUILD_TYPE}} --test-dir build
     
     - name: Upload Report to Codecov
       uses: codecov/codecov-action@v4
       with:
-          files: ./HelloCov.xml
-          fail_ci_if_error: true
-          functionalities: fix
+        fail_ci_if_error: true
+        files: ${{github.workspace}}\Hustle-Hamster.xml
+        token: ${{ secrets.CODECOV_TOKEN }}
