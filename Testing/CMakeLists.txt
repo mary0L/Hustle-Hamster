@@ -1,5 +1,5 @@
 set(TEST_SOURCES
-    ${PROJECT_DIR}/Testing/Testing.cpp
+    ${PROJECT_DIR}/Testing/Journal-Test.cpp
     ${PROJECT_DIR}/Hustle-Hamster/Date.cpp
     ${PROJECT_DIR}/Hustle-Hamster/Journal.cpp)
     

@@ -3,10 +3,8 @@
 #include <iostream>
 #include <cassert>
 
-void testDate()
+void testDate(Journal &journal, Date &date)
 {
-    Date date = Date();
-    Journal journal = Journal(date);
 
     int j_day = journal.getDate().getDay();
     int j_month = journal.getDate().getMonth();
@@ -24,10 +22,8 @@ void testDate()
     assert(j_wkDay == wkDay);
 }
 
-void testDayRating()
+void testDayRating(Journal &journal)
 {
-    Journal journal;
-
     journal.setDayRating(5);
 
     int day = journal.getDayRating();
@@ -35,10 +31,8 @@ void testDayRating()
     assert(day == 5);
 }
 
-void testSleepRating()
+void testSleepRating(Journal &journal)
 {
-    Journal journal;
-
     journal.setSleepRating(5);
 
     int sleep = journal.getSleepRating();
@@ -46,10 +40,8 @@ void testSleepRating()
     assert(sleep == 5);
 }
 
-void testMood()
+void testMood(Journal &journal)
 {
-    Journal journal;
-
     journal.setMood("Happy");
 
     string mood = journal.getMood();
@@ -57,10 +49,8 @@ void testMood()
     assert(mood == "Happy");
 }
 
-void testActivities()
+void testActivities(Journal &journal)
 {
-    Journal journal;
-
     journal.addActivity("Activity 1");
     journal.addActivity("Activity 2");
     journal.addActivity("Activity 3");
@@ -76,10 +66,8 @@ void testActivities()
     assert(a3 == "Activity 3");
 }
 
-void testTextEntry()
+void testTextEntry(Journal &journal)
 {
-    Journal journal;
-
     journal.setTextEntry("This is a test entry");
 
     assert(journal.getTextEntry() == "This is a test entry");
@@ -87,12 +75,18 @@ void testTextEntry()
 
 int main()
 {
-    testDate();
-    testDayRating();
-    testSleepRating();
-    testMood();
-    testActivities();
-    testTextEntry();
+    Date date = Date();
+    Journal journal = Journal(date);
+
+    testDate(journal, date);
+    testDayRating(journal);
+    testSleepRating(journal);
+    testMood(journal);
+    testActivities(journal);
+    testTextEntry(journal);
+
+    // Delete the journal object
+    journal.~Journal();
 
     std::cout << "All tests passed!" << std::endl;
 
