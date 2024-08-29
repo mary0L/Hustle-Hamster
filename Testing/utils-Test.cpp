@@ -94,7 +94,8 @@ void testMenu(){
     std::cout.rdbuf(coutbuf);
 
     std::stringstream expectedOutput;
-    expectedOutput << "Lets see how your day went!";
+    expectedOutput << "       Lets see how your day went!";
+    expectedOutput << "----------------------------------------------------------";
 
     assert(output.str() == expectedOutput.str());
 }
