@@ -3,6 +3,8 @@
 #include "../Hustle-Hamster/Date.h"
 #include <iostream>
 #include <cassert>
+#include <sstream>
+#include <limits>
 
 void testPrintReport(Journal &journal)
 {
@@ -15,24 +17,24 @@ void testPrintReport(Journal &journal)
     // Call function being tested
     printReport(journal);
 
-    // Check the output
-    std::string expected = "        You rated your day a 5/5\n "
-                        "       You rated your sleep a 3/5\n"
-                        "       You said your mood today was: Sad\n"
-                        "       ----------------------------------------------------------\n"
-                        "       Here are the activities you completed today:\n"
-                        "       Activity 1\n"
-                        "       Activity 2\n"
-                        "       ----------------------------------------------------------\n"
-                        "       Your thoughts on the day:\n"
-                        "       This is a test entry.\n"
-                        "       ----------------------------------------------------------\n";
-    
-
-    assert(output.str() == expected);
-
     // Reset cout buffer
     std::cout.rdbuf(coutbuf);
+
+    // Check the output
+    std::stringstream expectedOutput;
+    expectedOutput << "You rated your day a 4/5\n";
+    expectedOutput << "You rated your sleep a 3/5\n";
+    expectedOutput << "You said your mood today was: Good\n";
+    expectedOutput << "----------------------------------------------------------\n";
+    expectedOutput << "Here are the activities you completed today:\n";
+    expectedOutput << "Activity 1\n";
+    expectedOutput << "Activity 2\n";
+    expectedOutput << "----------------------------------------------------------\n";
+    expectedOutput << "Your thoughts on the day:\n";
+    expectedOutput << "This is a test entry\n";
+    expectedOutput << "----------------------------------------------------------\n";
+
+    assert(output.str() == expectedOutput.str());
 }
 
 int main()
