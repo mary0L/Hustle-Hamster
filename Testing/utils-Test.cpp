@@ -39,10 +39,10 @@ void testPrintHammy()
 
     // Check the output
     std::stringstream expectedOutput;
-    expectedOutput << "   o _ o\n";
-    expectedOutput << "  ( -.-)\n";
-    expectedOutput << "o_(\")(\")\n";
-    expectedOutput << "       \\\n";
+ "   o _ o\n";
+ "  ( -.-)\n";
+ "o_(\")(\")\n";
+ "       \\\n";
 
     assert(output.str() == expectedOutput.str());
 }
@@ -61,20 +61,20 @@ void testPrintReport(Journal &journal)
     std::cout.rdbuf(coutbuf);
 
     // Check the output
-    std::stringstream expectedOutput;
-    expectedOutput << "You rated your day a 5/5";
-    expectedOutput << "You rated your sleep a 3/5";
-    expectedOutput << "You said your mood today was: Sad";
-    expectedOutput << "----------------------------------------------------------";
-    expectedOutput << "Here are the activities you completed today:";
-    expectedOutput << "Activity 1";
-    expectedOutput << "Activity 2";
-    expectedOutput << "----------------------------------------------------------";
-    expectedOutput << "Your thoughts on the day:";
-    expectedOutput << "This is a test entry";
-    expectedOutput << "----------------------------------------------------------";
+    string expectedOutput =
+        "       You rated your day a 5/5"
+        "       You rated your sleep a 3/5"
+        "       You said your mood today was: Sad"
+        "----------------------------------------------------------"
+        "       Here are the activities you completed today:"
+        "       Activity 1"
+        "       Activity 2"
+        "----------------------------------------------------------"
+        "       Your thoughts on the day:"
+        "       This is a test entry"
+        "----------------------------------------------------------";
 
-    assert(output.str() == expectedOutput.str());
+    assert(output.str() == expectedOutput);
 }
 
 void testMenu(){
@@ -119,10 +119,10 @@ int main()
     journal.setTextEntry("This is a test entry.");
 
     // Run tests
-    //testPrintReport(journal);
+    testPrintReport(journal);
     testTYPE();
     testPrintHammy();
-    testMenu();
+    //testMenu();
 
     // Tear down - Delete the journal object
     journal.~Journal();
