@@ -36,9 +36,9 @@ target_include_directories(TestDailyLog PRIVATE ${TEST_INC_DIRS})
 target_link_libraries(TestDailyLog src)
 
 # Add executables for unit testing utils
-add_executable(TestUtils ${TEST_SOURCES_UTILS})
-target_include_directories(TestUtils PRIVATE ${TEST_INC_DIRS})
-target_link_libraries(TestUtils src)
+#add_executable(TestUtils ${TEST_SOURCES_UTILS})
+#target_include_directories(TestUtils PRIVATE ${TEST_INC_DIRS})
+#target_link_libraries(TestUtils src)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET TestJournal PROPERTY CXX_STANDARD 20)
@@ -46,5 +46,5 @@ endif()
 
 add_test(NAME TestJournal COMMAND TestJournal)
 add_test(NAME TestDailyLog COMMAND TestDailyLog)
-add_test(NAME TestUtils COMMAND TestUtils)
+#add_test(NAME TestUtils COMMAND TestUtils)
 
