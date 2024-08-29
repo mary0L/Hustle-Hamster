@@ -91,6 +91,7 @@ void testMenu(){
 
     // Restore cout buffer.
     std::cout.rdbuf(coutbuf);
+    std::cin.rdbuf(cinbuf);
 
     string expectedOutput = 
         "       What can I help you with?\n"
