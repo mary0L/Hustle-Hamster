@@ -27,7 +27,8 @@ void testDailyRating(Journal &journal)
 
 void testSleepRating(Journal &journal)
 {
-    std::istringstream input("abc\n"
+    std::istringstream input("6\n"
+                            "abc\n"
                             "3\n");         // Simulating correct user input "3"
 
     std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
@@ -46,8 +47,7 @@ void testSleepRating(Journal &journal)
 
 void testMoodRating(Journal &journal)
 {
-    std::istringstream input("1\n"
-                            "Happy\n");    // Simulating correct user input "Happy"
+    std::istringstream input("Happy\n");    // Simulating correct user input "Happy"
 
     std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
     std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
@@ -80,8 +80,7 @@ void testLongAnswer(Journal &journal)
 
 void testDidActivity(Journal &journal)
 {
-    std::istringstream input("1\n"
-                            "y\n");             // Simulating correct user input "y"
+    std::istringstream input("y\n");             // Simulating correct user input "y"
 
     std::streambuf *cinbuf = std::cin.rdbuf();    // Save original buffer
     std::cin.rdbuf(input.rdbuf());                // Redirect std::cin to read from input
