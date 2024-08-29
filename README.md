@@ -12,3 +12,6 @@ We have built Hamster Hangout in C++ with no external libraries, using the Open 
 
 ## How to use Hamster Hangout
 Hamster Hangout can be easily used by responding to prompts given by Hammy (the hamster). These could be numbered for mood rating, or long answer when asked more detailed questions. The command line interface also offers a variety of options for logging, seeing previous records, and getting extra information about the application. All of the users generated journals are stored in their ``Users/Desktop`` path so they are easily able to navigate to them. 
+
+### Feel free to give us feedback here!
+[Hamster Hangout Feedback Form](https://docs.google.com/forms/d/e/1FAIpQLScawwGY_azkGivVO9_lvc4nLEPHEgMZBat1EZp-lhMRXqnzLQ/viewform?usp=sf_link)
