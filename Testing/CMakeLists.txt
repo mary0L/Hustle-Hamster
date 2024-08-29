@@ -14,7 +14,10 @@ set(TEST_SOURCES_DAILYLOG
 
 set(TEST_SOURCES_UTILS
     ${PROJECT_DIR}/Testing/Utils-Test.cpp
-    ${PROJECT_DIR}/Hustle-Hamster/utils.cpp)
+    ${PROJECT_DIR}/Hustle-Hamster/utils.cpp
+    ${PROJECT_DIR}/Hustle-Hamster/Date.cpp
+    ${PROJECT_DIR}/Hustle-Hamster/Journal.cpp)
+
     
 set(TEST_INC_DIRS
     ${PROJECT_DIR}/Hustle-Hamster
