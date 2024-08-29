@@ -16,6 +16,8 @@ void testTYPE(){
     string input = "This is a test";
     string expectedOutput = "       This is a test\n";
 
+    TYPE(input);
+    
     // Reset cout buffer
     std::cout.rdbuf(coutbuf);
 
