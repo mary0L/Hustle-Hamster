@@ -47,8 +47,7 @@ void testSleepRating(Journal &journal)
 
 void testMoodRating(Journal &journal)
 {
-    std::istringstream input("1\n"
-                            "Happy\n");    // Simulating correct user input "Happy"
+    std::istringstream input("Happy\n");    // Simulating correct user input "Happy"
 
     std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
     std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
