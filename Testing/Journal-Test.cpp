@@ -69,9 +69,8 @@ void testActivities(Journal &journal)
 void testTextEntry(Journal &journal)
 {
     journal.setTextEntry("This is a test entry");
-
-    string text = journal.getTextEntry();
     
+    string text = journal.getTextEntry();
     assert(text == "This is a test entry");
 }
 
