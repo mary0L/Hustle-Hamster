@@ -14,7 +14,18 @@ void testPrintReport(Journal &journal)
 
     std::cout.rdbuf(coutbuf); // Restore cout buffer.
 
-    std::string expected = "       You rated your day a 5/5\n       You rated your sleep a 3/5\n       You said your mood today was: Sad\n       ----------------------------------------------------------\n       Here are the activities you completed today:\n       Activity 1\n       Activity 2\n       ----------------------------------------------------------\n Your thoughts on the day:\n       This is a test entry.\n       ----------------------------------------------------------\n";
+    std::string expected = "        You rated your day a 5/5\n "
+                        "       You rated your sleep a 3/5\n"
+                        "       You said your mood today was: Sad\n"
+                        "       ----------------------------------------------------------\n"
+                        "       Here are the activities you completed today:\n"
+                        "       Activity 1\n"
+                        "       Activity 2\n"
+                        "       ----------------------------------------------------------\n"
+                        "       Your thoughts on the day:\n"
+                        "       This is a test entry.\n"
+                        "       ----------------------------------------------------------\n";
+    
     assert(output.str() == expected);
 }
 
