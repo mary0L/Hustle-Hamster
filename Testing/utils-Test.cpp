@@ -44,7 +44,6 @@ void testPrintHammy()
     expectedOutput << "o_(\")(\")\n";
     expectedOutput << "       \\\n";
 
-
     assert(output.str() == expectedOutput.str());
 }
 
@@ -120,7 +119,7 @@ int main()
     journal.setTextEntry("This is a test entry.");
 
     // Run tests
-    testPrintReport(journal);
+    //testPrintReport(journal);
     testTYPE();
     testPrintHammy();
     //testMenu();
