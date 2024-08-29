@@ -78,7 +78,7 @@ void testPrintReport(Journal &journal)
 }
 
 void testMenu(){
-    std::istringstream input("1\n");    // Simulating correct user input "1"
+    std::istringstream input("5\n");
     std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
     std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
 
@@ -89,15 +89,19 @@ void testMenu(){
     // Test menu function with mock input
     menu();
 
-    // Restore cin and cout buffer.
-    std::cin.rdbuf(cinbuf);
+    // Restore cout buffer.
     std::cout.rdbuf(coutbuf);
 
-    std::stringstream expectedOutput;
-    expectedOutput << "       Lets see how your day went!";
-    expectedOutput << "----------------------------------------------------------";
+    string expectedOutput = 
+        "       What can I help you with?\n"
+        "       [1] Daily Log\n"
+        "       [2] Get Data Report\n"
+        "       [3] Settings\n"
+        "       [4] How to Use\n"
+        "       [5] Quit\n"
+        "       Let's see how your day went!\n";
 
-    assert(output.str() == expectedOutput.str());
+    assert(output.str() == expectedOutput);
 }
 
 int main()
