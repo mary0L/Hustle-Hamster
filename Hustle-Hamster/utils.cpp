@@ -1,7 +1,9 @@
 #ifdef TESTING
 #define SLEEP_DURATION 0
+#define STD_DELAY 0
 #else
 #define SLEEP_DURATION 30
+#define STD_DELAY 100
 #endif
 
 #include <stdio.h>
@@ -16,7 +18,7 @@
 using namespace std;
 
 
-unsigned int stdDelay = 100;
+unsigned int stdDelay = STD_DELAY;
 
 vector<string> defaultActivities = {"Study", "Work", "Socialise", "Exercise", "Drink Water", "Go outside"}; 
 
