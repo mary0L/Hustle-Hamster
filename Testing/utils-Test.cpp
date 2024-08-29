@@ -39,10 +39,11 @@ void testPrintHammy()
 
     // Check the output
     std::stringstream expectedOutput;
- "   o _ o\n";
- "  ( -.-)\n";
- "o_(\")(\")\n";
- "       \\\n";
+    expectedOutput << "   o _ o\n";
+    expectedOutput << "  ( -.-)\n";
+    expectedOutput << "o_(\")(\")\n";
+    expectedOutput << "       \\\n";
+
 
     assert(output.str() == expectedOutput.str());
 }
