@@ -62,20 +62,20 @@ void testPrintReport(Journal &journal)
     std::cout.rdbuf(coutbuf);
 
     // Check the output
-    string expectedOutput =
-        "       You rated your day a 5/5"
-        "       You rated your sleep a 3/5"
-        "       You said your mood today was: Sad"
-        "----------------------------------------------------------"
-        "       Here are the activities you completed today:"
-        "       Activity 1"
-        "       Activity 2"
-        "----------------------------------------------------------"
-        "       Your thoughts on the day:"
-        "       This is a test entry"
-        "----------------------------------------------------------";
+    std::stringstream expectedOutput;
+    expectedOutput << "       You rated your day a 5/5";
+    expectedOutput << "       You rated your sleep a 3/5";
+    expectedOutput << "       You said your mood today was: Sad";
+    expectedOutput << "----------------------------------------------------------";
+    expectedOutput << "       Here are the activities you completed today:";
+    expectedOutput << "       Activity 1";
+    expectedOutput << "       Activity 2";
+    expectedOutput << "----------------------------------------------------------";
+    expectedOutput << "       Your thoughts on the day:";
+    expectedOutput << "       This is a test entry";
+    expectedOutput << "----------------------------------------------------------";
 
-    assert(output.str() == expectedOutput);
+    assert(output.str() == expectedOutput.str());
 }
 
 void testMenu(){
