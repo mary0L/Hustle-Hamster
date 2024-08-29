@@ -1,4 +1,4 @@
-set(TEST_SOURCES_JOURNAL
+set(TEST_SOURCES
     ${PROJECT_DIR}/Testing/Journal-Test.cpp
     ${PROJECT_DIR}/Hustle-Hamster/Date.cpp
     ${PROJECT_DIR}/Hustle-Hamster/Journal.cpp
