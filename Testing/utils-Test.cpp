@@ -6,14 +6,16 @@
 
 void testPrintReport(Journal &journal)
 {
+    
+    // Get the output from the printReport function
     std::stringstream output;
-    std::streambuf *coutbuf = std::cout.rdbuf(); // Save original buffer
-    std::cout.rdbuf(output.rdbuf());             // Redirect std::cout to output
+    std::streambuf *coutbuf = std::cout.rdbuf(); 
+    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
 
+    // Call function being tested
     printReport(journal);
 
-    std::cout.rdbuf(coutbuf); // Restore cout buffer.
-
+    // Check the output
     std::string expected = "        You rated your day a 5/5\n "
                         "       You rated your sleep a 3/5\n"
                         "       You said your mood today was: Sad\n"
@@ -26,7 +28,11 @@ void testPrintReport(Journal &journal)
                         "       This is a test entry.\n"
                         "       ----------------------------------------------------------\n";
     
+
     assert(output.str() == expected);
+
+    // Reset cout buffer
+    std::cout.rdbuf(coutbuf);
 }
 
 int main()
