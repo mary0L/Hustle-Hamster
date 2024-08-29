@@ -73,7 +73,8 @@ int main()
     journal.setTextEntry("This is a test entry.");
 
     // Run tests
-    testPrintReport(journal);
+    //testPrintReport(journal);
+    testPrintHammy();
 
     // Tear down - Delete the journal object
     journal.~Journal();
