@@ -7,7 +7,10 @@
 
 void testDailyRating(Journal &journal)
 {
-    std::istringstream input("3\n");           // Simulating user input "3"
+    std::istringstream input("6\n"            // Simulating incorrect user input "6"
+                            "abc\n"           // Simulating incorect user input "abc"
+                            "3\n");           // Simulating correct user input "3"
+
     std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
     std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
 
@@ -17,31 +20,16 @@ void testDailyRating(Journal &journal)
     // Restore cin buffer.
     std::cin.rdbuf(cinbuf);
 
-    int rating = journal.getDayRating();
-    assert(rating == 3);
-}
-
-void testIncorrectDailyRating(Journal &journal)
-{
-    std::istringstream input("6\n"
-                            "abc\n"
-                            "3\n");           
-    std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
-    std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
-
-    // Test dailyRating function with mock input
-    dailyRating(journal);
-
-    // Restore cin buffer.
-    std::cin.rdbuf(cinbuf);
-
+    // Get daily rating and check it is correct
     int rating = journal.getDayRating();
     assert(rating == 3);
 }
 
 void testSleepRating(Journal &journal)
 {
-    std::istringstream input("4\n");           // Simulating user input "4"
+    std::istringstream input("6\n"          // Simulating incorrect user input "6"
+                            "abc\n"         // Simulating incorrect user input "abc"
+                            "3\n");         // Simulating correct user input "3"
     std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
     std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
 
@@ -51,52 +39,20 @@ void testSleepRating(Journal &journal)
     // Restore cin buffer.
     std::cin.rdbuf(cinbuf);
 
-    int rating = journal.getSleepRating();
-    assert(rating == 4);
-}
-
-void testIncorrectSleepRating(Journal &journal)
-{
-    std::istringstream input("6\n"
-                            "abc\n"
-                            "3\n");           
-    std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
-    std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
-
-    // Test dailyRating function with mock input
-    sleepRating(journal);
-
-    // Restore cin buffer.
-    std::cin.rdbuf(cinbuf);
-
+    // Get sleep rating and check it is correct
     int rating = journal.getSleepRating();
     assert(rating == 3);
 }
 
 void testMoodRating(Journal &journal)
 {
-    std::istringstream input("Happy\n");       // Simulating user input "Happy"
+    std::istringstream input("123\n"       // Simulating incorrect user input "123"
+                            "Happy\n");    // Simulating correct user input "Happy"
+
     std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
     std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
 
     // Test moodRating function with mock input
-    moodRating(journal);
-
-    // Restore cin buffer.
-    std::cin.rdbuf(cinbuf);
-
-    std::string mood = journal.getMood();
-    assert(mood == "Happy");
-}
-
-void testIncorrectMoodRating(Journal &journal)
-{
-    std::istringstream input("123\n"
-                            "Happy\n");       
-    std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
-    std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
-
-    // Test dailyRating function with mock input
     moodRating(journal);
 
     // Restore cin buffer.
@@ -140,7 +96,9 @@ void testNoLongAnswer(Journal &journal)
 
 void testDidActivity(Journal &journal)
 {
-    std::istringstream input("y\n");              // Simulating user input "y"
+    std::istringstream input("abc\n"            // Simulating incorrect user input "abc"
+                            "y\n");             // Simulating correct user input "y"
+
     std::streambuf *cinbuf = std::cin.rdbuf();    // Save original buffer
     std::cin.rdbuf(input.rdbuf());                // Redirect std::cin to read from input
 
@@ -165,26 +123,6 @@ void testDidActivity(Journal &journal)
     assert(activities[0] == "Activity 1");
 }
 
-void testIncorrectDidActivities(Journal &journal)
-{
-    std::istringstream input("abc\n"
-                            "y\n");              // Simulating user input "abc" and "y"
-    std::streambuf *cinbuf = std::cin.rdbuf();    // Save original buffer
-    std::cin.rdbuf(input.rdbuf());                // Redirect std::cin to read from input
-
-    string activity = "Activity 1";
-
-    // Test didActivity function with mock input
-    didActivity(activity, journal);
-
-    // Restore cin buffer.
-    std::cin.rdbuf(cinbuf);
-                       
-    std::vector<std::string> activities = journal.getActivities();
-    assert(activities.size() == 1);
-    assert(activities[0] == "Activity 1");
-}
-
 int main()
 {   
     // Set up Journal object
@@ -193,19 +131,11 @@ int main()
 
     // Run tests
     testDailyRating(journal);
-    testIncorrectDailyRating(journal);
-
     testSleepRating(journal);
-    testIncorrectSleepRating(journal);
-
     testMoodRating(journal);
-    testIncorrectMoodRating(journal);
-
     testLongAnswer(journal);
     testNoLongAnswer(journal);
-
     testDidActivity(journal);
-    testIncorrectDidActivities(journal);
 
     // Delete the journal object
     journal.~Journal();
