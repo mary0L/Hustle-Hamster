@@ -1,3 +1,5 @@
+#define TESTING  // Define TESTING for conditional compilation
+
 #include "../Hustle-Hamster/utils.h"
 #include "../Hustle-Hamster/Journal.h"
 #include "../Hustle-Hamster/Date.h"
@@ -5,6 +7,43 @@
 #include <cassert>
 #include <sstream>
 #include <limits>
+
+void testTYPE(){
+    std::stringstream output;
+    std::streambuf *coutbuf = std::cout.rdbuf(); 
+    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
+
+    string input = "This is a test";
+    string expectedOutput = "       This is a test\n";
+
+    // Reset cout buffer
+    std::cout.rdbuf(coutbuf);
+
+    assert(output.str() == expectedOutput);
+}
+
+void testPrintHammy()
+{
+    // Get the output from the printHammy function
+    std::stringstream output;
+    std::streambuf *coutbuf = std::cout.rdbuf(); 
+    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
+
+    // Call function being tested
+    printHammy();
+
+    // Reset cout buffer
+    std::cout.rdbuf(coutbuf);
+
+    // Check the output
+    std::stringstream expectedOutput;
+    expectedOutput << "   o _ o\n";
+    expectedOutput << "  ( -.-)\n";
+    expectedOutput << "o_(\")(\")\n";
+    expectedOutput << "       \\\n";
+
+    assert(output.str() == expectedOutput.str());
+}
 
 void testPrintReport(Journal &journal)
 {
@@ -36,29 +75,6 @@ void testPrintReport(Journal &journal)
     assert(output.str() == expectedOutput.str());
 }
 
-void testPrintHammy()
-{
-    // Get the output from the printHammy function
-    std::stringstream output;
-    std::streambuf *coutbuf = std::cout.rdbuf(); 
-    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
-
-    // Call function being tested
-    printHammy();
-
-    // Reset cout buffer
-    std::cout.rdbuf(coutbuf);
-
-    // Check the output
-    std::stringstream expectedOutput;
-    expectedOutput << "   o _ o\n";
-    expectedOutput << "  ( -.-)\n";
-    expectedOutput << "o_(\")(\")\n";
-    expectedOutput << "       \\\n";
-
-    assert(output.str() == expectedOutput.str());
-}
-
 void testMenu(){
     std::istringstream input("1\n");    // Simulating correct user input "1"
     std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
@@ -71,7 +87,7 @@ void testMenu(){
     // Test menu function with mock input
     menu();
 
-    // Restore cin buffer.
+    // Restore cin and cout buffer.
     std::cin.rdbuf(cinbuf);
     std::cout.rdbuf(coutbuf);
 
@@ -97,7 +113,7 @@ int main()
     // Run tests
     //testPrintReport(journal);
     testPrintHammy();
-    testMenu();
+    testTYPE();
 
     // Tear down - Delete the journal object
     journal.~Journal();

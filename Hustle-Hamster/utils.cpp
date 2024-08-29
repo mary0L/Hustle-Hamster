@@ -1,3 +1,9 @@
+#ifdef TESTING
+#define SLEEP_DURATION 0
+#else
+#define SLEEP_DURATION 30
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
@@ -24,7 +30,7 @@ void TYPE(const string& p) {
     cout << "       ";
     for (char c : p) {
         cout << c << flush;
-        Sleep(30);
+        Sleep(SLEEP_DURATION);
     }
     cout << endl;
 }
