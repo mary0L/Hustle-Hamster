@@ -1,3 +1,12 @@
+/**
+ * @file dailyLog.h
+ * @author Katelynn Wink
+ * 
+ * @brief File containing the daily log functions.
+ * 
+ * This file contains the  daily log  functions triggered once user selects daily log, so as to not clutter the main file.
+ */
+
 #pragma once
 
 #include <stdio.h>
@@ -29,6 +38,13 @@ void sleepRating(Journal &dailyEntry);
  * @param dailyEntry the daily Journal entry
 */
 void moodRating(Journal &dailyEntry);
+
+/**
+ * Method to ask and store users text answer to a open ended question
+ * 
+ * @param dailyEntry the daily Journal entry
+*/
+void longAnswer(Journal &dailyEntry);
 
 /**
  * Method to ask the user if they performed an activity

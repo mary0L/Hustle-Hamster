@@ -42,7 +42,7 @@ void sleepRating(Journal &dailyEntry){
 void moodRating(Journal &dailyEntry){
     string temp; 
     bool validResponse = false;
-    TYPE("How would you describe your mood today? (Enter as a String)");
+    TYPE("How would you describe your mood today in one word? (Enter as a String)");
     while(!validResponse){
         cin >> temp;
         if(!cin.fail()){
@@ -56,6 +56,19 @@ void moodRating(Journal &dailyEntry){
             }
     }
 }
+
+void longAnswer(Journal &dailyEntry) {
+    string textInput; 
+    TYPE("Anything you want to say about today? (Enter as a String)");
+
+    getline(cin, textInput);
+    if (!textInput.empty()) {
+        dailyEntry.setTextEntry(textInput);
+    } else {
+        cout << "No input provided." << endl;
+    }
+}
+
 
 void didActivity(const string &activity, Journal &dailyEntry){
     char response;
@@ -87,7 +100,7 @@ void didActivity(const string &activity, Journal &dailyEntry){
 int dailyLog(){
     Journal dailyEntry = Journal(); 
 
-    TYPE("We will start by doing some ratings! Everything is Rated out of 5, with 5 being the best!");
+    TYPE("We will start by doing some ratings!");
     delay(stdDelay);
     dailyRating(dailyEntry); 
     sleepRating(dailyEntry);
@@ -97,8 +110,12 @@ int dailyLog(){
         didActivity(activity, dailyEntry);
     }
 
+    std::cin.ignore(10000000, '\n');
+    longAnswer(dailyEntry);
+
     printHammy();
     printReport(dailyEntry);
+    exportJournal(dailyEntry);
     TYPE("");
     TYPE("I'll return you to the main menu now and you can decide to keep hanging out, or leave whenever you want!\n");
     menu();
