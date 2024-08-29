@@ -17,7 +17,7 @@ void testTYPE(){
     string expectedOutput = "       This is a test\n";
 
     TYPE(input);
-    
+
     // Reset cout buffer
     std::cout.rdbuf(coutbuf);
 
@@ -114,8 +114,9 @@ int main()
 
     // Run tests
     //testPrintReport(journal);
-    testPrintHammy();
     testTYPE();
+    testPrintHammy();
+    testMenu();
 
     // Tear down - Delete the journal object
     journal.~Journal();
