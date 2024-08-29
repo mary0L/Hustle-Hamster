@@ -69,13 +69,36 @@ void testLongAnswer(Journal &journal)
     assert(answer == "This is a long answer");
 }
 
-int main()
+void testDidActivity(Journal &journal)
 {
+    std::istringstream input("y\n");              // Simulating user input "y"
+    std::streambuf *cinbuf = std::cin.rdbuf();    // Save original buffer
+    std::cin.rdbuf(input.rdbuf());                // Redirect std::cin to read from input
+
+    // Test didActivity function with mock input
+    didActivity(journal);
+
+    // Restore cin buffer.
+    std::cin.rdbuf(cinbuf);
+
+    std::vector<std::string> activities = journal.getActivities();
+    assert(activities.size() == 1);
+    assert(activities[0] == "Activity 1");
+}
+
+int main()
+{   
+    // Set up Journal object
     Date date = Date();
     Journal journal = Journal(date);
+    String activity = "Activity 1";
 
+    // Run tests
     testDailyRating(journal);
     testSleepRating(journal);
+    testMoodRating(journal);
+    testLongAnswer(journal);
+    testDidActivity(activity, journal);
 
 
     // Delete the journal object
