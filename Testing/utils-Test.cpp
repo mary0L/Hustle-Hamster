@@ -59,6 +59,28 @@ void testPrintHammy()
     assert(output.str() == expectedOutput.str());
 }
 
+void testMenu(){
+    std::istringstream input("1\n");    // Simulating correct user input "1"
+    std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
+    std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
+
+    std::stringstream output;
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Save original buffer
+    std::cout.rdbuf(output.rdbuf());             // Redirect std::cout to read from output
+
+    // Test menu function with mock input
+    menu();
+
+    // Restore cin buffer.
+    std::cin.rdbuf(cinbuf);
+    std::cout.rdbuf(coutbuf);
+
+    std::stringstream expectedOutput;
+    expectedOutput << "Lets see how your day went!";
+
+    assert(output.str() == expectedOutput.str());
+}
+
 int main()
 {   
     // Set up Journal object
@@ -75,6 +97,7 @@ int main()
     // Run tests
     //testPrintReport(journal);
     testPrintHammy();
+    testMenu();
 
     // Tear down - Delete the journal object
     journal.~Journal();
