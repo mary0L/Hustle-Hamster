@@ -7,7 +7,9 @@
 
 void testDailyRating(Journal &journal)
 {
-    std::istringstream input("3\n");           // Simulating correct user input "3"
+    std::istringstream input("6\n"
+                            "abc\n"
+                            "3\n");           // Simulating correct user input "3"
 
     std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
     std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
