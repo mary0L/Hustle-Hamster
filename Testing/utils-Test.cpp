@@ -36,6 +36,29 @@ void testPrintReport(Journal &journal)
     assert(output.str() == expectedOutput.str());
 }
 
+void testPrintHammy()
+{
+    // Get the output from the printHammy function
+    std::stringstream output;
+    std::streambuf *coutbuf = std::cout.rdbuf(); 
+    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
+
+    // Call function being tested
+    printHammy();
+
+    // Reset cout buffer
+    std::cout.rdbuf(coutbuf);
+
+    // Check the output
+    std::stringstream expectedOutput;
+    expectedOutput << "   o _ o\n";
+    expectedOutput << "  ( -.-)\n";
+    expectedOutput << "o_(\")(\")\n";
+    expectedOutput << "       \\\n";
+
+    assert(output.str() == expectedOutput.str());
+}
+
 int main()
 {   
     // Set up Journal object
