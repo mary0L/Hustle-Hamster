@@ -75,8 +75,10 @@ void testDidActivity(Journal &journal)
     std::streambuf *cinbuf = std::cin.rdbuf();    // Save original buffer
     std::cin.rdbuf(input.rdbuf());                // Redirect std::cin to read from input
 
+    string activity = "Activity 1";
+
     // Test didActivity function with mock input
-    didActivity(journal);
+    didActivity(activity, journal);
 
     // Restore cin buffer.
     std::cin.rdbuf(cinbuf);
@@ -91,14 +93,13 @@ int main()
     // Set up Journal object
     Date date = Date();
     Journal journal = Journal(date);
-    String activity = "Activity 1";
 
     // Run tests
     testDailyRating(journal);
     testSleepRating(journal);
     testMoodRating(journal);
     testLongAnswer(journal);
-    testDidActivity(activity, journal);
+    testDidActivity(journal);
 
 
     // Delete the journal object
