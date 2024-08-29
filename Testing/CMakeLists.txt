@@ -41,7 +41,8 @@ target_link_libraries(TestDailyLog src)
 #target_link_libraries(TestUtils src)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET TestJournal PROPERTY CXX_STANDARD 20)
+    set_property(TARGET TestJournal PROPERTY CXX_STANDARD 20)
+    set_property(TARGET TestDailyLog PROPERTY CXX_STANDARD 20)
 endif()
 
 add_test(NAME TestJournal COMMAND TestJournal)
