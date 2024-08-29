@@ -21,12 +21,62 @@ void testDailyRating(Journal &journal)
     assert(rating == 3);
 }
 
+void testSleepRating(Journal &journal)
+{
+    std::istringstream input("4\n");           // Simulating user input "4"
+    std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
+    std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
+
+    // Test sleepRating function with mock input
+    sleepRating(journal);
+
+    // Restore cin buffer.
+    std::cin.rdbuf(cinbuf);
+
+    int rating = journal.getSleepRating();
+    assert(rating == 4);
+}
+
+void testMoodRating(Journal &journal)
+{
+    std::istringstream input("Happy\n");       // Simulating user input "Happy"
+    std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
+    std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
+
+    // Test moodRating function with mock input
+    moodRating(journal);
+
+    // Restore cin buffer.
+    std::cin.rdbuf(cinbuf);
+
+    std::string mood = journal.getMood();
+    assert(mood == "Happy");
+}
+
+void testLongAnswer(Journal &journal)
+{
+    std::istringstream input("This is a long answer\n"); // Simulating user input "This is a long answer"
+    std::streambuf *cinbuf = std::cin.rdbuf();          // Save original buffer
+    std::cin.rdbuf(input.rdbuf());                      // Redirect std::cin to read from input
+
+    // Test longAnswer function with mock input
+    longAnswer(journal);
+
+    // Restore cin buffer.
+    std::cin.rdbuf(cinbuf);
+
+    std::string answer = journal.getTextEntry();
+    assert(answer == "This is a long answer");
+}
+
 int main()
 {
     Date date = Date();
     Journal journal = Journal(date);
 
     testDailyRating(journal);
+    testSleepRating(journal);
+
 
     // Delete the journal object
     journal.~Journal();
