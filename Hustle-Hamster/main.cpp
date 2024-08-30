@@ -36,4 +36,6 @@ int main(){
     TYPE("Hi there!! It's so good to see you <3");
     cout << separator << "\n";
     menu();
+
+
 }
