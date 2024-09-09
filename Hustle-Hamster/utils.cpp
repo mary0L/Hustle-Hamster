@@ -148,8 +148,13 @@ void exportJournal(Journal& journalEntry) {
 
     /* For development purposes only, so that we can develop on both mac and windows */
 #ifdef _WINDOWS
-    const char* homeDir = getenv("USERPROFILE");
+    char* homeDir;
+    size_t len;
+    _dupenv_s(&homeDir, &len, "USERPROFILE");
+
 #else
+    // Note that this is considered an "unsafe" method, but as this is for development processes 
+    // only, if it works on MACOS, I'm happy to leave it here. 
     const char* homeDir = getenv("HOME");
 #endif
 
@@ -187,4 +192,6 @@ void exportJournal(Journal& journalEntry) {
     else {
         TYPE("Sorry, there was an error writing your journal to a file at this time :(\n");
     }
+
+    free(homeDir);
 }
