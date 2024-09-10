@@ -14,8 +14,23 @@
 #include <vector>
 #include "utils.h"
 #include <fstream>
+#include <termios.h>
+
+struct termios g_terminalSettings;
 
 using namespace std;
+
+void disableInput(void);
+void enableInput(void);
+
+void discardInputBuffer(void);
+void discardInputLine(void);
+
+void setTermiosBit(int fd, tcflag_t bit, int onElseOff );
+void turnEchoOff(void);
+void turnEchoOn(void);
+void turnCanonOff(void);
+void turnCanonOn(void);
 
 
 unsigned int stdDelay = STD_DELAY;
@@ -28,13 +43,71 @@ void delay(int time) {
     Sleep(time);
 }
 
+//#########  Following code from stackoverflow: bgoldst  ############################################################
+void disableInput(void) {
+    turnEchoOff();
+    turnCanonOff();
+}
+
+void enableInput(void) {
+    discardInputBuffer(); 
+    turnCanonOn();
+    turnEchoOn();
+}
+
+void turnEchoOff(void) { setTermiosBit(0,ECHO,0); }
+void turnEchoOn(void) { setTermiosBit(0,ECHO,1); }
+
+void turnCanonOff(void) { setTermiosBit(0,ICANON,0); }
+void turnCanonOn(void) { setTermiosBit(0,ICANON,1); }
+
+void setTermiosBit(int fd, tcflag_t bit, int onElseOff ) {
+    static int first = 1;
+    if (first) {
+        first = 0;
+        tcgetattr(fd,&g_terminalSettings);
+    } 
+    if (onElseOff)
+        g_terminalSettings.c_lflag |= bit;
+    else
+        g_terminalSettings.c_lflag &= ~bit;
+    tcsetattr(fd,TCSANOW,&g_terminalSettings);
+} 
+
+void discardInputBuffer(void) {
+    struct timeval tv;
+    fd_set rfds;
+    while (1) {
+        // poll stdin to see if there's anything on it
+        FD_ZERO(&rfds);
+        FD_SET(0,&rfds);
+        tv.tv_sec = 0;
+        tv.tv_usec = 0;
+        if (select(1,&rfds,0,0,&tv) == -1) { fprintf(stderr, "[error] select() failed: %s", strerror(errno) ); exit(1); }
+        if (!FD_ISSET(0,&rfds)) break; // can break if the input buffer is clean
+        // select() doesn't tell us how many characters are ready to be read; just grab a big chunk of whatever is there
+        char buf[500];
+        ssize_t numRead = read(0,buf,500);
+        if (numRead == -1) { fprintf(stderr, "[error] read() failed: %s", strerror(errno) ); exit(1); }
+    } // end while
+} // end discardInputBuffer()
+
+void discardInputLine(void) {
+    // assumes the input line has already been submitted and is sitting in the input buffer
+    int c;
+    while ((c = getchar()) != EOF && c != '\n');
+} // end discardInputLine()
+//#########################################################################################################
+
 void TYPE(const string& p) {
+    disableInput();
     cout << "       ";
     for (char c : p) {
         cout << c << flush;
         Sleep(SLEEP_DURATION);
     }
     cout << endl;
+    enableInput(); 
 }
 
 void printHammy() {
@@ -193,5 +266,5 @@ void exportJournal(Journal& journalEntry) {
         TYPE("Sorry, there was an error writing your journal to a file at this time :(\n");
     }
 
-    free(homeDir);
+    //free(homeDir);
 }
