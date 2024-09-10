@@ -138,6 +138,37 @@ void menu(){
 
 }
 
+string getDesktopPath(){
+    try {
+        /* For development purposes only, so that we can develop on both mac and windows */
+ #ifdef _WINDOWS
+        char* path;
+        size_t len;
+        int err = _dupenv_s(&path, &len, "USERPROFILE");
+
+        if (err != 0 || !path) {
+            throw exception();
+        }
+
+        string pathStr = string(path);
+
+        free(path); // as per _dupenv_s specification
+ #else
+        // Note that this is considered an "unsafe" method, but as this is for development processes 
+        // only, if it works on MACOS, I'm happy to leave it here. 
+        const char* path = getenv("HOME");
+
+        string pathStr = string(path);
+#endif
+        
+
+        return pathStr + "/Desktop/";
+    }
+    catch(...) {
+        throw exception("Error occured trying to obtain the user's Desktop path.\n");
+    }
+}
+
 void exportJournal(Journal& journalEntry) {
     string day = to_string(journalEntry.getDate().getDay());
     string month = to_string(journalEntry.getDate().getMonth());
@@ -145,53 +176,41 @@ void exportJournal(Journal& journalEntry) {
 
     string filename = "journal-" + year + "-" + month + "-" + day;
 
+    try {
+        string desktopPath = getDesktopPath();
 
-    /* For development purposes only, so that we can develop on both mac and windows */
-#ifdef _WINDOWS
-    char* homeDir;
-    size_t len;
-    _dupenv_s(&homeDir, &len, "USERPROFILE");
 
-#else
-    // Note that this is considered an "unsafe" method, but as this is for development processes 
-    // only, if it works on MACOS, I'm happy to leave it here. 
-    const char* homeDir = getenv("HOME");
-#endif
+        string path = desktopPath + filename + ".txt";
+        ofstream txtFile(path);
 
-    if (!homeDir) {
-        TYPE("Sorry, there was an error writing your journal to a file at this time :(\n");
-        return;
-    }
+        if (!txtFile.fail()) {
+            txtFile << "============ " << journalEntry.getDate().getMonthName() << " " << day << " " << year << " ============\n";
+            txtFile << "You rated your day a " << journalEntry.getDayRating() << "/5\n";
+            txtFile << "You rated your sleep a " << journalEntry.getSleepRating() << "/5\n";
+            txtFile << "You said that today you felt: " << journalEntry.getMood() << "\n";
 
-    string path = string(homeDir) + "/Desktop/" + filename + ".txt";
+            txtFile << "\n";
 
-    ofstream txtFile(path);
-
-    if (!txtFile.fail()) {
-        txtFile << "============ " << journalEntry.getDate().getMonthName() << " " << day << " " << year << " ============\n";
-        txtFile << "You rated your day a " << journalEntry.getDayRating() << "/5\n";
-        txtFile << "You rated your sleep a " << journalEntry.getSleepRating() << "/5\n";
-        txtFile << "You said that today you felt: " << journalEntry.getMood() << "\n";
-
-        txtFile << "\n";
-
-        if (!journalEntry.getActivities().empty()) {
-            txtFile << "Here are the activities you completed today:\n";
-            for (string activity : journalEntry.getActivities()) {
-                txtFile << " * " << activity << "\n";
+            if (!journalEntry.getActivities().empty()) {
+                txtFile << "Here are the activities you completed today:\n";
+                for (string activity : journalEntry.getActivities()) {
+                    txtFile << " * " << activity << "\n";
+                }
             }
+
+            txtFile << "\n";
+
+            txtFile << "And finally, here is your daily journal entry:\n";
+            txtFile << journalEntry.getTextEntry();
+
+            txtFile.close();
         }
-
-        txtFile << "\n";
-
-        txtFile << "And finally, here is your daily journal entry:\n";
-        txtFile << journalEntry.getTextEntry();
-
-        txtFile.close();
+        else {
+            throw exception("Error occured trying to create text file.\n");
+        }
     }
-    else {
-        TYPE("Sorry, there was an error writing your journal to a file at this time :(\n");
+    catch (const exception& e) {
+        TYPE("Sorry, there was an error writing your journal to a file at this time:\n");
+        TYPE(e.what());
     }
-
-    free(homeDir);
 }
