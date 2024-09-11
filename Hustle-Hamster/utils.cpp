@@ -266,5 +266,5 @@ void exportJournal(Journal& journalEntry) {
         TYPE("Sorry, there was an error writing your journal to a file at this time :(\n");
     }
 
-    //free(homeDir);
+    free(homeDir);
 }
