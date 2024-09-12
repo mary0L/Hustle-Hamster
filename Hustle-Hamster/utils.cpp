@@ -20,19 +20,6 @@ struct termios g_terminalSettings;
 
 using namespace std;
 
-void disableInput(void);
-void enableInput(void);
-
-void discardInputBuffer(void);
-void discardInputLine(void);
-
-void setTermiosBit(int fd, tcflag_t bit, int onElseOff );
-void turnEchoOff(void);
-void turnEchoOn(void);
-void turnCanonOff(void);
-void turnCanonOn(void);
-
-
 unsigned int stdDelay = STD_DELAY;
 
 vector<string> defaultActivities = {"Study", "Work", "Socialise", "Exercise", "Drink Water", "Go outside"}; 
@@ -44,16 +31,6 @@ void delay(int time) {
 }
 
 //#########  Following code from stackoverflow: bgoldst  ############################################################
-void disableInput(void) {
-    turnEchoOff();
-    turnCanonOff();
-}
-
-void enableInput(void) {
-    discardInputBuffer(); 
-    turnCanonOn();
-    turnEchoOn();
-}
 
 void turnEchoOff(void) { setTermiosBit(0,ECHO,0); }
 void turnEchoOn(void) { setTermiosBit(0,ECHO,1); }
@@ -78,7 +55,6 @@ void discardInputBuffer(void) {
     struct timeval tv;
     fd_set rfds;
     while (1) {
-        // poll stdin to see if there's anything on it
         FD_ZERO(&rfds);
         FD_SET(0,&rfds);
         tv.tv_sec = 0;
@@ -97,6 +73,18 @@ void discardInputLine(void) {
     int c;
     while ((c = getchar()) != EOF && c != '\n');
 } // end discardInputLine()
+
+void disableInput(void) {
+    turnEchoOff();
+    turnCanonOff();
+}
+
+void enableInput(void) {
+    discardInputBuffer(); 
+    turnCanonOn();
+    turnEchoOn();
+}
+
 //#########################################################################################################
 
 void TYPE(const string& p) {

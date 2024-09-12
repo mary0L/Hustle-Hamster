@@ -70,14 +70,56 @@ void printHammy();
  */
 void menu(); 
 
+
+/////////////////////////////////
+//Code From Stacknoverflow
+//"https://stackoverflow.com/questions/38931856/disallow-input-at-certain-times"/>
+
+/**
+ * Disables input
+*/
 void disableInput(void);
+
+/**
+ * Enables input
+*/
 void enableInput(void);
 
+/**
+ * Discards the input buffer that has anything that has been previously input
+*/
 void discardInputBuffer(void);
+
+/**
+ * Discards the last line that was input
+*/
 void discardInputLine(void);
 
+/**
+ * Sets terminal settings
+ * 
+ * @param fd the terminal that we are configuring
+ * @param bit flag to change to off or on
+ * @param onElseOff if flag is on otherwise off
+*/
 void setTermiosBit(int fd, tcflag_t bit, int onElseOff );
+
+/**
+ * Turns off Echo so user input is not seen in terminal
+*/
 void turnEchoOff(void);
+
+/**
+ * Turns on Echo so user can see their input
+*/
 void turnEchoOn(void);
+
+/**
+ * System will not wait for enter key to be pressed to continue
+*/
 void turnCanonOff(void);
+
+/**
+ * System will wait for enter key to be pressed to continue
+*/
 void turnCanonOn(void);
