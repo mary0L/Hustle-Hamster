@@ -165,7 +165,7 @@ string getDesktopPath(){
         return pathStr + "/Desktop/";
     }
     catch(...) {
-        throw exception("Error occured trying to obtain the user's Desktop path.\n");
+        throw exception("Error occurred trying to obtain the user's Desktop path.\n");
     }
 }
 
