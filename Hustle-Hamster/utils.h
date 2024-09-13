@@ -21,8 +21,10 @@
 #ifdef _WINDOWS
 #define WIN32_LEAN_AND_MEAN // Necessary to remove ambiguity errors caused in windows.h library
 #include <windows.h>
+#include <conio.h>
 #else
 #include <unistd.h>
+#include <termios.h>
 #define Sleep(x) usleep((x)*1000)
 #endif
 

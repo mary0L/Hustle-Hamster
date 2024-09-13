@@ -14,9 +14,6 @@
 #include <vector>
 #include "utils.h"
 #include <fstream>
-#include <termios.h>
-
-struct termios g_terminalSettings;
 
 using namespace std;
 
@@ -31,6 +28,43 @@ void delay(int time) {
 }
 
 //#########  Following code from stackoverflow: bgoldst  ############################################################
+
+#if defined(_WIN32)
+// Windows-specific global variables
+HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
+DWORD g_consoleMode;
+
+void setConsoleMode(DWORD bit, bool onElseOff) {
+    GetConsoleMode(hStdin, &g_consoleMode);
+    if (onElseOff) {
+        g_consoleMode |= bit;
+    } else {
+        g_consoleMode &= ~bit;
+    }
+    SetConsoleMode(hStdin, g_consoleMode);
+}
+
+void turnEchoOff(void) { setConsoleMode(ENABLE_ECHO_INPUT, false); }
+void turnEchoOn(void) { setConsoleMode(ENABLE_ECHO_INPUT, true); }
+
+void turnCanonOff(void) { setConsoleMode(ENABLE_LINE_INPUT, false); }
+void turnCanonOn(void) { setConsoleMode(ENABLE_LINE_INPUT, true); }
+
+void discardInputBuffer() {
+    FlushConsoleInputBuffer(hStdin);
+}
+
+void discardInputLine() {
+    int c;
+    while ((c = _getch()) != '\r' && c != EOF); // '\r' is Enter on Windows
+}
+
+void delay(int time) {
+    Sleep(time * 1000); // Windows Sleep function expects milliseconds
+}
+
+#else
+struct termios g_terminalSettings;
 
 void turnEchoOff(void) { setTermiosBit(0,ECHO,0); }
 void turnEchoOn(void) { setTermiosBit(0,ECHO,1); }
@@ -73,6 +107,7 @@ void discardInputLine(void) {
     int c;
     while ((c = getchar()) != EOF && c != '\n');
 } // end discardInputLine()
+#endif
 
 void disableInput(void) {
     turnEchoOff();
