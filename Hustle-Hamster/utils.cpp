@@ -54,11 +54,6 @@ void discardInputBuffer() {
     FlushConsoleInputBuffer(hStdin);
 }
 
-void discardInputLine() {
-    int c;
-    while ((c = _getch()) != '\r' && c != EOF); // '\r' is Enter on Windows
-}
-
 void delay(int time) {
     Sleep(time * 1000); // Windows Sleep function expects milliseconds
 }
@@ -102,12 +97,18 @@ void discardInputBuffer(void) {
     } // end while
 } // end discardInputBuffer()
 
+#endif
+
 void discardInputLine(void) {
     // assumes the input line has already been submitted and is sitting in the input buffer
     int c;
-    while ((c = getchar()) != EOF && c != '\n');
+    #if defined(_WINDOWS)
+        while ((c = _getch()) != '\r' && c != EOF); // '\r' is Enter on Windows
+    #else
+        while ((c = getchar()) != EOF && c != '\n');
+    #endif
 } // end discardInputLine()
-#endif
+
 
 void disableInput(void) {
     turnEchoOff();
@@ -289,5 +290,5 @@ void exportJournal(Journal& journalEntry) {
         TYPE("Sorry, there was an error writing your journal to a file at this time :(\n");
     }
 
-    free(homeDir);
+    //free(homeDir);
 }
