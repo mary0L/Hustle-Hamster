@@ -116,4 +116,12 @@ public:
 	* @param The text entry to add. 
 	*/
 	void setTextEntry(const string &textEntry);
+
+	/**
+	* Checks whether specified activity was recorded for this journal.
+	* 
+	* @param Activity to check for.
+	* @return True if the given activity was recorded.
+	*/
+	bool didActivity(const string& activity);
 };
