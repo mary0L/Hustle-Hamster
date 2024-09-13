@@ -158,6 +158,10 @@ string getDesktopPath(){
         // only, if it works on MACOS, I'm happy to leave it here. 
         const char* path = getenv("HOME");
 
+        if (!path) {
+            throw exception();
+    }
+
         string pathStr = string(path);
 #endif
         
@@ -165,7 +169,7 @@ string getDesktopPath(){
         return pathStr + "/Desktop/";
     }
     catch(...) {
-        throw exception("Error occurred trying to obtain the user's Desktop path.\n");
+        throw runtime_error("Error occurred trying to obtain the user's Desktop path.\n");
     }
 }
 
@@ -209,7 +213,7 @@ void exportJournal(Journal& journalEntry) {
             TYPE(path + "\n");
         }
         else {
-            throw exception("Error occured trying to create text file.\n");
+            throw runtime_error("Error occured trying to create text file.\n");
         }
     }
     catch (const exception& e) {
