@@ -29,7 +29,7 @@ void delay(int time) {
 
 //#########  Following code from stackoverflow: bgoldst  ############################################################
 
-#if defined(_WIN32)
+#if defined(_WINDOWS)
 // Windows-specific global variables
 HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
 DWORD g_consoleMode;
