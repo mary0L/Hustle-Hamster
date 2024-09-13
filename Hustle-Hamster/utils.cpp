@@ -204,6 +204,9 @@ void exportJournal(Journal& journalEntry) {
             txtFile << journalEntry.getTextEntry();
 
             txtFile.close();
+
+            TYPE("Your journal has been exported successfully! Saved to:\n");
+            TYPE(path + "\n");
         }
         else {
             throw exception("Error occured trying to create text file.\n");
