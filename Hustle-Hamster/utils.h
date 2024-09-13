@@ -12,7 +12,6 @@
 #include "Journal.h"
 #include "menuHelp.h"
 #include "dailyLog.h"
-#include <termios.h>
 
 /**
  *  Development Process only so that developers
