@@ -110,6 +110,10 @@ int dailyLog(){
         didActivity(activity, dailyEntry);
     }
 
+    /*put in the Hammy derivations from the activity and mood ratings*/
+    printHammy();
+
+
     std::cin.ignore(10000000, '\n');
     longAnswer(dailyEntry);
 
