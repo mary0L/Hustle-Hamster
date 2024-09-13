@@ -1,4 +1,5 @@
 #include "dailyLog.h"
+#include "feedback.h"
 
 void dailyRating(Journal &dailyEntry){
     int temp; 
@@ -109,6 +110,8 @@ int dailyLog(){
     for (const string& activity : defaultActivities) {
         didActivity(activity, dailyEntry);
     }
+
+    testingStatement(dailyEntry);
 
     /*put in the Hammy derivations from the activity and mood ratings*/
     printHammy();
