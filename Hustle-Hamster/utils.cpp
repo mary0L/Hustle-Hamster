@@ -14,6 +14,7 @@
 #include <vector>
 #include "utils.h"
 #include <fstream>
+#include <random>
 
 using namespace std;
 
@@ -194,4 +195,19 @@ void exportJournal(Journal& journalEntry) {
     }
 
     free(homeDir);
+}
+
+int randomNumber(int max) {
+
+    using engine = std::mt19937;
+
+    default_random_engine eng;
+
+    random_device os_seed;
+    const int seed = os_seed();
+
+    engine generator(seed);
+    uniform_int_distribution<int> distribute(0, max);
+
+    return distribute(generator);
 }
