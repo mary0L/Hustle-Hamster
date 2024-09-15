@@ -52,3 +52,17 @@ void Journal::addActivity(string activity) {
 void Journal::setTextEntry(const string &textEntry) {
 	this->textEntry = textEntry;
 }
+
+bool Journal::didActivity(const string& activity) {
+	vector<string>::iterator start = this->activities.begin();
+	vector<string>::iterator end = this->activities.end();
+
+	vector<string>::iterator it = find(start, end, activity);
+
+	if (it != end) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
