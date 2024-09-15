@@ -70,11 +70,18 @@ void printHammy();
 void menu(); 
 
 /**
+ * Get the desktop path of the current user. 
+ * 
+ * @return The desktop path of the current use. Will throw an exception if there is an issue with obtaining the path.
+ */
+string getDesktopPath();
+
+/**
 * Get a random number from zero to the maximum value.
-* 
+*
 * Adapted from this Reddit post:
 * https://stackoverflow.com/questions/13445688/how-to-generate-a-random-number-in-c
-* 
+*
 * @param max The maximum value (inclusive)
 */
 int randomNumber(int max);
