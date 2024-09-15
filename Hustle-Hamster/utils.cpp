@@ -61,11 +61,39 @@ void delay(int time) {
 #else
 struct termios g_terminalSettings;
 
-void turnEchoOff(void) { setTermiosBit(0,ECHO,0); }
-void turnEchoOn(void) { setTermiosBit(0,ECHO,1); }
+void turnEchoOff(void) { 
+    #if defined(_WINDOWS)
+        
+    #else
+        setTermiosBit(0,ECHO,0); 
+    #endif
+    }
+    
+void turnEchoOn(void) { 
+    #if defined(_WINDOWS)
+        
+    #else
+        setTermiosBit(0,ECHO,1);
+    #endif
+    }
 
-void turnCanonOff(void) { setTermiosBit(0,ICANON,0); }
-void turnCanonOn(void) { setTermiosBit(0,ICANON,1); }
+void turnCanonOff(void) { 
+    
+    #if defined(_WINDOWS)
+        
+    #else
+        setTermiosBit(0,ICANON,0);
+    #endif 
+    }
+
+void turnCanonOn(void) { 
+    #if defined(_WINDOWS)
+        
+    #else
+        
+    #endif
+    setTermiosBit(0,ICANON,1); 
+    }
 
 void setTermiosBit(int fd, tcflag_t bit, int onElseOff ) {
     static int first = 1;
