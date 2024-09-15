@@ -17,6 +17,13 @@
 #include "Journal.h"
 
 /*
+* A method to go through and check what activities have been completed or not
+*
+* @param dailyEntry the daily Journal entry
+*/
+void checkAdvice(Journal& dailyEntry);
+
+/*
 * A testing method that will probably become the central method
 * 
 * @param dailyEntry the daily Journal entry
