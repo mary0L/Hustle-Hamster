@@ -28,4 +28,4 @@ void checkAdvice(Journal& dailyEntry);
 * 
 * @param dailyEntry the daily Journal entry
 */
-void testingStatement(Journal& dailyEntry);
+void hammyEvaluation(Journal& dailyEntry);
