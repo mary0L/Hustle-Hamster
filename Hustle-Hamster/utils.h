@@ -17,7 +17,7 @@
  *  Development Process only so that developers
  *  can use MACOS and Windows
  */
-#ifdef _WINDOWS
+#ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN // Necessary to remove ambiguity errors caused in windows.h library
 #include <windows.h>
 #include <conio.h>
@@ -96,6 +96,8 @@ void discardInputBuffer(void);
 */
 void discardInputLine(void);
 
+#ifdef _WIN32
+#else
 /**
  * Sets terminal settings
  * 
@@ -104,7 +106,7 @@ void discardInputLine(void);
  * @param onElseOff if flag is on otherwise off
 */
 void setTermiosBit(int fd, tcflag_t bit, int onElseOff );
-
+#endif
 /**
  * Turns off Echo so user input is not seen in terminal
 */

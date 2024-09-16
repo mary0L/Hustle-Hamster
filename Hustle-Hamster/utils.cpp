@@ -14,6 +14,7 @@
 #include <vector>
 #include "utils.h"
 #include <fstream>
+#include <limits>
 
 using namespace std;
 
@@ -29,71 +30,54 @@ void delay(int time) {
 
 //#########  Following code from stackoverflow: bgoldst  ############################################################
 
-#if defined(_WINDOWS)
+#if defined(_WIN32)
 // Windows-specific global variables
-HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
-DWORD g_consoleMode;
+HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);  // Input handle
+DWORD g_consoleMode;  // Store the console mode to restore later
 
+// Function to set a console mode bit (on or off)
 void setConsoleMode(DWORD bit, bool onElseOff) {
+    // Get the current console mode
     GetConsoleMode(hStdin, &g_consoleMode);
+    
+    // Modify the console mode based on the input bit
     if (onElseOff) {
-        g_consoleMode |= bit;
+        g_consoleMode |= bit;  // Turn the bit on
     } else {
-        g_consoleMode &= ~bit;
+        g_consoleMode &= ~bit;  // Turn the bit off
     }
+    
+    // Set the modified console mode
     SetConsoleMode(hStdin, g_consoleMode);
 }
 
+// Disable echo (hides the user input)
 void turnEchoOff(void) { setConsoleMode(ENABLE_ECHO_INPUT, false); }
+
+// Enable echo (shows the user input)
 void turnEchoOn(void) { setConsoleMode(ENABLE_ECHO_INPUT, true); }
 
+// Disable canonical mode (line input processing)
 void turnCanonOff(void) { setConsoleMode(ENABLE_LINE_INPUT, false); }
+
+// Enable canonical mode (restores line input processing)
 void turnCanonOn(void) { setConsoleMode(ENABLE_LINE_INPUT, true); }
 
+// Clears the input buffer
 void discardInputBuffer() {
-    FlushConsoleInputBuffer(hStdin);
-}
-
-void delay(int time) {
-    Sleep(time * 1000); // Windows Sleep function expects milliseconds
+    FlushConsoleInputBuffer(hStdin);  // Flushes the console input buffer
 }
 
 #else
 struct termios g_terminalSettings;
 
-void turnEchoOff(void) { 
-    #if defined(_WINDOWS)
-        
-    #else
-        setTermiosBit(0,ECHO,0); 
-    #endif
-    }
+void turnEchoOff(void) { setTermiosBit(0,ECHO,0); }
     
-void turnEchoOn(void) { 
-    #if defined(_WINDOWS)
-        
-    #else
-        setTermiosBit(0,ECHO,1);
-    #endif
-    }
+void turnEchoOn(void) { setTermiosBit(0,ECHO,1);}
 
-void turnCanonOff(void) { 
-    
-    #if defined(_WINDOWS)
-        
-    #else
-        setTermiosBit(0,ICANON,0);
-    #endif 
-    }
+void turnCanonOff(void) { setTermiosBit(0,ICANON,0); }
 
-void turnCanonOn(void) { 
-    #if defined(_WINDOWS)
-        
-    #else
-        
-    #endif
-    setTermiosBit(0,ICANON,1); 
-    }
+void turnCanonOn(void) {setTermiosBit(0,ICANON,1); }
 
 void setTermiosBit(int fd, tcflag_t bit, int onElseOff ) {
     static int first = 1;
@@ -128,14 +112,14 @@ void discardInputBuffer(void) {
 #endif
 
 void discardInputLine(void) {
-    // assumes the input line has already been submitted and is sitting in the input buffer
     int c;
-    #if defined(_WINDOWS)
-        while ((c = _getch()) != '\r' && c != EOF); // '\r' is Enter on Windows
+    #if defined(_WIN32)
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
     #else
-        while ((c = getchar()) != EOF && c != '\n');
+        while ((c = getchar()) != EOF && c != '\n');  // '\n' is Enter on Unix
     #endif
-} // end discardInputLine()
+}
 
 
 void disableInput(void) {
@@ -272,7 +256,7 @@ void exportJournal(Journal& journalEntry) {
 
 
     /* For development purposes only, so that we can develop on both mac and windows */
-#ifdef _WINDOWS
+#ifdef _WIN32
     char* homeDir;
     size_t len;
     _dupenv_s(&homeDir, &len, "USERPROFILE");
