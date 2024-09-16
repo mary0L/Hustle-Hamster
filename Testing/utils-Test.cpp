@@ -133,8 +133,7 @@ void testExportJournal(Journal &journal){
 int main()
 {   
     // Set up Journal object
-    Date date = Date();
-    Journal journal = Journal(date);
+    Journal journal = Journal();
 
     journal.setDayRating(5);
     journal.setSleepRating(3);
