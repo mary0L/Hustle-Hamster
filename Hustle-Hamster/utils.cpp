@@ -114,7 +114,7 @@ void discardInputBuffer(void) {
 void discardInputLine(void) {
     int c;
     #if defined(_WIN32)
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
     #else
         while ((c = getchar()) != EOF && c != '\n');  // '\n' is Enter on Unix
