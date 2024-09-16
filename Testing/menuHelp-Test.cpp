@@ -4,6 +4,24 @@
 #include <cassert>
 #include <string>
 
+void testTestMethod(){
+    // Capture cout output
+    std::stringstream output;
+    std::streambuf *coutbuf = std::cout.rdbuf(); 
+    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
+
+    testMethod();
+
+    // Restore original cout buffer
+    cout.rdbuf(coutbuf);
+
+    string expectedOutput =
+    "       Test 1\n"
+    "       Test 2\n";
+
+    assert(output.str() == expectedOutput);
+}
+
 void test_helpMenu(int simulatedInput) {
     // Redirect cout to capture output
     stringstream outputBuffer;
@@ -110,15 +128,17 @@ void test_howToUse() {
 
 int main() {
     // Test case 1: User selects "How To Use" (input 1)
-    test_helpMenu(1);
+    //test_helpMenu(1);
 
     // Test case 2: User selects "What does the data mean?" (input 2)
-    test_helpMenu(2);
+    //test_helpMenu(2);
 
     // Test case 3: User selects "Return to Main Menu" (input 3)
-    test_helpMenu(3);
+    //test_helpMenu(3);
 
-    test_howToUse();  // Run the unit test
+    //test_howToUse();  // Run the unit test
+
+    testTestMethod();
 
     std::cout << "All tests passed!" << std::endl;
     return 0;

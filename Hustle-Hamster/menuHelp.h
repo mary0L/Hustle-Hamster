@@ -18,6 +18,7 @@
 #include "utils.h"
 #include "dailyLog.h"
 
+void testMethod();
 /**
  * Method to display the help menu.
  * Will present users with options and the user will select one.

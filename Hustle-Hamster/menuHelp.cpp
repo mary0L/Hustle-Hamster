@@ -1,5 +1,10 @@
 #include "menuHelp.h"
 
+void testMethod(){
+    TYPE("Test 1");
+    TYPE("Test 2");
+}
+
 void helpMenu(){
     TYPE("Welcome to the Help Menu!");
     TYPE("I can give you a hand with lots of stuff! Such as...\n");
