@@ -64,6 +64,14 @@ void testActivities(Journal &journal)
     assert(a1 == "Activity 1");
     assert(a2 == "Activity 2");
     assert(a3 == "Activity 3");
+
+    bool didA1 = journal.didActivity("Activity 1");
+    bool didA2 = journal.didActivity("Activity 2");
+    bool didNotA4 = journal.didActivity("Activity 4");
+
+    assert(didA1 == true);
+    assert(didA2 == true);
+    assert(didNotA4 == false);
 }
 
 void testTextEntry(Journal &journal)
