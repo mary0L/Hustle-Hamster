@@ -71,6 +71,13 @@ void printHammy();
  */
 void menu(); 
 
+/**
+ * Get the desktop path of the current user. 
+ * 
+ * @return The desktop path of the current use. Will throw an exception if there is an issue with obtaining the path.
+ */
+string getDesktopPath();
+
 
 /////////////////////////////////
 //Code From Stacknoverflow
