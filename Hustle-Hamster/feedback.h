@@ -16,6 +16,12 @@
 #include "utils.h"
 #include "Journal.h"
 
+ /*
+ * A method which gives the personal sleep rating and advice on how this might impact wellbeing as well as how to improve
+ *
+ */
+void sleepFeedback();
+
 /*
 * A method to go through and check what activities have been completed or not
 *
