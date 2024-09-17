@@ -126,6 +126,8 @@ void menu(){
                 devEntry.addActivity("Work");
 
                 exportJournal(devEntry);
+
+                createHampsterHangoutDirectory();
             }
             break;
         }else{
@@ -220,4 +222,26 @@ void exportJournal(Journal& journalEntry) {
         TYPE("Sorry, there was an error writing your journal to a file at this time:\n");
         TYPE(e.what());
     }
+}
+
+
+
+
+
+void createHampsterHangoutDirectory() {
+    // get the path
+    // try to create the directory at this path
+    // if success, do nothing i guess
+    // if fail, throw exception
+    // then this can be called at the start of the program
+        // so will also need a method for checking that the directory exists at some point 
+
+    string fullPath = getDesktopPath() + "HampsterHangout";
+
+    // _wmkdir requires wchar_t* argument, so converting to wstring, then converting to wchar
+    wstring w_fullPath = wstring(fullPath.begin(), fullPath.end());
+
+    const wchar_t* wc_FullPath = w_fullPath.c_str();
+
+    _wmkdir(wc_FullPath);
 }

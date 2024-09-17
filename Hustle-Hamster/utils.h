@@ -75,3 +75,10 @@ void menu();
  * @return The desktop path of the current use. Will throw an exception if there is an issue with obtaining the path.
  */
 string getDesktopPath();
+
+/**
+* Create a directory called HampsterHangout on the user's desktop.
+* 
+* @see getDesktopPath()
+*/
+void createHampsterHangoutDirectory();
