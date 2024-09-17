@@ -17,7 +17,7 @@
  *  Development Process only so that developers
  *  can use MACOS and Windows
  */
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_WINDOWS)
 #define WIN32_LEAN_AND_MEAN // Necessary to remove ambiguity errors caused in windows.h library
 #include <windows.h>
 #include <conio.h>
@@ -87,16 +87,26 @@ void disableInput(void);
 void enableInput(void);
 
 /**
- * Discards the input buffer that has anything that has been previously input
-*/
-void discardInputBuffer(void);
-
-/**
  * Discards the last line that was input
 */
 void discardInputLine(void);
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_WINDOWS)
+
+/** 
+ * Sets console mode
+ * 
+ * @param bit console mode flag to control behaviour
+ * @param onElseOff boolean, off or on
+*/
+void setConsoleMode(DWORD bit, bool onElseOff);
+
+/** 
+ * Discard the input buffer that currently exists 
+ * 
+*/
+void discardInputBuffer(); 
+
 #else
 /**
  * Sets terminal settings
@@ -106,6 +116,12 @@ void discardInputLine(void);
  * @param onElseOff if flag is on otherwise off
 */
 void setTermiosBit(int fd, tcflag_t bit, int onElseOff );
+
+/**
+ * Discards the input buffer that has anything that has been previously input
+*/
+void discardInputBuffer(void);
+
 #endif
 /**
  * Turns off Echo so user input is not seen in terminal

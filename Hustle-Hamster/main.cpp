@@ -25,7 +25,7 @@ int main(){
      *  Development Process only so that developers
      *  can use MACOS and Windows
      */
-    #ifdef _WIN32
+    #if defined(_WIN32) || defined(_WINDOWS)
         SetConsoleCP(CP_UTF8);
         SetConsoleOutputCP(CP_UTF8);
     #endif

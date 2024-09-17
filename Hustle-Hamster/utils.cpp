@@ -30,42 +30,33 @@ void delay(int time) {
 
 //#########  Following code from stackoverflow: bgoldst  ############################################################
 
-#if defined(_WIN32)
-// Windows-specific global variables
-HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);  // Input handle
-DWORD g_consoleMode;  // Store the console mode to restore later
+#if defined(_WIN32) || defined(_WINDOWS)
 
-// Function to set a console mode bit (on or off)
+HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
+DWORD g_consoleMode;
+
 void setConsoleMode(DWORD bit, bool onElseOff) {
-    // Get the current console mode
     GetConsoleMode(hStdin, &g_consoleMode);
     
-    // Modify the console mode based on the input bit
     if (onElseOff) {
-        g_consoleMode |= bit;  // Turn the bit on
+        g_consoleMode |= bit;
     } else {
-        g_consoleMode &= ~bit;  // Turn the bit off
+        g_consoleMode &= ~bit;
     }
     
-    // Set the modified console mode
     SetConsoleMode(hStdin, g_consoleMode);
 }
 
-// Disable echo (hides the user input)
 void turnEchoOff(void) { setConsoleMode(ENABLE_ECHO_INPUT, false); }
 
-// Enable echo (shows the user input)
 void turnEchoOn(void) { setConsoleMode(ENABLE_ECHO_INPUT, true); }
 
-// Disable canonical mode (line input processing)
 void turnCanonOff(void) { setConsoleMode(ENABLE_LINE_INPUT, false); }
 
-// Enable canonical mode (restores line input processing)
 void turnCanonOn(void) { setConsoleMode(ENABLE_LINE_INPUT, true); }
 
-// Clears the input buffer
 void discardInputBuffer() {
-    FlushConsoleInputBuffer(hStdin);  // Flushes the console input buffer
+    FlushConsoleInputBuffer(hStdin);
 }
 
 #else
@@ -113,7 +104,7 @@ void discardInputBuffer(void) {
 
 void discardInputLine(void) {
     int c;
-    #if defined(_WIN32)
+    #if defined(_WIN32) || defined(_WINDOWS)
         std::cin.clear(); // Clear the error flags
         std::cin.ignore(10000000, '\n'); // Ignore until newline
         FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
@@ -257,7 +248,7 @@ void exportJournal(Journal& journalEntry) {
 
 
     /* For development purposes only, so that we can develop on both mac and windows */
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_WINDOWS)
     char* homeDir;
     size_t len;
     _dupenv_s(&homeDir, &len, "USERPROFILE");
