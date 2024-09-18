@@ -279,12 +279,12 @@ string getDesktopPath(){
 void exportJournal(Journal& journalEntry) {
     string filename = getFileName();
 
-    string subfolder = "HampsterHangout/";
+    string subfolder = "HamsterHangout/";
 
     try {
         string desktopPath = getDesktopPath();
 
-        createHampsterHangoutDirectory();
+        createHamsterHangoutDirectory();
 
         string path = desktopPath + subfolder + filename + ".txt";
 
@@ -340,19 +340,20 @@ int randomNumber(int max) {
     return distribute(generator);
 }
 
-void createHampsterHangoutDirectory() {
-    string fullPath = getDesktopPath() + "HampsterHangout";
+void createHamsterHangoutDirectory() {
+    string fullPath = getDesktopPath() + "HamsterHangout";
 
     try {
         // _wmkdir requires wchar_t* argument, so converting to wstring, then converting to wchar
         wstring w_fullPath = wstring(fullPath.begin(), fullPath.end());
 
-        const wchar_t* wc_FullPath = w_fullPath.c_str();
+        const wchar_t* wc_fullPath = w_fullPath.c_str();
 
 #if defined(_WIN32) || defined(_WINDOWS)
-        int err = _wmkdir(wc_FullPath);
+        int err = _wmkdir(wc_fullPath);
 #else
-        int err = mkdir(wc_FullPath, S_IRWXU | S_IRWXG | S_IRWXO);
+        const char* c_fullPath = fullPath.c_str();
+        int err = mkdir(c_fullPath, S_IRWXU | S_IRWXG | S_IRWXO);
 #endif
 
         // If directory creation fails for any reason other than the directory already exists, throw and exception
@@ -361,7 +362,7 @@ void createHampsterHangoutDirectory() {
         }
     }
     catch (...) {
-        throw runtime_error("Error occurred trying to create the HampsterHangout Folder.\n");
+        throw runtime_error("Error occurred trying to create the HamsterHangout Folder.\n");
     }
 }
 

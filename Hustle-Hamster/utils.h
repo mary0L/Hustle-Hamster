@@ -161,9 +161,9 @@ void turnCanonOn(void);
 int randomNumber(int max);
 
 /**
-* Create a directory called HampsterHangout on the user's desktop.
+* Create a directory called HamsterHangout on the user's desktop.
 * 
 */
-void createHampsterHangoutDirectory();
+void createHamsterHangoutDirectory();
 
 string getFileName();
