@@ -150,7 +150,6 @@ void turnCanonOff(void);
  * System will wait for enter key to be pressed to continue
 */
 void turnCanonOn(void);
-string getDesktopPath();
 
 /**
 * Get a random number from zero to the maximum value.
@@ -161,3 +160,11 @@ string getDesktopPath();
 * @param max The maximum value (inclusive)
 */
 int randomNumber(int max);
+
+/**
+* Create a directory called HamsterHangout on the user's desktop.
+* 
+*/
+void createHamsterHangoutDirectory();
+
+string getFileName();
