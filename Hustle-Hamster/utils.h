@@ -149,3 +149,14 @@ void turnCanonOff(void);
  * System will wait for enter key to be pressed to continue
 */
 void turnCanonOn(void);
+string getDesktopPath();
+
+/**
+* Get a random number from zero to the maximum value.
+*
+* Adapted from this Reddit post:
+* https://stackoverflow.com/questions/13445688/how-to-generate-a-random-number-in-c
+*
+* @param max The maximum value (inclusive)
+*/
+int randomNumber(int max);

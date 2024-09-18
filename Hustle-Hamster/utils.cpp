@@ -15,6 +15,7 @@
 #include "utils.h"
 #include <fstream>
 #include <limits>
+#include <random>
 
 using namespace std;
 
@@ -323,4 +324,19 @@ void exportJournal(Journal& journalEntry) {
         TYPE("Sorry, there was an error writing your journal to a file at this time:\n");
         TYPE(e.what());
     }
+}
+
+int randomNumber(int max) {
+
+    using engine = std::mt19937;
+
+    default_random_engine eng;
+
+    random_device os_seed;
+    const int seed = os_seed();
+
+    engine generator(seed);
+    uniform_int_distribution<int> distribute(0, max);
+
+    return distribute(generator);
 }
