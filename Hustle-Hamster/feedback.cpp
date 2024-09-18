@@ -1,4 +1,5 @@
 #include "feedback.h"
+#include "utils.h"
 
 void outsideFeedback() {
 	TYPE("It looks like you didn't get a chance to go outside today. Fresh air can do wonders for your mood and energy.");
@@ -37,7 +38,9 @@ void sleepFeedback() {
 
 void activityAdvice(vector<string>& uncompletedActivities) {
 	if (uncompletedActivities.size() > 0) {
-		int randActivity = 0; //need to add the randomiser in here
+		int maxIndex = uncompletedActivities.size();
+
+		int randActivity = randomNumber(maxIndex - 1); //need to add the randomiser in here
 		TYPE(uncompletedActivities[randActivity]);
 		if (uncompletedActivities[randActivity] == "Socialise") {
 			socialiseFeedback();
