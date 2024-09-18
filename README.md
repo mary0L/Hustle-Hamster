@@ -17,6 +17,8 @@ Hamster Hangout can be easily used by responding to prompts given by Hammy (the 
 
 ### References
 [Methods in Utils to configure terminal settings](https://stackoverflow.com/questions/38931856/disallow-input-at-certain-times): bgoldst (Aug 13, 2016)
+
+[Method in Utils to generate a random number](https://stackoverflow.com/a/62378892): Tarick Welling (May 24, 2023)
 #### Health Sources
 ##### Sleep
 [Recommended Amount of Sleep for a Healthy Adult](https://aasm.org/resources/pdf/pressroom/adult-sleep-duration-consensus.pdf)<br>
