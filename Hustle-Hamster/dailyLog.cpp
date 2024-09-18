@@ -1,4 +1,5 @@
 #include "dailyLog.h"
+#include "feedback.h"
 
 void dailyRating(Journal &dailyEntry){
     int temp; 
@@ -62,7 +63,6 @@ void moodRating(Journal &dailyEntry){
 
 void longAnswer(Journal &dailyEntry) {
     string textInput; 
-    TYPE("Anything you want to say about today? (Enter as a String)");
 
     getline(cin, textInput);
     if (!textInput.empty()) {
@@ -113,6 +113,11 @@ int dailyLog(){
     for (const string& activity : defaultActivities) {
         didActivity(activity, dailyEntry);
     }
+
+    hammyEvaluation(dailyEntry);
+
+    /*put in the Hammy derivations from the activity and mood ratings*/
+
 
     std::cin.ignore(10000000, '\n');
     longAnswer(dailyEntry);

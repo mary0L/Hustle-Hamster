@@ -8,7 +8,6 @@ By Hustling Hamsters
 Hamster Hangout is a simple command line program that provides an interactive “conversation” for users to record various aspects of their day. These are across a range of categories such as: mood, sleep, activities, and more. This app will save these records for users to come back to, compare previous statistics in various categories from previous records,  and provide and positive and motivating atmosphere to make an enjoyable and personalised journaling experience. 
 ### The technologies we used
 We have built Hamster Hangout in C++ with no external libraries, using the Open Source CMake software for cross-platform development. 
-### Features we hope to implement in the future
 
 ## How to use Hamster Hangout
 Hamster Hangout can be easily used by responding to prompts given by Hammy (the hamster). These could be numbered for mood rating, or long answer when asked more detailed questions. The command line interface also offers a variety of options for logging, seeing previous records, and getting extra information about the application. All of the users generated journals are stored in their ``Users/Desktop`` path so they are easily able to navigate to them. 
@@ -20,3 +19,22 @@ Hamster Hangout can be easily used by responding to prompts given by Hammy (the 
 [Methods in Utils to configure terminal settings](https://stackoverflow.com/questions/38931856/disallow-input-at-certain-times): bgoldst (Aug 13, 2016)
 
 [Method in Utils to generate a random number](https://stackoverflow.com/a/62378892): Tarick Welling (May 24, 2023)
+#### Health Sources
+##### Sleep
+[Recommended Amount of Sleep for a Healthy Adult](https://aasm.org/resources/pdf/pressroom/adult-sleep-duration-consensus.pdf)<br>
+[Good Sleep for Good Health: Get the Rest You Need](https://newsinhealth.nih.gov/2021/04/good-sleep-good-health)<br>
+[Sleep by the Numbers](https://www.thensf.org/sleep-facts-and-statistics/)<br>
+
+##### Exercise
+[Adult Activity: An Overview](https://www.cdc.gov/physical-activity-basics/guidelines/adults.html)<br>
+[Physical activity](https://www.who.int/news-room/fact-sheets/detail/physical-activity)<br>
+
+##### Hydration
+[HOW HYDRATION & NUTRITION AFFECT YOUR MENTAL HEALTH](https://justwater.com/blogs/news/how-hydration-nutrition-affect-your-mental-health#:~:text=Cognitive%20Function%3A%20Proper%20hydration%20is,significant%20role%20in%20mood%20regulation.)<br>
+
+##### Socialising
+[Mayo Clinic Minute: The benefits of being socially connected](https://newsnetwork.mayoclinic.org/discussion/mayo-clinic-minute-the-benefits-of-being-socially-connected/)<br>
+[How Social Support Contributes to Psychological Health](https://www.verywellmind.com/social-support-for-psychological-health-4119970)<br>
+
+##### Going Outside
+[The Mental Health Benefits of Getting Outdoors](https://www.mcleanhospital.org/essential/nature#:~:text=Because%20time%20in%20the%20outdoors,led%20to%20improved%20school%20performance.)<br>
