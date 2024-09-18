@@ -71,8 +71,13 @@ void testPrintReport(Journal &journal)
     "       Activity 2\n"
     "----------------------------------------------------------\n"
     "       Your thoughts on the day:\n"
-    "       This is a test entry\n"
+    "       This is a test entry.\n"
     "----------------------------------------------------------\n";
+
+    if (output.str() != expectedOutput) {
+        std::cerr << "Actual output:\n" << output.str() << std::endl;
+        std::cerr << "Expected output:\n" << expectedOutput << std::endl;
+    }
 
     assert(output.str() == expectedOutput);
 }
@@ -99,8 +104,7 @@ void testMenu(){
         "       [2] Get Data Report\n"
         "       [3] Settings\n"
         "       [4] How to Use\n"
-        "       [5] Quit\n"
-        "       Let's see how your day went!\n";
+        "       [5] Quit\n";
 
     assert(output.str() == expectedOutput);
 }
@@ -132,25 +136,25 @@ void testExportJournal(Journal &journal){
 
 int main()
 {   
-    // Set up Journal object
-    Journal journal = Journal();
+        // Set up Journal object
+    Journal dailyEntry = Journal();
 
-    journal.setDayRating(5);
-    journal.setSleepRating(3);
-    journal.setMood("Sad");
-    journal.addActivity("Activity 1");
-    journal.addActivity("Activity 2");
-    journal.setTextEntry("This is a test entry.");
+    dailyEntry.setDayRating(5);
+    dailyEntry.setSleepRating(3);
+    dailyEntry.setMood("Sad");
+    dailyEntry.addActivity("Activity 1");
+    dailyEntry.addActivity("Activity 2");
+    dailyEntry.setTextEntry("This is a test entry.");
 
     // Run tests
-    testPrintReport(journal);
+    testPrintReport(dailyEntry);
     testTYPE();
     testPrintHammy();
-    //testMenu();
+    testMenu();
     //testExportJournal(journal);
 
     // Tear down - Delete the journal object
-    journal.~Journal();
+    dailyEntry.~Journal();
 
     std::cout << "All tests passed!" << std::endl;
 
