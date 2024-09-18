@@ -16,6 +16,7 @@
 #include <fstream>
 #include <limits>
 #include <random>
+#include <sys/stat.h>
 
 using namespace std;
 
@@ -348,7 +349,11 @@ void createHampsterHangoutDirectory() {
 
         const wchar_t* wc_FullPath = w_fullPath.c_str();
 
+#ifdef _WINDOWS
         int err = _wmkdir(wc_FullPath);
+#else
+        int err = mkdir(wc_FullPath, S_IRWXU | S_IRWXG | S_IRWXO);
+#endif
 
         // If directory creation fails for any reason other than the directory already exists, throw and exception
         if (err != 0 && errno != EEXIST) {
