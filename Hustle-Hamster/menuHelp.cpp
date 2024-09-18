@@ -8,6 +8,7 @@ void helpMenu(){
     TYPE("[3] Return to Main Menu");
     bool validResponse = false;
     int temp; 
+    discardInputLine();
 
     while(!validResponse){
         cin >> temp;

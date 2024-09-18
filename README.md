@@ -15,3 +15,8 @@ Hamster Hangout can be easily used by responding to prompts given by Hammy (the 
 
 ### Feel free to give us feedback here!
 [Hamster Hangout Feedback Form](https://docs.google.com/forms/d/e/1FAIpQLScawwGY_azkGivVO9_lvc4nLEPHEgMZBat1EZp-lhMRXqnzLQ/viewform?usp=sf_link)
+
+### References
+[Methods in Utils to configure terminal settings](https://stackoverflow.com/questions/38931856/disallow-input-at-certain-times): bgoldst (Aug 13, 2016)
+
+[Method in Utils to generate a random number](https://stackoverflow.com/a/62378892): Tarick Welling (May 24, 2023)

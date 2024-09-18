@@ -3,6 +3,7 @@
 void dailyRating(Journal &dailyEntry){
     int temp; 
     bool validResponse = false; 
+    discardInputLine(); 
     TYPE("How was your day? [1] Terrible [2] Bad [3] Fine [4] Good [5] AMAZING!");
     while(!validResponse){
         cin >> temp;
@@ -22,6 +23,7 @@ void dailyRating(Journal &dailyEntry){
 void sleepRating(Journal &dailyEntry){
     int temp; 
     bool validResponse = false; 
+    discardInputLine();
     TYPE("How was your Sleep? [1] Terrible [2] Bad [3] Fine [4] Good [5] AMAZING!");
     while(!validResponse){
         cin >> temp;
@@ -42,6 +44,7 @@ void sleepRating(Journal &dailyEntry){
 void moodRating(Journal &dailyEntry){
     string temp; 
     bool validResponse = false;
+    discardInputLine();
     TYPE("How would you describe your mood today in one word? (Enter as a String)");
     while(!validResponse){
         cin >> temp;
@@ -74,6 +77,7 @@ void didActivity(const string &activity, Journal &dailyEntry){
     char response;
     stringstream message;
     bool validResponse = false;
+    discardInputLine();
     message << "Did you " << activity << " today? (y/n)";
     while(!validResponse){
         TYPE(message.str());
