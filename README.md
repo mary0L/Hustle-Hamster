@@ -28,7 +28,11 @@ Hamster Hangout can be easily used by responding to prompts given by Hammy (the 
 [Physical activity](https://www.who.int/news-room/fact-sheets/detail/physical-activity)<br>
 
 ##### Hydration
+[HOW HYDRATION & NUTRITION AFFECT YOUR MENTAL HEALTH](https://justwater.com/blogs/news/how-hydration-nutrition-affect-your-mental-health#:~:text=Cognitive%20Function%3A%20Proper%20hydration%20is,significant%20role%20in%20mood%20regulation.)<br>
 
 ##### Socialising
+[Mayo Clinic Minute: The benefits of being socially connected](https://newsnetwork.mayoclinic.org/discussion/mayo-clinic-minute-the-benefits-of-being-socially-connected/)<br>
+[How Social Support Contributes to Psychological Health](https://www.verywellmind.com/social-support-for-psychological-health-4119970)<br>
 
 ##### Going Outside
+[The Mental Health Benefits of Getting Outdoors](https://www.mcleanhospital.org/essential/nature#:~:text=Because%20time%20in%20the%20outdoors,led%20to%20improved%20school%20performance.)<br>
