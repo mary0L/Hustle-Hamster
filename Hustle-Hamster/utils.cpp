@@ -14,9 +14,10 @@
 #include <vector>
 #include "utils.h"
 #include <fstream>
+#include <limits>
+#include <random>
 
 using namespace std;
-
 
 unsigned int stdDelay = STD_DELAY;
 
@@ -28,13 +29,114 @@ void delay(int time) {
     Sleep(time);
 }
 
+//#########  Following code from stackoverflow: bgoldst  ############################################################
+
+#if defined(_WIN32) || defined(_WINDOWS)
+
+HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
+DWORD g_consoleMode;
+
+void setConsoleMode(DWORD bit, bool onElseOff) {
+    GetConsoleMode(hStdin, &g_consoleMode);
+    
+    if (onElseOff) {
+        g_consoleMode |= bit;
+    } else {
+        g_consoleMode &= ~bit;
+    }
+    
+    SetConsoleMode(hStdin, g_consoleMode);
+}
+
+void turnEchoOff(void) { setConsoleMode(ENABLE_ECHO_INPUT, false); }
+
+void turnEchoOn(void) { setConsoleMode(ENABLE_ECHO_INPUT, true); }
+
+void turnCanonOff(void) { setConsoleMode(ENABLE_LINE_INPUT, false); }
+
+void turnCanonOn(void) { setConsoleMode(ENABLE_LINE_INPUT, true); }
+
+void discardInputBuffer() {
+    FlushConsoleInputBuffer(hStdin);
+}
+
+#else
+struct termios g_terminalSettings;
+
+void turnEchoOff(void) { setTermiosBit(0,ECHO,0); }
+    
+void turnEchoOn(void) { setTermiosBit(0,ECHO,1);}
+
+void turnCanonOff(void) { setTermiosBit(0,ICANON,0); }
+
+void turnCanonOn(void) {setTermiosBit(0,ICANON,1); }
+
+void setTermiosBit(int fd, tcflag_t bit, int onElseOff ) {
+    static int first = 1;
+    if (first) {
+        first = 0;
+        tcgetattr(fd,&g_terminalSettings);
+    } 
+    if (onElseOff)
+        g_terminalSettings.c_lflag |= bit;
+    else
+        g_terminalSettings.c_lflag &= ~bit;
+    tcsetattr(fd,TCSANOW,&g_terminalSettings);
+} 
+
+void discardInputBuffer(void) {
+    struct timeval tv;
+    fd_set rfds;
+    while (1) {
+        FD_ZERO(&rfds);
+        FD_SET(0,&rfds);
+        tv.tv_sec = 0;
+        tv.tv_usec = 0;
+        if (select(1,&rfds,0,0,&tv) == -1) { fprintf(stderr, "[error] select() failed: %s", strerror(errno) ); exit(1); }
+        if (!FD_ISSET(0,&rfds)) break; // can break if the input buffer is clean
+        // select() doesn't tell us how many characters are ready to be read; just grab a big chunk of whatever is there
+        char buf[500];
+        ssize_t numRead = read(0,buf,500);
+        if (numRead == -1) { fprintf(stderr, "[error] read() failed: %s", strerror(errno) ); exit(1); }
+    } // end while
+} // end discardInputBuffer()
+
+#endif
+
+void discardInputLine(void) {
+    int c;
+    #if defined(_WIN32) || defined(_WINDOWS)
+        std::cin.clear(); // Clear the error flags
+        std::cin.ignore(10000000, '\n'); // Ignore until newline
+        FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
+    #else
+        while ((c = getchar()) != EOF && c != '\n');  // '\n' is Enter on Unix
+    #endif
+}
+
+
+void disableInput(void) {
+    turnEchoOff();
+    turnCanonOff();
+}
+
+void enableInput(void) {
+    discardInputBuffer(); 
+    turnCanonOn();
+    turnEchoOn();
+}
+
+//#########################################################################################################
+
 void TYPE(const string& p) {
+    disableInput();
     cout << "       ";
     for (char c : p) {
         cout << c << flush;
         Sleep(SLEEP_DURATION);
     }
     cout << endl;
+    enableInput(); 
 }
 
 void printHammy() {
@@ -184,8 +286,10 @@ void exportJournal(Journal& journalEntry) {
         string desktopPath = getDesktopPath();
 
 
-        string path = desktopPath + filename + ".txt";
-        ofstream txtFile(path);
+
+    string path = desktopPath + filename + ".txt";
+
+    ofstream txtFile(path);
 
         if (!txtFile.fail()) {
             txtFile << "============ " << journalEntry.getDate().getMonthName() << " " << day << " " << year << " ============\n";
@@ -220,4 +324,19 @@ void exportJournal(Journal& journalEntry) {
         TYPE("Sorry, there was an error writing your journal to a file at this time:\n");
         TYPE(e.what());
     }
+}
+
+int randomNumber(int max) {
+
+    using engine = std::mt19937;
+
+    default_random_engine eng;
+
+    random_device os_seed;
+    const int seed = os_seed();
+
+    engine generator(seed);
+    uniform_int_distribution<int> distribute(0, max);
+
+    return distribute(generator);
 }
