@@ -79,6 +79,12 @@ string getDesktopPath();
 /**
 * Create a directory called HampsterHangout on the user's desktop.
 * 
-* @see getDesktopPath()
 */
 void createHampsterHangoutDirectory();
+
+/**
+ * Checks if the HampsterHangout directory exists on the user's desktop to determine whether this is the first time running the program.
+ * 
+ * @return 1 (true) if the HampsterHangout exists, 0 (false) otherwise.
+ */
+bool isFirstEntry();

@@ -243,5 +243,21 @@ void createHampsterHangoutDirectory() {
 
     const wchar_t* wc_FullPath = w_fullPath.c_str();
 
-    _wmkdir(wc_FullPath);
+    int err = _wmkdir(wc_FullPath);
 }
+
+bool isFirstEntry(){
+
+}
+
+/** thoughts:
+*   before even showing the menu, check if exists
+*   if it doesn't exist then welcome them and just show the help menu -> or, ask if this is the first time using the app. 
+*   if it does exist, then just do menu as normal
+*   
+*   then, when it comes to exporting, check again ?
+*   and then if it doesn't exist  create it.
+*   is this too repetitive ?
+* 
+*   Then the exception only comes up when trying to export, rather than the user getting told this literally as soon as the program begins ya know.
+*/
