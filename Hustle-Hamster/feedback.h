@@ -47,7 +47,12 @@ void socialiseFeedback();
  */
 void sleepFeedback();
 
-void pickActivity(vector<string>& uncompletedActivities, vector<string>& completedActivities);
+/*
+* A method to which chooses randomly from either the uncompleted activities or, if none, provides general feedback
+*
+* @param uncompletedActivities a list of the activities not completed by the user
+*/
+void activityAdvice(vector<string>& uncompletedActivities);
 
 /*
 * A method to go through and check what activities have been completed or not

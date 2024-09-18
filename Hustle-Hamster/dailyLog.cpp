@@ -63,7 +63,6 @@ void moodRating(Journal &dailyEntry){
 
 void longAnswer(Journal &dailyEntry) {
     string textInput; 
-    TYPE("Anything you want to say about today? (Enter as a String)");
 
     getline(cin, textInput);
     if (!textInput.empty()) {
@@ -118,7 +117,6 @@ int dailyLog(){
     hammyEvaluation(dailyEntry);
 
     /*put in the Hammy derivations from the activity and mood ratings*/
-    printHammy();
 
 
     std::cin.ignore(10000000, '\n');

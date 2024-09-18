@@ -1,23 +1,29 @@
 #include "feedback.h"
 
 void outsideFeedback() {
-	TYPE("Seems like you didn't get outside today");
-	//add studies and advice here
+	TYPE("It looks like you didn't get a chance to go outside today. Fresh air can do wonders for your mood and energy.");
+	TYPE("Going outdoors can improve your mental well-being and provide a nice break from daily routines.");
+	TYPE("Try to step outside whenever you can!");
 }
 
 void hydrationFeedback() {
-	TYPE("Seems like you didn't drink any water today");
-	//add studies and advice here
+	TYPE("It looks like you might not have had enough water today. Aim for 8 cups to stay hydrated and energized!");
+	TYPE("Drinking enough water helps with energy and focus. Even mild dehydration can affect your mood and energy.");
+	TYPE("Try to keep sipping throughout the day!");
 }
 
 void exerciseFeedback() {
-	TYPE("Seems like you didn't complete any exercising today");
-	//add studies and advice here
+	TYPE("It looks like you haven’t done exercise today, but that's okay! Any movement is better than none.");
+	TYPE("Regular exercise helps boost your mood, improves sleep, and keeps your body strong.");
+	TYPE("Even short bursts of physical activity, like a quick walk or some stretches, can have great benefits.");
+	TYPE("Remember, consistency is more important than intensity. Your body will thank you!");
 }
 
 void socialiseFeedback() {
-	TYPE("Seems like you didn't complete any socialising today");
-	//add studies and advice here
+	TYPE("It's easy to forget, but socializing is a great way to boost your mood and reduce stress.");
+	TYPE("Connecting with friends or family, can make a big difference in how you feel.");
+	TYPE("Whether it's a call, a message, or in-person, socialising has a big impact on well-being.");
+	TYPE("Remember, meaningful connections can help you recharge, so don't hesitate to reach out!");
 }
 
 void sleepFeedback() {
