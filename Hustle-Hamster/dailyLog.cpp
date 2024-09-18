@@ -5,7 +5,9 @@ void dailyRating(Journal &dailyEntry){
     int temp; 
     bool validResponse = false; 
     discardInputLine(); 
-    TYPE("How was your day? [1] Terrible [2] Bad [3] Fine [4] Good [5] AMAZING!");
+    string line = dailyRatingQ[randomNumber(3)];
+    TYPE(line);
+    TYPE(ratingSystem);
     while(!validResponse){
         cin >> temp;
         if(!cin.fail() && (temp>0 && temp<6)){
@@ -25,7 +27,9 @@ void sleepRating(Journal &dailyEntry){
     int temp; 
     bool validResponse = false; 
     discardInputLine();
-    TYPE("How was your Sleep? [1] Terrible [2] Bad [3] Fine [4] Good [5] AMAZING!");
+    string line = sleepRatingQ[randomNumber(2)];
+    TYPE(line);
+    TYPE(ratingSystem);
     while(!validResponse){
         cin >> temp;
         if(!cin.fail() && (temp>0 && temp<6)){
@@ -46,7 +50,8 @@ void moodRating(Journal &dailyEntry){
     string temp; 
     bool validResponse = false;
     discardInputLine();
-    TYPE("How would you describe your mood today in one word? (Enter as a String)");
+    string line = moodQ[randomNumber(3)];
+    TYPE(line);
     while(!validResponse){
         cin >> temp;
         if(!cin.fail()){
@@ -54,7 +59,7 @@ void moodRating(Journal &dailyEntry){
                 validResponse = true;
                 break;
         }else{
-            TYPE("Please enter a string");
+            TYPE("Please enter a word");
             cin.clear();
             std::cin.ignore(10000, '\n');
             }
@@ -85,11 +90,9 @@ void didActivity(const string &activity, Journal &dailyEntry){
         char lower = tolower(response); 
         if(lower == 'y'){
             dailyEntry.addActivity(activity);
-            TYPE("Awesome Job!\n"); 
             validResponse = true;
             break;
         } if(lower == 'n') {
-            TYPE("Try to complete it tomorrow!\n");
             validResponse = true;
             break;
         }else{
@@ -104,7 +107,6 @@ void didActivity(const string &activity, Journal &dailyEntry){
 int dailyLog(){
     Journal dailyEntry = Journal(); 
 
-    TYPE("We will start by doing some ratings!");
     delay(stdDelay);
     dailyRating(dailyEntry); 
     sleepRating(dailyEntry);

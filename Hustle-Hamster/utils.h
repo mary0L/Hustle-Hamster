@@ -12,6 +12,7 @@
 #include "Journal.h"
 #include "menuHelp.h"
 #include "dailyLog.h"
+#include "hammyDialogue.h"
 
 /**
  *  Development Process only so that developers
