@@ -42,18 +42,6 @@ void exerciseFeedback();
 void socialiseFeedback();
 
  /*
- * A method to provide motivation and advice in response to incompleted "Work" activity
- *
- */
-void workFeedback();
-
- /*
- * A method to provide motivation and advice in response to incompleted "Study" activity
- *
- */
-void studyFeedback();
-
- /*
  * A method to provide motivation and advice in response to the daily sleep rating
  *
  */

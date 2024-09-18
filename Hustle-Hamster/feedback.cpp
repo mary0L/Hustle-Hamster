@@ -21,8 +21,12 @@ void socialiseFeedback() {
 }
 
 void sleepFeedback() {
-	TYPE("Seems like you didn't have a great sleep today");
-	//add studies and advice here
+	TYPE("It looks like your sleep wasn't the best today, but don't worry! You can always make improvements to your sleep habits.");
+	TYPE("Did you know that adults generally need 7-9 hours of sleep each night for optimal health?");
+	TYPE("Sleep is essential for boosting mood, improving concentration, and even supporting your immune system.");
+	TYPE("Lack of sleep can impact your focus and energy levels.");
+	TYPE("Making small changes like maintaining a consistent sleep schedule or avoiding screens before bed can really help.");
+
 }
 
 void activityAdvice(vector<string>& uncompletedActivities) {
@@ -46,10 +50,10 @@ void activityAdvice(vector<string>& uncompletedActivities) {
 		}
 	} 
 	else {
-		//if they completed all activities then give some motivation message - this needs serious work dear god
-		TYPE("You've completed all the activities assigned for the day great work!");
-		TYPE("Sometimes taking a step back and giving yourself time to rest is the best medicine");
-		TYPE("I also don't feel great sometimes, when that happens I often take some time by myself to recuperate");
+		//If they've completed everything, just give general supportive messages
+		TYPE("Looks like you completed all of your activities today, great work!");
+		TYPE("But always remember, rest and reflection are just as important as pushing forward.");
+		TYPE("You're stronger than you think, even on the hard days. This is just part of the journey.");
 	}
 }
 
@@ -78,13 +82,17 @@ void hammyEvaluation(Journal& dailyEntry) {
 	printHammy();
 	//check what the mood rating is, if less than three do a comprehensive feedback, if greater than three be encouraging
 	if (dailyEntry.getDayRating() <= 3) {
-		TYPE("Seems like you weren't feeling great today...lets have a look at some things that might help!");
+		TYPE("It looks like today wasn't your best day, and that's okay.");
+		TYPE("Let's see if we can reflect on your day to delve deeper.");
 		checkCompletion(dailyEntry);
 	}
 	else {
-		TYPE("I see you're feeling positive today, this is great!");
-		//you rated high in your day yay
-		//maybe say keep up the good work
-		//give some advice for maintaining a healthy schedule but not pushing yourself idk
+		TYPE("I see you're feeling positive today-amazing! It's great to see you having a good day.");
+		TYPE("Keep up the momentum, but remember to pace yourself. Staying balanced is key!");
+		TYPE("Celebrate your wins and keep doing what feels right for you.");
 	}
+	printHammy();
+	TYPE("Now that you've had a moment to reflect on today, it's a great time to write out what's been on your mind.");
+	TYPE("This could be thoughts, feelings or just something you need to get off your chest");
+	TYPE("this is your space to express yourself freely! (Enter as a String) :");
 }
