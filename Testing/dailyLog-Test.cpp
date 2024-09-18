@@ -17,7 +17,6 @@ void testDailyRating(Journal &journal, int input, int expectedOutput)
     std::cout.rdbuf(outputStream.rdbuf());
 
     inputStream <<input <<std::endl;
-    inputStream.clear();
 
     dailyRating(journal);
 

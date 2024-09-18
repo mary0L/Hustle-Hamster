@@ -1,89 +1,39 @@
+#define TEST_MENU_RUNNING
+
 #include "../Hustle-Hamster/menuHelp.h"
 #include <iostream>
 #include <sstream>
 #include <cassert>
 #include <string>
 
-void testTestMethod(){
+void testHelpMenu()
+{
     // Capture cout output
     std::stringstream output;
-    std::streambuf *coutbuf = std::cout.rdbuf(); 
+    std::streambuf *coutbuf = std::cout.rdbuf();
     std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
 
-    testMethod();
 
-    // Restore original cout buffer
-    cout.rdbuf(coutbuf);
+    helpMenu();
 
     string expectedOutput =
-    "       Test 1\n"
-    "       Test 2\n";
+        "       Welcome to the Help Menu!\n"
+        "       I can give you a hand with lots of stuff! Such as...\n\n"
+        "       [1] How To Use\n"
+        "       [2] What does the data mean?\n"
+        "       [3] Return to Main Menu\n";
+
+    cout.rdbuf(coutbuf);
 
     assert(output.str() == expectedOutput);
 }
 
-void test_helpMenu(int simulatedInput) {
-    // Redirect cout to capture output
-    stringstream outputBuffer;
-    streambuf* oldCout = cout.rdbuf(outputBuffer.rdbuf());
-
-    // Redirect cin to simulate user input
-    stringstream inputBuffer;
-    inputBuffer << simulatedInput;
-    streambuf* oldCin = cin.rdbuf(inputBuffer.rdbuf());
-
-    // Call the function to test
-    helpMenu();
-
-    // Restore original cin and cout
-    cin.rdbuf(oldCin);
-    cout.rdbuf(oldCout);
-
-    // Expected output based on input
-    string expectedOutput;
-
-    if (simulatedInput == 1) {
-        expectedOutput = 
-            "       Welcome to the Help Menu!\n"
-            "       I can give you a hand with lots of stuff! Such as...\n"
-            "       [1] How To Use\n"
-            "       [2] What does the data mean?\n"
-            "       [3] Return to Main Menu\n"
-            "       You are now in the how-to-use section.\n";
-    } else if (simulatedInput == 2) {
-        expectedOutput = 
-            "       Welcome to the Help Menu!\n"
-            "       I can give you a hand with lots of stuff! Such as...\n"
-            "       [1] How To Use\n"
-            "       [2] What does the data mean?\n"
-            "       [3] Return to Main Menu\n"
-            "       This option is not yet implemented yet! Check back soon!\n"
-            "       Welcome to the Help Menu!\n"
-            "       I can give you a hand with lots of stuff! Such as...\n"
-            "       [1] How To Use\n"
-            "       [2] What does the data mean?\n"
-            "       [3] Return to Main Menu\n";
-    } else if (simulatedInput == 3) {
-        expectedOutput = 
-            "       Welcome to the Help Menu!\n"
-            "       I can give you a hand with lots of stuff! Such as...\n"
-            "       [1] How To Use\n"
-            "       [2] What does the data mean?\n"
-            "       [3] Return to Main Menu\n"
-            "       You are now in the main menu.\n";
-    }
-
-    // Compare captured output with expected output
-    assert(outputBuffer.str() == expectedOutput);
-
-    cout << "test_helpMenu passed for input: " << simulatedInput << "\n";
-}
-
 // Unit test for howToUse
-void test_howToUse() {
+void test_howToUse()
+{
     // Capture cout output
     std::stringstream output;
-    std::streambuf *coutbuf = std::cout.rdbuf(); 
+    std::streambuf *coutbuf = std::cout.rdbuf();
     std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
 
     // Call the function to test
@@ -93,7 +43,7 @@ void test_howToUse() {
     cout.rdbuf(coutbuf);
 
     // Expected output (based on the actual content in howToUse)
-    string expectedOutput = 
+    string expectedOutput =
         "       I’m glad you are here to hang out!\n"
         "       Let's go on a quick tour so you can get familiar with things!\n"
         "       This walkthrough will be available to you whenever you need so don’t worry about figuring it all out now!\n"
@@ -118,27 +68,18 @@ void test_howToUse() {
         "       [4] HELP:\n"
         "       This is where you can get help for anything you don’t understand or anything you forget how to do!\n"
         "       You can have a look at what our data means, refresh yourself on how to use a certain menu option or run through this walk through again!\n\n"
-        "       I'll now return you to the help menu and you can let me know what you wanna do next!\n"
-        "Help menu activated.\n";
+        "       I'll now return you to the help menu and you can let me know what you wanna do next!\n";
 
     // Compare captured output with expected output
     assert(output.str() == expectedOutput);
-
 }
 
-int main() {
-    // Test case 1: User selects "How To Use" (input 1)
-    //test_helpMenu(1);
+int main()
+{
 
-    // Test case 2: User selects "What does the data mean?" (input 2)
-    //test_helpMenu(2);
+    testHelpMenu();
 
-    // Test case 3: User selects "Return to Main Menu" (input 3)
-    //test_helpMenu(3);
-
-    //test_howToUse();  // Run the unit test
-
-    testTestMethod();
+    test_howToUse(); 
 
     std::cout << "All tests passed!" << std::endl;
     return 0;
