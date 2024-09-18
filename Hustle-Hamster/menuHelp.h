@@ -20,8 +20,6 @@
 
 /**
  * Method to display the help menu.
- * Will present users with options and the user will select one.
- * The method will then direct user to the selected option.
 */
 void helpMenu();
 
