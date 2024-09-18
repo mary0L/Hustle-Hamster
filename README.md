@@ -18,3 +18,17 @@ Hamster Hangout can be easily used by responding to prompts given by Hammy (the 
 ### References
 [Methods in Utils to configure terminal settings](https://stackoverflow.com/questions/38931856/disallow-input-at-certain-times): bgoldst (Aug 13, 2016)
 #### Health Sources
+##### Sleep
+[Recommended Amount of Sleep for a Healthy Adult](https://aasm.org/resources/pdf/pressroom/adult-sleep-duration-consensus.pdf)<br>
+[Good Sleep for Good Health: Get the Rest You Need](https://newsinhealth.nih.gov/2021/04/good-sleep-good-health)<br>
+[Sleep by the Numbers](https://www.thensf.org/sleep-facts-and-statistics/)<br>
+
+##### Exercise
+[Adult Activity: An Overview](https://www.cdc.gov/physical-activity-basics/guidelines/adults.html)<br>
+[Physical activity](https://www.who.int/news-room/fact-sheets/detail/physical-activity)<br>
+
+##### Hydration
+
+##### Socialising
+
+##### Going Outside
