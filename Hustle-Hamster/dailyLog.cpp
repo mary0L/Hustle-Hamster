@@ -126,7 +126,27 @@ int dailyLog(){
 
     printHammy();
     printReport(dailyEntry);
-    exportJournal(dailyEntry);
+    char response;
+    stringstream message;
+    bool validResponse = false;
+    message << "Do you want to export today's entry? (y/n)";
+    while(!validResponse){
+        TYPE(message.str());
+        cin >> response; 
+        char lower = tolower(response); 
+        if(lower == 'y'){
+            exportJournal(dailyEntry);
+            validResponse = true;
+            break;
+        } if(lower == 'n') {
+            validResponse = true;
+            break;
+        }else{
+            TYPE("Please Enter a Valid input");
+            TYPE("y or Y for Yes");
+            TYPE("n or N for No");
+        }
+    }
     TYPE("");
     TYPE("I'll return you to the main menu now and you can decide to keep hanging out, or leave whenever you want!\n");
     menu();
