@@ -22,7 +22,7 @@ using namespace std;
 
 unsigned int stdDelay = STD_DELAY;
 
-vector<string> defaultActivities = {"Study", "Work", "Socialise", "Exercise", "Drink Water", "Go outside"}; 
+vector<string> defaultActivities = {"Study", "Work", "Socialise", "Exercise", "Drink Water", "Go Outside"}; 
 
 char separator[] = "----------------------------------------------------------"; 
 
@@ -186,34 +186,25 @@ void menu(){
     bool validResponse = false;
     TYPE("What can I help you with?");
     TYPE("[1] Daily Log"); //if daily log has already been completed do not let them complete again!
-    TYPE("[2] Get Data Report");
-    TYPE("[3] Settings");
-    TYPE("[4] How to Use");
-    TYPE("[5] Quit");
+    TYPE("[2] How to Use");
+    TYPE("[3] Quit");
 
     while(!validResponse){
         cin >> temp;
         if(!cin.fail() && (temp>=0 && temp<6)){
             if (temp == 1){
-                TYPE("Lets see how your day went!");
-                cout << separator << "\n"; 
+                cout << separator << "\n";
+                string line = dailyLogR[randomNumber(3)];
+                TYPE(line); 
                 delay(stdDelay);
                 dailyLog();
             }
-            if(temp == 2){
-                TYPE("Data Reports are not yet implemented! Check back soon!\n");
-                menu();
-            }
-            if(temp == 3){
-                TYPE("Settings are not yet implemented! Check back soon!\n");
-                menu();
-            }
-            if (temp == 4){
+            if (temp == 2){
                 cout << separator << "\n"; 
                 delay(stdDelay);
                 helpMenu();
             }
-            if(temp == 5){
+            if(temp == 3){
                 TYPE("It was fun hanging out! See you tomorrow!");
                 exit(0);
             }
