@@ -14,7 +14,7 @@ void hydrationFeedback() {
 }
 
 void exerciseFeedback() {
-	TYPE("It looks like you haven’t done exercise today, but that's okay! Any movement is better than none.");
+	TYPE("It looks like you haven't done exercise today, but that's okay! Any movement is better than none.");
 	TYPE("Regular exercise helps boost your mood, improves sleep, and keeps your body strong.");
 	TYPE("Even short bursts of physical activity, like a quick walk or some stretches, can have great benefits.");
 	TYPE("Remember, consistency is more important than intensity. Your body will thank you!");
