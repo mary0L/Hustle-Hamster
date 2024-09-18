@@ -16,18 +16,57 @@
 #include "utils.h"
 #include "Journal.h"
 
+
  /*
- * A method which gives the personal sleep rating and advice on how this might impact wellbeing as well as how to improve
+  * A method to provide motivation and advice in response to incompleted "Go Outside" activity
+  *
+  */
+void outsideFeedback();
+
+ /*
+  * A method to provide motivation and advice in response to incompleted "Drink Water" activity
+  *
+  */
+void hydrationFeedback();
+
+ /*
+  * A method to provide motivation and advice in response to incompleted "Exercise" activity
+  *
+  */
+void exerciseFeedback();
+
+ /*
+ * A method to provide motivation and advice in response to incompleted "Socialise" activity
+ *
+ */
+void socialiseFeedback();
+
+ /*
+ * A method to provide motivation and advice in response to incompleted "Work" activity
+ *
+ */
+void workFeedback();
+
+ /*
+ * A method to provide motivation and advice in response to incompleted "Study" activity
+ *
+ */
+void studyFeedback();
+
+ /*
+ * A method to provide motivation and advice in response to the daily sleep rating
  *
  */
 void sleepFeedback();
+
+void pickActivity(vector<string>& uncompletedActivities, vector<string>& completedActivities);
 
 /*
 * A method to go through and check what activities have been completed or not
 *
 * @param dailyEntry the daily Journal entry
 */
-void checkAdvice(Journal& dailyEntry);
+void checkCompletion(Journal& dailyEntry);
 
 /*
 * A testing method that will probably become the central method
