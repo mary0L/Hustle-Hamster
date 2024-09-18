@@ -149,7 +149,6 @@ void turnCanonOff(void);
  * System will wait for enter key to be pressed to continue
 */
 void turnCanonOn(void);
-string getDesktopPath();
 
 /**
 * Get a random number from zero to the maximum value.
@@ -160,7 +159,6 @@ string getDesktopPath();
 * @param max The maximum value (inclusive)
 */
 int randomNumber(int max);
-string getDesktopPath();
 
 /**
 * Create a directory called HampsterHangout on the user's desktop.
@@ -168,9 +166,4 @@ string getDesktopPath();
 */
 void createHampsterHangoutDirectory();
 
-/**
- * Checks if the HampsterHangout directory exists on the user's desktop to determine whether this is the first time running the program.
- * 
- * @return 1 (true) if the HampsterHangout exists, 0 (false) otherwise.
- */
-bool isFirstEntry();
+string getFileName();

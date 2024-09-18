@@ -228,8 +228,6 @@ void menu(){
                 devEntry.addActivity("Work");
 
                 exportJournal(devEntry);
-
-                createHampsterHangoutDirectory();
             }
             break;
         }else{
@@ -278,23 +276,21 @@ string getDesktopPath(){
 }
 
 void exportJournal(Journal& journalEntry) {
-    string day = to_string(journalEntry.getDate().getDay());
-    string month = to_string(journalEntry.getDate().getMonth());
-    string year = to_string(journalEntry.getDate().getYear());
+    string filename = getFileName();
 
-    string filename = "journal-" + year + "-" + month + "-" + day;
+    string subfolder = "HampsterHangout/";
 
     try {
         string desktopPath = getDesktopPath();
 
+        createHampsterHangoutDirectory();
 
+        string path = desktopPath + subfolder + filename + ".txt";
 
-    string path = desktopPath + filename + ".txt";
-
-    ofstream txtFile(path);
+        ofstream txtFile(path);
 
         if (!txtFile.fail()) {
-            txtFile << "============ " << journalEntry.getDate().getMonthName() << " " << day << " " << year << " ============\n";
+            txtFile << "============ " << journalEntry.getDate().getMonthName() << " " << journalEntry.getDate().getDay() << " " << journalEntry.getDate().getYear() << " ============\n";
             txtFile << "You rated your day a " << journalEntry.getDayRating() << "/5\n";
             txtFile << "You rated your sleep a " << journalEntry.getSleepRating() << "/5\n";
             txtFile << "You said that today you felt: " << journalEntry.getMood() << "\n";
@@ -342,42 +338,33 @@ int randomNumber(int max) {
 
     return distribute(generator);
 }
-}
-
-
-
-
 
 void createHampsterHangoutDirectory() {
-    // get the path
-    // try to create the directory at this path
-    // if success, do nothing i guess
-    // if fail, throw exception
-    // then this can be called at the start of the program
-        // so will also need a method for checking that the directory exists at some point 
-
     string fullPath = getDesktopPath() + "HampsterHangout";
 
-    // _wmkdir requires wchar_t* argument, so converting to wstring, then converting to wchar
-    wstring w_fullPath = wstring(fullPath.begin(), fullPath.end());
+    try {
+        // _wmkdir requires wchar_t* argument, so converting to wstring, then converting to wchar
+        wstring w_fullPath = wstring(fullPath.begin(), fullPath.end());
 
-    const wchar_t* wc_FullPath = w_fullPath.c_str();
+        const wchar_t* wc_FullPath = w_fullPath.c_str();
 
-    int err = _wmkdir(wc_FullPath);
+        int err = _wmkdir(wc_FullPath);
+
+        // If directory creation fails for any reason other than the directory already exists, throw and exception
+        if (err != 0 && errno != EEXIST) {
+            throw exception();
+        }
+    }
+    catch (...) {
+        throw runtime_error("Error occurred trying to create the HampsterHangout Folder.\n");
+    }
 }
 
-bool isFirstEntry(){
+string getFileName() {
+    Date today = Date();
+    string day = to_string(today.getDay());
+    string month = to_string(today.getMonth());
+    string year = to_string(today.getYear());
 
+    return "journal-" + year + "-" + month + "-" + day;
 }
-
-/** thoughts:
-*   before even showing the menu, check if exists
-*   if it doesn't exist then welcome them and just show the help menu -> or, ask if this is the first time using the app. 
-*   if it does exist, then just do menu as normal
-*   
-*   then, when it comes to exporting, check again ?
-*   and then if it doesn't exist  create it.
-*   is this too repetitive ?
-* 
-*   Then the exception only comes up when trying to export, rather than the user getting told this literally as soon as the program begins ya know.
-*/
