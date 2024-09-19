@@ -144,8 +144,10 @@ void exportEntry(Journal &dailyEntry){
     }
     TYPE("");
     TYPE("I'll return you to the main menu now and you can decide to keep hanging out, or leave whenever you want!\n");
-    menu();
-
+    
+    #ifndef TEST_RUNNING
+        menu();
+    #endif
 }
 
 int dailyLog(){
