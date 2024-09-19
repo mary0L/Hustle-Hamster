@@ -106,28 +106,6 @@ void testMenu(){
     assert(output.str() == expectedOutput);
 }
 
-void testDelay()
-{
-    int expectedDelay = 5000;  // 5000 milliseconds = 5 second
-    
-    std::chrono::time_point<std::chrono::system_clock> start, end;
-
-    // Get start time
-    start = std::chrono::system_clock::now();
-    
-    // Call delay function
-    delay(expectedDelay);
-    
-    // Get end time
-    end = std::chrono::system_clock::now();
-    
-    // Calculate the elapsed time in milliseconds
-    auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-
-    assert(elapsedTime == expectedDelay);
-
-}
-
 int main()
 {   
         // Set up Journal object
@@ -145,7 +123,6 @@ int main()
     testTYPE();
     testPrintHammy();
     testMenu();
-    //testDelay();
     
     // Tear down - Delete the journal object
     dailyEntry.~Journal();
