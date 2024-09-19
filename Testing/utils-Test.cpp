@@ -61,20 +61,25 @@ void testPrintReport(Journal &journal)
     std::cout.rdbuf(coutbuf);
 
     // Check the output
-    std::stringstream expectedOutput;
-    expectedOutput << "       You rated your day a 5/5";
-    expectedOutput << "       You rated your sleep a 3/5";
-    expectedOutput << "       You said your mood today was: Sad";
-    expectedOutput << "----------------------------------------------------------";
-    expectedOutput << "       Here are the activities you completed today:";
-    expectedOutput << "       Activity 1";
-    expectedOutput << "       Activity 2";
-    expectedOutput << "----------------------------------------------------------";
-    expectedOutput << "       Your thoughts on the day:";
-    expectedOutput << "       This is a test entry";
-    expectedOutput << "----------------------------------------------------------";
+    string expectedOutput =
+    "       You rated your day a 5/5\n"
+    "       You rated your sleep a 3/5\n"
+    "       You said your mood today was: Sad\n"
+    "----------------------------------------------------------\n"
+    "       Here are the activities you completed today:\n"
+    "       Activity 1\n"
+    "       Activity 2\n"
+    "----------------------------------------------------------\n"
+    "       Your thoughts on the day:\n"
+    "       This is a test entry.\n"
+    "----------------------------------------------------------\n";
 
-    assert(output.str() == expectedOutput.str());
+    if (output.str() != expectedOutput) {
+        std::cerr << "Actual output:\n" << output.str() << std::endl;
+        std::cerr << "Expected output:\n" << expectedOutput << std::endl;
+    }
+
+    assert(output.str() == expectedOutput);
 }
 
 void testMenu(){
@@ -99,33 +104,57 @@ void testMenu(){
         "       [2] Get Data Report\n"
         "       [3] Settings\n"
         "       [4] How to Use\n"
-        "       [5] Quit\n"
-        "       Let's see how your day went!\n";
+        "       [5] Quit\n";
 
     assert(output.str() == expectedOutput);
 }
 
+void testExportJournal(Journal &journal){
+    string day = to_string(journal.getDate().getDay());
+    string month = to_string(journal.getDate().getMonth());
+    string year = to_string(journal.getDate().getYear());
+
+    string filename = "journal-" + year + "-" + month + "-" + day;
+
+    // Capture cout output
+    stringstream outputBuffer;
+    streambuf* oldCout = cout.rdbuf(outputBuffer.rdbuf());
+
+    // Call the function to test
+    exportJournal(journal);
+
+    // Restore cout
+    cout.rdbuf(oldCout);
+
+    string expectedOutput =
+        "       Your journal has been exported successfully! Saved to:\n";
+    
+    // Compare captured output with expected output
+    assert(outputBuffer.str() == expectedOutput);
+
+}
+
 int main()
 {   
-    // Set up Journal object
-    Date date = Date();
-    Journal journal = Journal(date);
+        // Set up Journal object
+    Journal dailyEntry = Journal();
 
-    journal.setDayRating(5);
-    journal.setSleepRating(3);
-    journal.setMood("Sad");
-    journal.addActivity("Activity 1");
-    journal.addActivity("Activity 2");
-    journal.setTextEntry("This is a test entry.");
+    dailyEntry.setDayRating(5);
+    dailyEntry.setSleepRating(3);
+    dailyEntry.setMood("Sad");
+    dailyEntry.addActivity("Activity 1");
+    dailyEntry.addActivity("Activity 2");
+    dailyEntry.setTextEntry("This is a test entry.");
 
     // Run tests
-    //testPrintReport(journal);
+    testPrintReport(dailyEntry);
     testTYPE();
     testPrintHammy();
-    //testMenu();
+    testMenu();
+    //testExportJournal(journal);
 
     // Tear down - Delete the journal object
-    journal.~Journal();
+    dailyEntry.~Journal();
 
     std::cout << "All tests passed!" << std::endl;
 
