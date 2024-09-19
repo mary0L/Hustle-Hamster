@@ -6,10 +6,6 @@ void helpMenu(){
     TYPE("[1] How To Use");
     TYPE("[2] Return to Main Menu");
 
-    #ifdef TEST_RUNNING
-        exit(0);
-    #endif
-
     bool validResponse = false;
     int temp; 
     discardInputLine();
