@@ -1,5 +1,4 @@
-#define TESTING  // Define TESTING for conditional compilation
-
+#include "testing.h"
 #include "../Hustle-Hamster/utils.h"
 #include "../Hustle-Hamster/Journal.h"
 #include "../Hustle-Hamster/Date.h"

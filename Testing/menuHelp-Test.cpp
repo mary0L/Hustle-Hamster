@@ -1,5 +1,4 @@
-#define TEST_MENU_RUNNING
-
+#include "testing.h"
 #include "../Hustle-Hamster/menuHelp.h"
 #include <iostream>
 #include <sstream>

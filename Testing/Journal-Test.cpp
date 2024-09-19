@@ -1,3 +1,4 @@
+#include "testing.h"
 #include "../Hustle-Hamster/Journal.h"
 #include "../Hustle-Hamster/Date.h"
 #include <iostream>
