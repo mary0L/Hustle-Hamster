@@ -38,6 +38,7 @@ target_link_libraries(TestJournal src)
 # Include source code directories and link to src
 add_executable(TestDailyLog ${TEST_SOURCES_DAILYLOG})
 target_include_directories(TestDailyLog PRIVATE ${TEST_INC_DIRS})
+target_compile_definitions(TestDailyLog PRIVATE TEST_RUNNING)
 target_link_libraries(TestDailyLog src)
 
 # Add executables for unit testing utils

@@ -6,26 +6,21 @@
 #include <sstream>
 #include <limits>
 
-void testDailyRating(Journal &journal, int input, int expectedOutput)
+void testDailyRating(Journal &journal)
 {
-    std::stringstream inputStream;
-    std::stringstream outputStream;
-    
-    std::streambuf *cinBackup = std::cin.rdbuf();
-    std::streambuf *coutBackup = std::cout.rdbuf();
+    std::istringstream input("3\n");         // Simulating correct user input "3"
 
-    std::cin.rdbuf(inputStream.rdbuf());
-    std::cout.rdbuf(outputStream.rdbuf());
-
-    inputStream <<input <<std::endl;
+    std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
+    std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
 
     dailyRating(journal);
 
-    int rating = journal.getDayRating();
-    assert(rating == expectedOutput);
+    // Restore cin buffer.
+    std::cin.rdbuf(cinbuf);
 
-    std::cin.rdbuf(cinBackup);
-    std::cout.rdbuf(coutBackup);
+    int rating = journal.getDayRating();
+    assert(rating == 3);
+
 }
 
 void testSleepRating(Journal &journal)
@@ -114,11 +109,11 @@ int main()
     Journal journal = Journal();
 
     // Run tests
-    testDailyRating(journal, 3, 3);
-    //testSleepRating(journal);
-    //testMoodRating(journal);
-    //testLongAnswer(journal);
-    //testDidActivity(journal);
+    testDailyRating(journal);
+    testSleepRating(journal);
+    testMoodRating(journal);
+    testLongAnswer(journal);
+    testDidActivity(journal);
 
     // Delete the journal object
     journal.~Journal();
