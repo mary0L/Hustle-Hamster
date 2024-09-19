@@ -110,6 +110,30 @@ void testDidActivity(Journal &journal)
     assert(activities[0] == "Activity 1");
 }
 
+void testExportEntry(Journal& journal)
+{
+    std::istringstream input("g\n"     // Simulating incorrect user input
+                            "n\n");    // Simulating correct user input "n"
+    std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
+    std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
+
+    std::stringstream output; // Capture cout output
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
+    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
+
+    exportEntry(journal);
+
+    string expectedOutcome =
+        "       Do you want to export today's entry? (y/n)\n"
+        "g\n"
+        "       Please Enter a Valid input\n"
+        "       y or Y for Yes\n"
+        "       n or N for No\n"
+        "n\n\n"
+        "I'll return you to the main menu now and you can decide to keep hanging out, or leave whenever you want!\n\n"
+        ;
+}
+
 int main()
 {   
     // Set up Journal object
@@ -121,6 +145,7 @@ int main()
     testMoodRating(journal);
     testLongAnswer(journal);
     testDidActivity(journal);
+    testExportEntry(journal);
 
     // Delete the journal object
     journal.~Journal();

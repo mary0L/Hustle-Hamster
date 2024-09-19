@@ -56,6 +56,14 @@ void longAnswer(Journal &dailyEntry);
 void didActivity(const string &activity, Journal &dailyEntry);
 
 /**
+ * Method asks the user if they want to export their daily journal
+ * Then calls to exportJournal is yes, or returns to menu if no
+ * 
+ * @param dailyEntry the daily Journal entry
+*/
+void exportEntry(Journal &dailyEntry);
+
+/**
  * Runs through methods to complete the daily log
 */
 int dailyLog();

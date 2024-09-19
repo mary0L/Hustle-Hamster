@@ -120,28 +120,7 @@ void didActivity(const string &activity, Journal &dailyEntry){
 
 }
 
-int dailyLog(){
-    Journal dailyEntry = Journal(); 
-
-    delay(stdDelay);
-    dailyRating(dailyEntry); 
-    sleepRating(dailyEntry);
-    moodRating(dailyEntry);
-
-    for (const string& activity : defaultActivities) {
-        didActivity(activity, dailyEntry);
-    }
-
-    hammyEvaluation(dailyEntry);
-
-    /*put in the Hammy derivations from the activity and mood ratings*/
-
-
-    std::cin.ignore(10000000, '\n');
-    longAnswer(dailyEntry);
-
-    printHammy();
-    printReport(dailyEntry);
+void exportEntry(Journal &dailyEntry){
     char response;
     stringstream message;
     bool validResponse = false;
@@ -165,6 +144,34 @@ int dailyLog(){
     }
     TYPE("");
     TYPE("I'll return you to the main menu now and you can decide to keep hanging out, or leave whenever you want!\n");
-    menu();
+    
+    #ifndef TEST_RUNNING
+        menu();
+    #endif
+}
+
+int dailyLog(){
+    Journal dailyEntry = Journal(); 
+
+    delay(stdDelay);
+    dailyRating(dailyEntry); 
+    sleepRating(dailyEntry);
+    moodRating(dailyEntry);
+
+    for (const string& activity : defaultActivities) {
+        didActivity(activity, dailyEntry);
+    }
+
+    hammyEvaluation(dailyEntry);
+
+    /*put in the Hammy derivations from the activity and mood ratings*/
+
+
+    std::cin.ignore(10000000, '\n');
+    longAnswer(dailyEntry);
+
+    printHammy();
+    printReport(dailyEntry);
+    exportEntry(dailyEntry);
     return 0;
 }

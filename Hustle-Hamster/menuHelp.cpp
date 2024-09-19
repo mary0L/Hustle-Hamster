@@ -32,6 +32,7 @@ void helpMenu(){
             }
     }
 
+
 }
 
 void howToUse(){
@@ -62,9 +63,5 @@ void howToUse(){
     TYPE("You can have a look at what our data means, refresh yourself on how to use a certain menu option or run through this walk through again!\n\n");
     TYPE("I'll now return you to the help menu and you can let me know what you wanna do next!\n");
     
-    #ifdef TEST_RUNNING
-        exit(0);
-    #endif
-
     helpMenu();
 }

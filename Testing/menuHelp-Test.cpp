@@ -5,29 +5,6 @@
 #include <cassert>
 #include <string>
 
-// Tests the helpMenu method by checking the terminal output
-void testHelpMenu()
-{
-    
-    std::stringstream output; // Capture cout output
-    std::streambuf *coutbuf = std::cout.rdbuf();
-    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
-
-
-    helpMenu();
-
-    string expectedOutput =
-        "       Welcome to the Help Menu!\n"
-        "       I can give you a hand with lots of stuff! Such as...\n\n"
-        "       [1] How To Use\n"
-        "       [2] What does the data mean?\n"
-        "       [3] Return to Main Menu\n";
-
-    cout.rdbuf(coutbuf);
-
-    assert(output.str() == expectedOutput);
-}
-
 // Tests howToUse method by checking the terminal output
 void testHowToUse()
 {
@@ -64,7 +41,12 @@ void testHowToUse()
         "       [4] HELP:\n"
         "       This is where you can get help for anything you don’t understand or anything you forget how to do!\n"
         "       You can have a look at what our data means, refresh yourself on how to use a certain menu option or run through this walk through again!\n\n"
-        "       I'll now return you to the help menu and you can let me know what you wanna do next!\n";
+        "       I'll now return you to the help menu and you can let me know what you wanna do next!\n"
+        "       Welcome to the Help Menu!\n"
+        "       I can give you a hand with lots of stuff! Such as...\n\n"
+        "       [1] How To Use\n"
+        "       [2] What does the data mean?\n"
+        "       [3] Return to Main Menu\n";
 
     cout.rdbuf(coutbuf);  // Restore original cout buffer
 
@@ -74,10 +56,7 @@ void testHowToUse()
 int main()
 {
     // No set up required - testing dialogue only
-    
     testHowToUse(); 
-    testHelpMenu();
-
 
     return 0;
 }
