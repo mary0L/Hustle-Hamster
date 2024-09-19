@@ -5,6 +5,7 @@
 #include <cassert>
 #include <sstream>
 #include <limits>
+#include <vector>
 
 // Test hammyEvaluation method by check terminal output
 void testHammyEval(Journal &journal, int rating)
@@ -151,6 +152,26 @@ void testSleep()
     assert(output.str() == expectedOutput);
 }
 
+void testActivityAdvice(){
+    vector<string> vect;
+    
+    std::stringstream output; // Capture cout output
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
+    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
+
+    activityAdvice(vect);
+
+    string expectedOutput =
+        "       Looks like you completed all of your activities today, great work!\n"
+        "       But always remember, rest and reflection are just as important as pushing forward.\n"
+        "       You're stronger than you think, even on the hard days. This is just part of the journey.\n";
+
+    cout.rdbuf(coutbuf); // Set buffer back to original
+
+    assert(output.str() == expectedOutput);
+    
+}
+
 int main()
 {
     // Set up Journal object
@@ -164,6 +185,8 @@ int main()
 
     // Tear down - Delete the journal object
     dailyEntry.~Journal();
+
+    testActivityAdvice();
 
     //Test dialogue only methods
     testOutside();
