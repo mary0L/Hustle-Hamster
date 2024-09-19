@@ -76,11 +76,6 @@ void testPrintReport(Journal &journal)
     "       This is a test entry.\n"
     "----------------------------------------------------------\n";
 
-    if (output.str() != expectedOutput) {
-        std::cerr << "Actual output:\n" << output.str() << std::endl;
-        std::cerr << "Expected output:\n" << expectedOutput << std::endl;
-    }
-
     assert(output.str() == expectedOutput);
 }
 
