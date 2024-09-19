@@ -1,8 +1,10 @@
+#include "testing.h"
 #include "../Hustle-Hamster/Journal.h"
 #include "../Hustle-Hamster/Date.h"
 #include <iostream>
 #include <cassert>
 
+// Test Date object using set and get methods
 void testDate(Journal &journal, Date &date)
 {
 
@@ -22,6 +24,7 @@ void testDate(Journal &journal, Date &date)
     assert(j_wkDay == wkDay);
 }
 
+// Test set and get daRating for Journal object
 void testDayRating(Journal &journal)
 {
     journal.setDayRating(5);
@@ -31,6 +34,7 @@ void testDayRating(Journal &journal)
     assert(day == 5);
 }
 
+// Test set and get sleepRating for Journal object
 void testSleepRating(Journal &journal)
 {
     journal.setSleepRating(5);
@@ -40,6 +44,7 @@ void testSleepRating(Journal &journal)
     assert(sleep == 5);
 }
 
+// Test set and get mood for Journal object
 void testMood(Journal &journal)
 {
     journal.setMood("Happy");
@@ -49,6 +54,7 @@ void testMood(Journal &journal)
     assert(mood == "Happy");
 }
 
+// Test add and get activities for Journal object
 void testActivities(Journal &journal)
 {
     journal.addActivity("Activity 1");
@@ -64,8 +70,17 @@ void testActivities(Journal &journal)
     assert(a1 == "Activity 1");
     assert(a2 == "Activity 2");
     assert(a3 == "Activity 3");
+
+    bool didA1 = journal.didActivity("Activity 1");
+    bool didA2 = journal.didActivity("Activity 2");
+    bool didNotA4 = journal.didActivity("Activity 4");
+
+    assert(didA1 == true);
+    assert(didA2 == true);
+    assert(didNotA4 == false);
 }
 
+// Test set and get textEntry for Journal object
 void testTextEntry(Journal &journal)
 {
     journal.setTextEntry("This is a test entry");
@@ -76,9 +91,11 @@ void testTextEntry(Journal &journal)
 
 int main()
 {
+    //Setup new Journal object
     Date date = Date();
     Journal journal = Journal(date);
 
+    // Test methods
     testDate(journal, date);
     testDayRating(journal);
     testSleepRating(journal);
@@ -88,8 +105,6 @@ int main()
 
     // Delete the journal object
     journal.~Journal();
-
-    std::cout << "All tests passed!" << std::endl;
 
     return 0;
 }

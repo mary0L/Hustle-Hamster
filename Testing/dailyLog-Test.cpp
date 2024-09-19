@@ -1,3 +1,4 @@
+#include "testing.h"
 #include "../Hustle-Hamster/dailyLog.h"
 #include "../Hustle-Hamster/Journal.h"
 #include <iostream>
@@ -5,31 +6,31 @@
 #include <sstream>
 #include <limits>
 
+// Test dailyRating method by checking terminal output
 void testDailyRating(Journal &journal)
 {
-    std::istringstream input("6\n"
-                            "abc\n"
-                            "3\n");           // Simulating correct user input "3"
+    std::istringstream input("10\n"           // Simulating incorrect user input
+                            "a\n"           // Simulating incorrect user input
+                            "3\n");         // Simulating correct user input "3"
 
     std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
     std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
 
-    // Test dailyRating function with mock input
     dailyRating(journal);
 
     // Restore cin buffer.
     std::cin.rdbuf(cinbuf);
 
-    // Get daily rating and check it is correct
     int rating = journal.getDayRating();
     assert(rating == 3);
+
 }
 
 void testSleepRating(Journal &journal)
 {
-    std::istringstream input("6\n"
-                            "abc\n"
-                            "3\n");         // Simulating correct user input "3"
+    std::istringstream input("10\n"           // Simulating incorrect user input
+                            "a\n"           // Simulating incorrect user input
+                            "3\n");            // Simulating correct user input "3"
 
     std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
     std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
@@ -75,14 +76,14 @@ void testLongAnswer(Journal &journal)
     std::cin.rdbuf(cinbuf);
 
     std::string answer = journal.getTextEntry();
+    std::cerr << "Actual output:" << answer << std::endl;
     assert(answer == "This is a long answer");
 }
 
 void testDidActivity(Journal &journal)
 {
-    std::istringstream input("Hi\n"
-                            "3\n"
-                            "y\n");             // Simulating correct user input "y"
+    std::istringstream input("3\n"           // Simulating incorrect user input
+                            "y\n");          // Simulating correct user input "y"
 
     std::streambuf *cinbuf = std::cin.rdbuf();    // Save original buffer
     std::cin.rdbuf(input.rdbuf());                // Redirect std::cin to read from input
@@ -98,6 +99,7 @@ void testDidActivity(Journal &journal)
     std::istringstream input2("n\n");             // Simulating user input "n"
     std::cin.rdbuf(input2.rdbuf());               // Redirect std::cin to read from input
     
+    // Test didActivity function with mock input
     string activity2 = "Activity 2";
     didActivity(activity2, journal);
 
@@ -111,8 +113,7 @@ void testDidActivity(Journal &journal)
 int main()
 {   
     // Set up Journal object
-    Date date = Date();
-    Journal journal = Journal(date);
+    Journal journal = Journal();
 
     // Run tests
     testDailyRating(journal);
@@ -123,8 +124,6 @@ int main()
 
     // Delete the journal object
     journal.~Journal();
-
-    std::cout << "All tests passed!" << std::endl;
 
     return 0;
 }

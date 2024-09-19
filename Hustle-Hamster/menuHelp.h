@@ -18,6 +18,7 @@
 #include "utils.h"
 #include "dailyLog.h"
 
+void testMethod();
 /**
  * Method to display the help menu.
 */
