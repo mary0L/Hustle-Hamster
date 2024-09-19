@@ -81,7 +81,8 @@ void testPrintReport(Journal &journal)
 
 // Test menu method by check ther terminal output
 void testMenu(){
-    std::istringstream input("3\n"); // Input 3 to quit after menu is called
+    std::istringstream input("5\n"   // Simulating incorrect input
+                             "3\n"); // Input 3 to quit after menu is called
     std::streambuf *cinbuf = std::cin.rdbuf(); // Save original cin buffer
     std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
 
