@@ -53,6 +53,22 @@ void testHowToUse()
     assert(output.str() == expectedOutput);
 }
 
+void testHelpMenu(){
+    std::istringstream input("5\n"
+                             "1\n"
+                             "2\n"); 
+    std::streambuf *cinbuf = std::cin.rdbuf(); // Save original cin buffer
+    std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
+
+    std::stringstream output;
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Save original cout buffer
+    std::cout.rdbuf(output.rdbuf());             // Redirect std::cout to read from output
+
+    string expectedOutput =
+        "";
+
+}
+
 int main()
 {
     // No set up required - testing dialogue only
