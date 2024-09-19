@@ -45,7 +45,6 @@ target_link_libraries(TestUtils src)
 # Add executables for unit testing menu help
 add_executable(TestMenuHelp ${TEST_SOURCES_MENUHELP})
 target_include_directories(TestMenuHelp PRIVATE ${TEST_INC_DIRS})
-target_compile_definitions(TestMenuHelp PRIVATE TEST_MENU_RUNNING)
 target_link_libraries(TestMenuHelp src)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

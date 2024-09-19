@@ -5,6 +5,11 @@ void helpMenu(){
     TYPE("I can give you a hand with lots of stuff! Such as...\n");
     TYPE("[1] How To Use");
     TYPE("[2] Return to Main Menu");
+
+    #ifdef TEST_RUNNING
+        exit(0)
+    #endif
+
     bool validResponse = false;
     int temp; 
     discardInputLine();
@@ -56,6 +61,10 @@ void howToUse(){
     TYPE("This is where you can get help for anything you don’t understand or anything you forget how to do!");
     TYPE("You can have a look at what our data means, refresh yourself on how to use a certain menu option or run through this walk through again!\n\n");
     TYPE("I'll now return you to the help menu and you can let me know what you wanna do next!\n");
-
+    
+    #ifdef TEST_RUNNING
+        exit(0)
+    #endif
+    
     helpMenu();
 }
