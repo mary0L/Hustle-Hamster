@@ -153,7 +153,5 @@ int main()
     // Tear down - Delete the journal object
     dailyEntry.~Journal();
 
-    std::cout << "All tests passed!" << std::endl;
-
     return 0;
 }

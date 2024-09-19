@@ -20,6 +20,12 @@ set(TEST_SOURCES_MENUHELP
     ${PROJECT_DIR}/Testing/menuHelp-Test.cpp
     ${PROJECT_DIR}/Hustle-Hamster/menuHelp.cpp)
 
+set(TEST_SOURCES_FEEDBACK
+    ${PROJECT_DIR}/Testing/feedback-Test.cpp
+    ${PROJECT_DIR}/Hustle-Hamster/feedback.cpp
+    ${PROJECT_DIR}/Hustle-Hamster/Journal.cpp
+    )
+
     
 set(TEST_INC_DIRS
     ${PROJECT_DIR}/Hustle-Hamster
@@ -52,14 +58,15 @@ target_include_directories(TestMenuHelp PRIVATE ${TEST_INC_DIRS})
 target_compile_definitions(TestMenuHelp PRIVATE TEST_RUNNING)
 target_link_libraries(TestMenuHelp src)
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-    set_property(TARGET TestJournal PROPERTY CXX_STANDARD 20)
-    set_property(TARGET TestDailyLog PROPERTY CXX_STANDARD 20)
-    set_property(TARGET TestUtils PROPERTY CXX_STANDARD 20)
-endif()
+#Add executable for unit testing feedback
+add_executable(TestFeedback ${TEST_SOURCES_FEEDBACK})
+target_include_directories(TestFeedback PRIVATE ${TEST_INC_DIRS})
+target_compile_definitions(TestFeedback PRIVATE TEST_RUNNING)
+target_link_libraries(TestFeedback src)
 
 add_test(NAME TestJournal COMMAND TestJournal)
 add_test(NAME TestDailyLog COMMAND TestDailyLog)
 add_test(NAME TestUtils COMMAND TestUtils)
 add_test(NAME TestMenuHelp COMMAND TestMenuHelp)
+add_test(NAME TestFeedback COMMAND TestFeedback)
 

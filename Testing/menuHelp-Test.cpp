@@ -7,8 +7,8 @@
 
 void testHelpMenu()
 {
-    // Capture cout output
-    std::stringstream output;
+    
+    std::stringstream output; // Capture cout output
     std::streambuf *coutbuf = std::cout.rdbuf();
     std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
 

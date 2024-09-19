@@ -93,7 +93,10 @@ void hammyEvaluation(Journal& dailyEntry) {
 	if (dailyEntry.getDayRating() <= 3) {
 		TYPE("It looks like today wasn't your best day, and that's okay.");
 		TYPE("Let's see if we can reflect on your day to delve deeper.");
-		checkCompletion(dailyEntry);
+
+		#ifndef TEST_RUNNING
+			checkCompletion(dailyEntry);
+		#endif
 	}
 	else {
 		TYPE("I see you're feeling positive today-amazing! It's great to see you having a good day.");
