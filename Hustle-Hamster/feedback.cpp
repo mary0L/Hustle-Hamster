@@ -84,9 +84,11 @@ void checkCompletion(Journal& dailyEntry) {
 		}
 	}
 	
-	#ifndef TEST_RUNNING 
-		activityAdvice(uncompletedActivities);
-	#endif
+	activityAdvice(uncompletedActivities);
+}
+
+vector<string> getUncompletedActivities(vector<string>& uncompletedActivities){
+	return uncompletedActivities;
 }
 
 void hammyEvaluation(Journal& dailyEntry) {

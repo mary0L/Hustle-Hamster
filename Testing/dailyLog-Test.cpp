@@ -132,9 +132,6 @@ void testExportEntry(Journal& journal)
         "n\n\n"
         "I'll return you to the main menu now and you can decide to keep hanging out, or leave whenever you want!\n\n"
         ;
-
-
-
 }
 
 int main()

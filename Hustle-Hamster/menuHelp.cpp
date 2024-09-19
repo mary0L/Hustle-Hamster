@@ -6,7 +6,9 @@ void helpMenu(){
     TYPE("[1] How To Use");
     TYPE("[2] Return to Main Menu");
 
-    #ifndef TEST_RUNNING
+    #ifdef TEST_RUNNING
+        exit(0);
+    #endif
 
     bool validResponse = false;
     int temp; 
@@ -29,7 +31,7 @@ void helpMenu(){
             std::cin.ignore(10000, '\n');
             }
     }
-    #endif
+
 
 }
 
@@ -61,7 +63,5 @@ void howToUse(){
     TYPE("You can have a look at what our data means, refresh yourself on how to use a certain menu option or run through this walk through again!\n\n");
     TYPE("I'll now return you to the help menu and you can let me know what you wanna do next!\n");
     
-    #ifndef TEST_RUNNING
-        helpMenu();
-    #endif
+    helpMenu();
 }

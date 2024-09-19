@@ -169,7 +169,11 @@ void testActivityAdvice(){
     cout.rdbuf(coutbuf); // Set buffer back to original
 
     assert(output.str() == expectedOutput);
-    
+}
+
+void testUncompleted(Journal &journal)
+{
+    checkCompletion(journal);
 }
 
 int main()
@@ -183,12 +187,19 @@ int main()
     dailyEntry.setDayRating(3); // Setup: change day rating to check conditional response in hammyEvaluation
     testHammyEval(dailyEntry, 3); // Run test with modifications
 
+    dailyEntry.setSleepRating(3); //Setup: set sleep rating to envoke pushback to uncompleted activities
+    dailyEntry.addActivity("Socialise"); //Setup: Add activities
+    dailyEntry.addActivity("Exercise");
+    testUncompleted(dailyEntry);
+
+
     // Tear down - Delete the journal object
     dailyEntry.~Journal();
 
-    testActivityAdvice();
+
 
     //Test dialogue only methods
+    testActivityAdvice();
     testOutside();
     testHydration();
     testExercise();
