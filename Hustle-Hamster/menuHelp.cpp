@@ -8,7 +8,10 @@ void helpMenu(){
 
     bool validResponse = false;
     int temp; 
+    
+    #ifdef TEST_RUNNING
     discardInputLine();
+    #endif
 
     while(!validResponse){
         cin >> temp;
