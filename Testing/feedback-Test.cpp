@@ -6,10 +6,11 @@
 #include <sstream>
 #include <limits>
 
+// Test hammyEvaluation method by check terminal output
 void testHammyEval(Journal &journal, int rating)
 {
     std::stringstream output; // Capture cout output
-    std::streambuf *coutbuf = std::cout.rdbuf();
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
     std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
 
     hammyEvaluation(journal);
@@ -53,10 +54,11 @@ void testHammyEval(Journal &journal, int rating)
     assert(output.str() == expectedOutput);
 }
 
+// Testing all feedback methods by calling each individually and checking against terminal output
 void testOutside()
 {
     std::stringstream output; // Capture cout output
-    std::streambuf *coutbuf = std::cout.rdbuf();
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
     std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
 
     outsideFeedback();
@@ -75,7 +77,7 @@ void testOutside()
 void testHydration()
 {
     std::stringstream output; // Capture cout output
-    std::streambuf *coutbuf = std::cout.rdbuf();
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
     std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
 
     hydrationFeedback();
@@ -94,7 +96,7 @@ void testHydration()
 void testExercise()
 {
     std::stringstream output; // Capture cout output
-    std::streambuf *coutbuf = std::cout.rdbuf();
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
     std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
 
     exerciseFeedback();
@@ -113,7 +115,7 @@ void testExercise()
 void testSocialise()
 {
     std::stringstream output; // Capture cout output
-    std::streambuf *coutbuf = std::cout.rdbuf();
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
     std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
 
     socialiseFeedback();
@@ -132,11 +134,11 @@ void testSocialise()
 void testSleep()
 {
     std::stringstream output; // Capture cout output
-    std::streambuf *coutbuf = std::cout.rdbuf();
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
     std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
 
     sleepFeedback();
-    
+
     string expectedOutput =
         "       It looks like your sleep wasn't the best today, but don't worry! You can always make improvements to your sleep habits.\n"
         "       Did you know that adults generally need 7-9 hours of sleep each night for optimal health?\n"

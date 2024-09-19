@@ -6,10 +6,11 @@
 #include <sstream>
 #include <limits>
 
+// Test dailyRating method by checking terminal output
 void testDailyRating(Journal &journal)
 {
-    std::istringstream input("10\n"
-                            "a\n"
+    std::istringstream input("10\n"           // Simulating incorrect user input
+                            "a\n"           // Simulating incorrect user input
                             "3\n");         // Simulating correct user input "3"
 
     std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
@@ -27,8 +28,8 @@ void testDailyRating(Journal &journal)
 
 void testSleepRating(Journal &journal)
 {
-    std::istringstream input("10\n"
-                            "a\n"
+    std::istringstream input("10\n"           // Simulating incorrect user input
+                            "a\n"           // Simulating incorrect user input
                             "3\n");            // Simulating correct user input "3"
 
     std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
@@ -81,8 +82,8 @@ void testLongAnswer(Journal &journal)
 
 void testDidActivity(Journal &journal)
 {
-    std::istringstream input("3\n"
-                            "y\n");             // Simulating correct user input "y"
+    std::istringstream input("3\n"           // Simulating incorrect user input
+                            "y\n");          // Simulating correct user input "y"
 
     std::streambuf *cinbuf = std::cin.rdbuf();    // Save original buffer
     std::cin.rdbuf(input.rdbuf());                // Redirect std::cin to read from input
@@ -98,6 +99,7 @@ void testDidActivity(Journal &journal)
     std::istringstream input2("n\n");             // Simulating user input "n"
     std::cin.rdbuf(input2.rdbuf());               // Redirect std::cin to read from input
     
+    // Test didActivity function with mock input
     string activity2 = "Activity 2";
     didActivity(activity2, journal);
 
@@ -122,8 +124,6 @@ int main()
 
     // Delete the journal object
     journal.~Journal();
-
-    std::cout << "All tests passed!" << std::endl;
 
     return 0;
 }

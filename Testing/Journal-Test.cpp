@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cassert>
 
+// Test Date object using set and get methods
 void testDate(Journal &journal, Date &date)
 {
 
@@ -23,6 +24,7 @@ void testDate(Journal &journal, Date &date)
     assert(j_wkDay == wkDay);
 }
 
+// Test set and get daRating for Journal object
 void testDayRating(Journal &journal)
 {
     journal.setDayRating(5);
@@ -32,6 +34,7 @@ void testDayRating(Journal &journal)
     assert(day == 5);
 }
 
+// Test set and get sleepRating for Journal object
 void testSleepRating(Journal &journal)
 {
     journal.setSleepRating(5);
@@ -41,6 +44,7 @@ void testSleepRating(Journal &journal)
     assert(sleep == 5);
 }
 
+// Test set and get mood for Journal object
 void testMood(Journal &journal)
 {
     journal.setMood("Happy");
@@ -50,6 +54,7 @@ void testMood(Journal &journal)
     assert(mood == "Happy");
 }
 
+// Test add and get activities for Journal object
 void testActivities(Journal &journal)
 {
     journal.addActivity("Activity 1");
@@ -75,6 +80,7 @@ void testActivities(Journal &journal)
     assert(didNotA4 == false);
 }
 
+// Test set and get textEntry for Journal object
 void testTextEntry(Journal &journal)
 {
     journal.setTextEntry("This is a test entry");

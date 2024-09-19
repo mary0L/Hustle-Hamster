@@ -5,6 +5,7 @@
 #include <cassert>
 #include <string>
 
+// Tests the helpMenu method by checking the terminal output
 void testHelpMenu()
 {
     
@@ -27,21 +28,17 @@ void testHelpMenu()
     assert(output.str() == expectedOutput);
 }
 
-// Unit test for howToUse
+// Tests howToUse method by checking the terminal output
 void test_howToUse()
 {
-    // Capture cout output
-    std::stringstream output;
+    
+    std::stringstream output; // Capture cout output
     std::streambuf *coutbuf = std::cout.rdbuf();
     std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
 
     // Call the function to test
     howToUse();
 
-    // Restore original cout buffer
-    cout.rdbuf(coutbuf);
-
-    // Expected output (based on the actual content in howToUse)
     string expectedOutput =
         "       I’m glad you are here to hang out!\n"
         "       Let's go on a quick tour so you can get familiar with things!\n"
@@ -69,17 +66,17 @@ void test_howToUse()
         "       You can have a look at what our data means, refresh yourself on how to use a certain menu option or run through this walk through again!\n\n"
         "       I'll now return you to the help menu and you can let me know what you wanna do next!\n";
 
-    // Compare captured output with expected output
+    cout.rdbuf(coutbuf);  // Restore original cout buffer
+
     assert(output.str() == expectedOutput);
 }
 
 int main()
 {
+    // No set up required - testing dialogue only
 
     testHelpMenu();
-
     test_howToUse(); 
 
-    std::cout << "All tests passed!" << std::endl;
     return 0;
 }

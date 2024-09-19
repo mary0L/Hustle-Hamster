@@ -7,9 +7,10 @@
 #include <sstream>
 #include <limits>
 
+// Test TYPE method by checking the terminal output
 void testTYPE(){
-    std::stringstream output;
-    std::streambuf *coutbuf = std::cout.rdbuf(); 
+    std::stringstream output; // Capture cout output
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
     std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
 
     string input = "This is a test";
@@ -23,11 +24,12 @@ void testTYPE(){
     assert(output.str() == expectedOutput);
 }
 
+// Test printHammy method by checking terminal output
 void testPrintHammy()
 {
-    // Get the output from the printHammy function
-    std::stringstream output;
-    std::streambuf *coutbuf = std::cout.rdbuf(); 
+
+    std::stringstream output; // Capture cout output
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
     std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
 
     // Call function being tested
@@ -46,11 +48,12 @@ void testPrintHammy()
     assert(output.str() == expectedOutput.str());
 }
 
+// Test printReport method by checking the terminal output
 void testPrintReport(Journal &journal)
 {
-    // Get the output from the printReport function
-    std::stringstream output;
-    std::streambuf *coutbuf = std::cout.rdbuf(); 
+
+    std::stringstream output; // Capture cout output
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
     std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
 
     // Call function being tested
@@ -81,13 +84,14 @@ void testPrintReport(Journal &journal)
     assert(output.str() == expectedOutput);
 }
 
+// Test menu method by check ther terminal output
 void testMenu(){
-    std::istringstream input("5\n");
-    std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
+    std::istringstream input("3\n"); // Input 3 to quit after menu is called
+    std::streambuf *cinbuf = std::cin.rdbuf(); // Save original cin buffer
     std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
 
     std::stringstream output;
-    std::streambuf *coutbuf = std::cout.rdbuf(); // Save original buffer
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Save original cout buffer
     std::cout.rdbuf(output.rdbuf());             // Redirect std::cout to read from output
 
     // Test menu function with mock input
@@ -106,6 +110,7 @@ void testMenu(){
     assert(output.str() == expectedOutput);
 }
 
+// Test exportJournal method by checking the terminal output
 void testExportJournal(Journal &journal){
     string day = to_string(journal.getDate().getDay());
     string month = to_string(journal.getDate().getMonth());
