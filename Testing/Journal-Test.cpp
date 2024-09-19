@@ -5,7 +5,7 @@
 #include <cassert>
 
 // Test Date object using set and get methods
-void testDate(Journal &journal, Date &date)
+void testJournalDate(Journal &journal, Date &date)
 {
 
     int j_day = journal.getDate().getDay();
@@ -22,6 +22,16 @@ void testDate(Journal &journal, Date &date)
     assert(j_month == month);
     assert(j_year == year);
     assert(j_wkDay == wkDay);
+}
+
+void testDate(){
+    Date date = Date(19, 9, 2024, 5);    
+    
+    string wkday = date.getWkDayString();
+    string mnth = date.getMonthName();
+
+    assert(wkday == "Friday");
+    assert(mnth == "September");
 }
 
 // Test set and get daRating for Journal object
@@ -96,7 +106,8 @@ int main()
     Journal journal = Journal(date);
 
     // Test methods
-    testDate(journal, date);
+    testJournalDate(journal, date);
+    testDate();
     testDayRating(journal);
     testSleepRating(journal);
     testMood(journal);
