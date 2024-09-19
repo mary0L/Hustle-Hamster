@@ -4,13 +4,7 @@ void helpMenu(){
     TYPE("Welcome to the Help Menu!");
     TYPE("I can give you a hand with lots of stuff! Such as...\n");
     TYPE("[1] How To Use");
-    TYPE("[2] What does the data mean?");
-    TYPE("[3] Return to Main Menu");
-
-    #ifdef TEST_MENU_RUNNING
-        exit(0);
-    #endif
-
+    TYPE("[2] Return to Main Menu");
     bool validResponse = false;
     int temp; 
     discardInputLine();
@@ -22,10 +16,6 @@ void helpMenu(){
                     howToUse();
                 }
                 if(temp == 2){
-                    TYPE("This option is not yet implemented yet! Check back soon!");
-                    helpMenu();
-                }
-                if(temp == 3){
                     menu(); 
                 }
                 validResponse = true;
@@ -66,10 +56,6 @@ void howToUse(){
     TYPE("This is where you can get help for anything you don’t understand or anything you forget how to do!");
     TYPE("You can have a look at what our data means, refresh yourself on how to use a certain menu option or run through this walk through again!\n\n");
     TYPE("I'll now return you to the help menu and you can let me know what you wanna do next!\n");
-
-    #ifdef TEST_MENU_RUNNING
-        exit(0);
-    #endif
 
     helpMenu();
 }

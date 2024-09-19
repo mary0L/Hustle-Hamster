@@ -16,12 +16,13 @@
 #include <fstream>
 #include <limits>
 #include <random>
+#include <sys/stat.h>
 
 using namespace std;
 
 unsigned int stdDelay = STD_DELAY;
 
-vector<string> defaultActivities = {"Study", "Work", "Socialise", "Exercise", "Drink Water", "Go outside"}; 
+vector<string> defaultActivities = {"Study", "Work", "Socialise", "Exercise", "Drink Water", "Go Outside"}; 
 
 char separator[] = "----------------------------------------------------------"; 
 
@@ -185,34 +186,25 @@ void menu(){
     bool validResponse = false;
     TYPE("What can I help you with?");
     TYPE("[1] Daily Log"); //if daily log has already been completed do not let them complete again!
-    TYPE("[2] Get Data Report");
-    TYPE("[3] Settings");
-    TYPE("[4] How to Use");
-    TYPE("[5] Quit");
+    TYPE("[2] How to Use");
+    TYPE("[3] Quit");
 
     while(!validResponse){
         cin >> temp;
         if(!cin.fail() && (temp>=0 && temp<6)){
             if (temp == 1){
-                TYPE("Lets see how your day went!");
-                cout << separator << "\n"; 
+                cout << separator << "\n";
+                string line = dailyLogR[randomNumber(3)];
+                TYPE(line); 
                 delay(stdDelay);
                 dailyLog();
             }
-            if(temp == 2){
-                TYPE("Data Reports are not yet implemented! Check back soon!\n");
-                menu();
-            }
-            if(temp == 3){
-                TYPE("Settings are not yet implemented! Check back soon!\n");
-                menu();
-            }
-            if (temp == 4){
+            if (temp == 2){
                 cout << separator << "\n"; 
                 delay(stdDelay);
                 helpMenu();
             }
-            if(temp == 5){
+            if(temp == 3){
                 TYPE("It was fun hanging out! See you tomorrow!");
                 exit(0);
             }
@@ -276,23 +268,21 @@ string getDesktopPath(){
 }
 
 void exportJournal(Journal& journalEntry) {
-    string day = to_string(journalEntry.getDate().getDay());
-    string month = to_string(journalEntry.getDate().getMonth());
-    string year = to_string(journalEntry.getDate().getYear());
+    string filename = getFileName();
 
-    string filename = "journal-" + year + "-" + month + "-" + day;
+    string subfolder = "HamsterHangout/";
 
     try {
         string desktopPath = getDesktopPath();
 
+        createHamsterHangoutDirectory();
 
+        string path = desktopPath + subfolder + filename + ".txt";
 
-    string path = desktopPath + filename + ".txt";
-
-    ofstream txtFile(path);
+        ofstream txtFile(path);
 
         if (!txtFile.fail()) {
-            txtFile << "============ " << journalEntry.getDate().getMonthName() << " " << day << " " << year << " ============\n";
+            txtFile << "============ " << journalEntry.getDate().getMonthName() << " " << journalEntry.getDate().getDay() << " " << journalEntry.getDate().getYear() << " ============\n";
             txtFile << "You rated your day a " << journalEntry.getDayRating() << "/5\n";
             txtFile << "You rated your sleep a " << journalEntry.getSleepRating() << "/5\n";
             txtFile << "You said that today you felt: " << journalEntry.getMood() << "\n";
@@ -339,4 +329,39 @@ int randomNumber(int max) {
     uniform_int_distribution<int> distribute(0, max);
 
     return distribute(generator);
+}
+
+void createHamsterHangoutDirectory() {
+    string fullPath = getDesktopPath() + "HamsterHangout";
+
+    try {
+        // _wmkdir requires wchar_t* argument, so converting to wstring, then converting to wchar
+        wstring w_fullPath = wstring(fullPath.begin(), fullPath.end());
+
+        const wchar_t* wc_fullPath = w_fullPath.c_str();
+
+#if defined(_WIN32) || defined(_WINDOWS)
+        int err = _wmkdir(wc_fullPath);
+#else
+        const char* c_fullPath = fullPath.c_str();
+        int err = mkdir(c_fullPath, S_IRWXU | S_IRWXG | S_IRWXO);
+#endif
+
+        // If directory creation fails for any reason other than the directory already exists, throw and exception
+        if (err != 0 && errno != EEXIST) {
+            throw exception();
+        }
+    }
+    catch (...) {
+        throw runtime_error("Error occurred trying to create the HamsterHangout Folder.\n");
+    }
+}
+
+string getFileName() {
+    Date today = Date();
+    string day = to_string(today.getDay());
+    string month = to_string(today.getMonth());
+    string year = to_string(today.getYear());
+
+    return "journal-" + year + "-" + month + "-" + day;
 }

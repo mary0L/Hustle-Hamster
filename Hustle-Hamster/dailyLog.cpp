@@ -1,10 +1,13 @@
 #include "dailyLog.h"
+#include "feedback.h"
 
 void dailyRating(Journal &dailyEntry){
     int temp; 
     bool validResponse = false; 
     discardInputLine(); 
-    TYPE("How was your day? [1] Terrible [2] Bad [3] Fine [4] Good [5] AMAZING!");
+    string line = dailyRatingQ[randomNumber(3)];
+    TYPE(line);
+    TYPE(ratingSystem);
     while(!validResponse){
         cin >> temp;
         if(!cin.fail() && (temp>0 && temp<6)){
@@ -24,7 +27,9 @@ void sleepRating(Journal &dailyEntry){
     int temp; 
     bool validResponse = false; 
     discardInputLine();
-    TYPE("How was your Sleep? [1] Terrible [2] Bad [3] Fine [4] Good [5] AMAZING!");
+    string line = sleepRatingQ[randomNumber(2)];
+    TYPE(line);
+    TYPE(ratingSystem);
     while(!validResponse){
         cin >> temp;
         if(!cin.fail() && (temp>0 && temp<6)){
@@ -45,7 +50,8 @@ void moodRating(Journal &dailyEntry){
     string temp; 
     bool validResponse = false;
     discardInputLine();
-    TYPE("How would you describe your mood today in one word? (Enter as a String)");
+    string line = moodQ[randomNumber(3)];
+    TYPE(line);
     while(!validResponse){
         cin >> temp;
         if(!cin.fail()){
@@ -53,7 +59,7 @@ void moodRating(Journal &dailyEntry){
                 validResponse = true;
                 break;
         }else{
-            TYPE("Please enter a string");
+            TYPE("Please enter a word");
             cin.clear();
             std::cin.ignore(10000, '\n');
             }
@@ -62,7 +68,6 @@ void moodRating(Journal &dailyEntry){
 
 void longAnswer(Journal &dailyEntry) {
     string textInput; 
-    TYPE("Anything you want to say about today? (Enter as a String)");
 
     getline(cin, textInput);
     if (!textInput.empty()) {
@@ -85,11 +90,9 @@ void didActivity(const string &activity, Journal &dailyEntry){
         char lower = tolower(response); 
         if(lower == 'y'){
             dailyEntry.addActivity(activity);
-            TYPE("Awesome Job!\n"); 
             validResponse = true;
             break;
         } if(lower == 'n') {
-            TYPE("Try to complete it tomorrow!\n");
             validResponse = true;
             break;
         }else{
@@ -104,7 +107,6 @@ void didActivity(const string &activity, Journal &dailyEntry){
 int dailyLog(){
     Journal dailyEntry = Journal(); 
 
-    TYPE("We will start by doing some ratings!");
     delay(stdDelay);
     dailyRating(dailyEntry); 
     sleepRating(dailyEntry);
@@ -114,12 +116,37 @@ int dailyLog(){
         didActivity(activity, dailyEntry);
     }
 
+    hammyEvaluation(dailyEntry);
+
+    /*put in the Hammy derivations from the activity and mood ratings*/
+
+
     std::cin.ignore(10000000, '\n');
     longAnswer(dailyEntry);
 
     printHammy();
     printReport(dailyEntry);
-    exportJournal(dailyEntry);
+    char response;
+    stringstream message;
+    bool validResponse = false;
+    message << "Do you want to export today's entry? (y/n)";
+    while(!validResponse){
+        TYPE(message.str());
+        cin >> response; 
+        char lower = tolower(response); 
+        if(lower == 'y'){
+            exportJournal(dailyEntry);
+            validResponse = true;
+            break;
+        } if(lower == 'n') {
+            validResponse = true;
+            break;
+        }else{
+            TYPE("Please Enter a Valid input");
+            TYPE("y or Y for Yes");
+            TYPE("n or N for No");
+        }
+    }
     TYPE("");
     TYPE("I'll return you to the main menu now and you can decide to keep hanging out, or leave whenever you want!\n");
     menu();
