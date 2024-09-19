@@ -85,9 +85,11 @@ void testTextEntry(Journal &journal)
 
 int main()
 {
+    //Setup new Journal object
     Date date = Date();
     Journal journal = Journal(date);
 
+    // Test methods
     testDate(journal, date);
     testDayRating(journal);
     testSleepRating(journal);
@@ -97,8 +99,6 @@ int main()
 
     // Delete the journal object
     journal.~Journal();
-
-    std::cout << "All tests passed!" << std::endl;
 
     return 0;
 }

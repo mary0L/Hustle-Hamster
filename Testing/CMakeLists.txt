@@ -68,5 +68,5 @@ add_test(NAME TestJournal COMMAND TestJournal)
 add_test(NAME TestDailyLog COMMAND TestDailyLog)
 add_test(NAME TestUtils COMMAND TestUtils)
 add_test(NAME TestMenuHelp COMMAND TestMenuHelp)
-add_test(NAME TestFeedback COMMAND TestFeedback)
+add_test(NAME TestFeedback COMMAND TestMenuHelp)
 

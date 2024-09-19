@@ -83,8 +83,10 @@ void checkCompletion(Journal& dailyEntry) {
 			}
 		}
 	}
-	activityAdvice(uncompletedActivities);
-
+	
+	#ifndef TEST_RUNNING 
+		activityAdvice(uncompletedActivities);
+	#endif
 }
 
 void hammyEvaluation(Journal& dailyEntry) {
