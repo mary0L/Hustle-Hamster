@@ -4,7 +4,11 @@
 void dailyRating(Journal &dailyEntry){
     int temp; 
     bool validResponse = false; 
-    discardInputLine(); 
+
+    #ifndef TEST_RUNNING
+        discardInputLine(); 
+    #endif
+
     string line = dailyRatingQ[randomNumber(3)];
     TYPE(line);
     TYPE(ratingSystem);
@@ -26,7 +30,11 @@ void dailyRating(Journal &dailyEntry){
 void sleepRating(Journal &dailyEntry){
     int temp; 
     bool validResponse = false; 
-    discardInputLine();
+
+    #ifndef TEST_RUNNING
+        discardInputLine(); 
+    #endif
+
     string line = sleepRatingQ[randomNumber(2)];
     TYPE(line);
     TYPE(ratingSystem);
@@ -49,7 +57,11 @@ void sleepRating(Journal &dailyEntry){
 void moodRating(Journal &dailyEntry){
     string temp; 
     bool validResponse = false;
-    discardInputLine();
+
+    #ifndef TEST_RUNNING
+        discardInputLine(); 
+    #endif
+    
     string line = moodQ[randomNumber(3)];
     TYPE(line);
     while(!validResponse){
@@ -82,7 +94,11 @@ void didActivity(const string &activity, Journal &dailyEntry){
     char response;
     stringstream message;
     bool validResponse = false;
-    discardInputLine();
+
+    #ifndef TEST_RUNNING
+        discardInputLine(); 
+    #endif
+    
     message << "Did you " << activity << " today? (y/n)";
     while(!validResponse){
         TYPE(message.str());

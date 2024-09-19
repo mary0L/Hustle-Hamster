@@ -100,10 +100,8 @@ void testMenu(){
     string expectedOutput = 
         "       What can I help you with?\n"
         "       [1] Daily Log\n"
-        "       [2] Get Data Report\n"
-        "       [3] Settings\n"
-        "       [4] How to Use\n"
-        "       [5] Quit\n";
+        "       [2] How to Use\n"
+        "       [3] Quit\n";
 
     assert(output.str() == expectedOutput);
 }

@@ -7,7 +7,7 @@ void helpMenu(){
     TYPE("[2] Return to Main Menu");
 
     #ifdef TEST_RUNNING
-        exit(0)
+        exit(0);
     #endif
 
     bool validResponse = false;
@@ -63,8 +63,8 @@ void howToUse(){
     TYPE("I'll now return you to the help menu and you can let me know what you wanna do next!\n");
     
     #ifdef TEST_RUNNING
-        exit(0)
+        exit(0);
     #endif
-    
+
     helpMenu();
 }

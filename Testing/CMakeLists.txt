@@ -25,6 +25,9 @@ set(TEST_INC_DIRS
     ${PROJECT_DIR}/Hustle-Hamster
     ${PROJECT_DIR}/Testing)
 
+
+add_definitions(-DTEST_RUNNING)
+
 # Add executables for unit testing journal
 # Include source code directories and link to src
 add_executable(TestJournal ${TEST_SOURCES_JOURNAL}) 
@@ -45,6 +48,7 @@ target_link_libraries(TestUtils src)
 # Add executables for unit testing menu help
 add_executable(TestMenuHelp ${TEST_SOURCES_MENUHELP})
 target_include_directories(TestMenuHelp PRIVATE ${TEST_INC_DIRS})
+target_compile_definitions(TestMenuHelp PRIVATE TEST_RUNNING)
 target_link_libraries(TestMenuHelp src)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
