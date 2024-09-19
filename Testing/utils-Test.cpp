@@ -105,32 +105,6 @@ void testMenu(){
     assert(output.str() == expectedOutput);
 }
 
-// Test exportJournal method by checking the terminal output
-void testExportJournal(Journal &journal){
-    string day = to_string(journal.getDate().getDay());
-    string month = to_string(journal.getDate().getMonth());
-    string year = to_string(journal.getDate().getYear());
-
-    string filename = "journal-" + year + "-" + month + "-" + day;
-
-    // Capture cout output
-    stringstream outputBuffer;
-    streambuf* oldCout = cout.rdbuf(outputBuffer.rdbuf());
-
-    // Call the function to test
-    exportJournal(journal);
-
-    // Restore cout
-    cout.rdbuf(oldCout);
-
-    string expectedOutput =
-        "       Your journal has been exported successfully! Saved to:\n";
-    
-    // Compare captured output with expected output
-    assert(outputBuffer.str() == expectedOutput);
-
-}
-
 int main()
 {   
         // Set up Journal object
@@ -148,6 +122,7 @@ int main()
     testTYPE();
     testPrintHammy();
     testMenu();
+    
     //testExportJournal(journal);
 
     // Tear down - Delete the journal object
