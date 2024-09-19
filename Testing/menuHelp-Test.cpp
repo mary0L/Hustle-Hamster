@@ -29,7 +29,7 @@ void testHelpMenu()
 }
 
 // Tests howToUse method by checking the terminal output
-void test_howToUse()
+void testHowToUse()
 {
     
     std::stringstream output; // Capture cout output
@@ -74,9 +74,10 @@ void test_howToUse()
 int main()
 {
     // No set up required - testing dialogue only
-
+    
+    testHowToUse(); 
     testHelpMenu();
-    test_howToUse(); 
+
 
     return 0;
 }
