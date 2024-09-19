@@ -191,7 +191,7 @@ void menu(){
 
     while(!validResponse){
         cin >> temp;
-        if(!cin.fail() && (temp>=0 && temp<6)){
+        if(!cin.fail() && (temp>=0 && temp<4)){
             if (temp == 1){
                 cout << separator << "\n";
                 string line = dailyLogR[randomNumber(3)];
@@ -223,7 +223,7 @@ void menu(){
             }
             break;
         }else{
-            TYPE("Please enter a valid number between 1 and 5");
+            TYPE("Please enter a valid number between 1 and 3");
             cin.clear();
             std::cin.ignore(INT_MAX, '\n');
         }
