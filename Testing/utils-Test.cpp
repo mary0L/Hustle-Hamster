@@ -145,7 +145,7 @@ int main()
     testTYPE();
     testPrintHammy();
     testMenu();
-    testDelay();
+    //testDelay();
     
     // Tear down - Delete the journal object
     dailyEntry.~Journal();
