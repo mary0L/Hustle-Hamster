@@ -167,4 +167,11 @@ int randomNumber(int max);
 */
 void createHamsterHangoutDirectory();
 
+/**
+ * Get file name for the daily journal.
+ * 
+ * Journals named in the format: "journal-{year}-{month}-{day}.txt"
+ *
+ * @return The file name for the  daily journal.
+ */
 string getFileName();
