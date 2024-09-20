@@ -16,7 +16,7 @@ void helpMenu(){
 
     while(!validResponse){
         cin >> temp;
-        if(!cin.fail() && (temp>0 && temp<4)){
+        if(!cin.fail() && (temp>0 && temp<3)){
                 if(temp == 1){
                     howToUse();
                 }
@@ -26,7 +26,7 @@ void helpMenu(){
                 validResponse = true;
                 break;
         }else{
-            TYPE("Please enter a valid number");
+            TYPE("Please enter a valid number between 1 and 2");
             cin.clear();
             std::cin.ignore(10000, '\n');
             }
