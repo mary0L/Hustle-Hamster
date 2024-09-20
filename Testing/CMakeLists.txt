@@ -54,6 +54,7 @@ target_link_libraries(TestDailyLog src)
 # Add executables for unit testing utils
 add_executable(TestUtils ${TEST_SOURCES_UTILS})
 target_include_directories(TestUtils PRIVATE ${TEST_INC_DIRS})
+target_compile_definitions(TestDailyLog PRIVATE TEST_RUNNING)
 target_link_libraries(TestUtils src)
 
 # Add executables for unit testing menu help
