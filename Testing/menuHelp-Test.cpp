@@ -15,11 +15,11 @@ void testHelpMenu(){
     std::streambuf *cinbuf = std::cin.rdbuf(); // Save original cin buffer
     std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
 
-    helpMenu();
-
     std::stringstream output;
     std::streambuf *coutbuf = std::cout.rdbuf(); // Save original cout buffer
     std::cout.rdbuf(output.rdbuf());             // Redirect std::cout to read from output
+
+    helpMenu();
 
     string expectedOutput =
         "       Welcome to the Help Menu!\n"
