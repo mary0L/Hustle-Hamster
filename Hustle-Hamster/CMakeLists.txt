@@ -12,5 +12,6 @@ endif()
 add_library(src STATIC "Date.cpp" "Journal.cpp" "utils.cpp" "menuHelp.cpp" "dailyLog.cpp" "feedback.cpp" "hammyDialogue.cpp" "includes/all_includes.h")
 target_include_directories(src PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 
+# adding includes directory
 target_include_directories(src PUBLIC ${CMAKE_CURRENT_LIST_DIR}/includes)
 target_include_directories(Hustle-Hamster PUBLIC ${CMAKE_CURRENT_LIST_DIR}/includes)
