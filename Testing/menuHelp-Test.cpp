@@ -1,5 +1,5 @@
 #include "testing.h"
-#include "../Hustle-Hamster/menuHelp.h"
+#include "all_includes.h"
 #include <iostream>
 #include <sstream>
 #include <cassert>

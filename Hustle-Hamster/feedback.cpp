@@ -1,5 +1,4 @@
-#include "feedback.h"
-#include "utils.h"
+#include "all_includes.h"
 
 void outsideFeedback() {
 	TYPE("It looks like you didn't get a chance to go outside today. Fresh air can do wonders for your mood and energy.");

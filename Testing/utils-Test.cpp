@@ -1,7 +1,5 @@
 #include "testing.h"
-#include "../Hustle-Hamster/utils.h"
-#include "../Hustle-Hamster/Journal.h"
-#include "../Hustle-Hamster/Date.h"
+#include "all_includes.h"
 #include <iostream>
 #include <cassert>
 #include <sstream>

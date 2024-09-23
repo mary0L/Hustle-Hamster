@@ -5,11 +5,7 @@
 #include <sstream>
 #include <vector>
 
-#include "Journal.h"
-#include "Date.h"
-#include "utils.h"
-#include "dailyLog.h"
-#include "menuHelp.h"
+#include "all_includes.h"
 
 /* Defines namespace*/
 using namespace std;

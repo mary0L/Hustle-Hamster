@@ -1,5 +1,5 @@
 #include <ctime>
-#include "Date.h"
+#include "all_includes.h"
 
 using namespace std;
 
