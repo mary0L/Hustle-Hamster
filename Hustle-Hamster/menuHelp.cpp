@@ -1,4 +1,4 @@
-#include "menuHelp.h"
+#include "all_includes.h"
 
 void helpMenu(){
     TYPE("Welcome to the Help Menu!");

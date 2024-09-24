@@ -1,5 +1,4 @@
-#include "dailyLog.h"
-#include "feedback.h"
+#include "all_includes.h"
 
 void dailyRating(Journal &dailyEntry){
     int temp; 
