@@ -78,7 +78,7 @@ void menu();
 /**
  * Get the desktop path of the current user. 
  * 
- * @return The desktop path of the current use. Will throw an exception if there is an issue with obtaining the path.
+ * @return The desktop path of the current user. Will throw an exception if there is an issue with obtaining the path.
  */
 string getDesktopPath();
 
@@ -186,3 +186,10 @@ string getFileName();
 * @return 1 (true) if the given item was found to exist, 0 (false) otherwise.
 */
 bool itemExists(string path);
+
+/**
+ * Get the full path for the HamsterHangout directory on the user's desktop.
+ *
+ * @return The HamsterHangout path of the current use. Will throw an exception if there is an issue with obtaining the path.
+ */
+string getHamsterHangoutPath();

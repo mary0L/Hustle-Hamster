@@ -201,7 +201,7 @@ void menu(){
             // Dev mode
             if (temp == 0) {
 
-                string dir = getDesktopPath() + "HamsterHangout/";
+                string dir = getHamsterHangoutPath();
                 string file = dir + getFileName();
 
                 cout << "dir (" << dir << ") exists: " << itemExists(dir);
@@ -275,8 +275,6 @@ string getDesktopPath(){
 void exportJournal(Journal& journalEntry) {
     string filename = getFileName();
 
-    string subfolder = "HamsterHangout/";
-
     try {
         string desktopPath = getDesktopPath();
 
@@ -284,7 +282,7 @@ void exportJournal(Journal& journalEntry) {
             createHamsterHangoutDirectory();
         }
 
-        string path = desktopPath + subfolder + filename;
+        string path = getHamsterHangoutPath() + filename;
 
         ofstream txtFile(path);
 
@@ -339,7 +337,7 @@ int randomNumber(int max) {
 }
 
 void createHamsterHangoutDirectory() {
-    string fullPath = getDesktopPath() + "HamsterHangout";
+    string fullPath = getHamsterHangoutPath();
 
     try {
         // _wmkdir requires wchar_t* argument, so converting to wstring, then converting to wchar
@@ -386,4 +384,8 @@ bool itemExists(string path) {
     else {
         return false;
     }
+}
+
+string getHamsterHangoutPath() {
+    return getDesktopPath() + "HamsterHangout/";
 }
