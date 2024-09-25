@@ -7,8 +7,9 @@
  */
 
 #pragma once
-#include "Date.h"
-#include <vector>
+
+#include "all_includes.h"
+
 
 /**
  * 

@@ -1,11 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <iostream>
-#include <cctype> 
-#include <sstream>
-#include <vector>
-
-#include "all_includes.h"
+#include "includes/all_includes.h"
 
 /* Defines namespace*/
 using namespace std;

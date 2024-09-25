@@ -11,12 +11,7 @@
 
 #pragma once
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <iostream>
-
-#include "utils.h"
-#include "dailyLog.h"
+#include "all_includes.h"
 
 void testMethod();
 /**
