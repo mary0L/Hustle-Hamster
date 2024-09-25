@@ -9,10 +9,7 @@
 
 #pragma once
 
-#include "Journal.h"
-#include "menuHelp.h"
-#include "dailyLog.h"
-#include "hammyDialogue.h"
+#include "all_includes.h"
 
 /**
  *  Development Process only so that developers
@@ -175,3 +172,11 @@ void createHamsterHangoutDirectory();
  * @return The file name for the  daily journal.
  */
 string getFileName();
+
+
+/**
+* Check whether a file system item (such as a file or directory) exists with the given path. 
+* 
+* @return 1 (true) if the given item was found to exist, 0 (false) otherwise.
+*/
+bool itemExists(string path);

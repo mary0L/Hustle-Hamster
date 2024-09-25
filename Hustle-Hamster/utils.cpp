@@ -210,6 +210,14 @@ void menu(){
             }
             // Dev mode
             if (temp == 0) {
+
+                string dir = getDesktopPath() + "HamsterHangout/";
+                string file = dir + getFileName();
+
+                cout << "dir (" << dir << ") exists: " << itemExists(dir);
+                cout << " file (" << file << ") exists: " << itemExists(file);
+
+
                 Journal devEntry = Journal();
                 devEntry.setDayRating(3);
                 devEntry.setMood("Happy");
@@ -219,7 +227,17 @@ void menu(){
                 devEntry.addActivity("Art");
                 devEntry.addActivity("Work");
 
+                cout << "\nerr: " << errno;
+
                 exportJournal(devEntry);
+
+                cout << "\nerr: " << errno;
+
+                cout << "dir (" << dir << ") exists: " << itemExists(dir);
+                cout << " file (" << file << ") exists: " << itemExists(file);
+
+                cout << "\nerr: " << errno;
+
             }
             break;
         }else{
@@ -277,7 +295,7 @@ void exportJournal(Journal& journalEntry) {
 
         createHamsterHangoutDirectory();
 
-        string path = desktopPath + subfolder + filename + ".txt";
+        string path = desktopPath + subfolder + filename;
 
         ofstream txtFile(path);
 
@@ -363,5 +381,20 @@ string getFileName() {
     string month = to_string(today.getMonth());
     string year = to_string(today.getYear());
 
-    return "journal-" + year + "-" + month + "-" + day;
+    return "journal-" + year + "-" + month + "-" + day + ".txt";
+}
+
+bool itemExists(string path) {
+    struct stat fileInfo;
+
+    const char* c_path = path.c_str();
+
+    int err = stat(c_path, &fileInfo);
+
+    if (err == 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
