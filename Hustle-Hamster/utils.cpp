@@ -227,16 +227,13 @@ void menu(){
                 devEntry.addActivity("Art");
                 devEntry.addActivity("Work");
 
-                cout << "\nerr: " << errno;
 
                 exportJournal(devEntry);
 
-                cout << "\nerr: " << errno;
 
                 cout << "dir (" << dir << ") exists: " << itemExists(dir);
                 cout << " file (" << file << ") exists: " << itemExists(file);
 
-                cout << "\nerr: " << errno;
 
             }
             break;
@@ -293,7 +290,9 @@ void exportJournal(Journal& journalEntry) {
     try {
         string desktopPath = getDesktopPath();
 
-        createHamsterHangoutDirectory();
+        if (!itemExists(getDesktopPath() + "HamsterHangout/")) {
+            createHamsterHangoutDirectory();
+        }
 
         string path = desktopPath + subfolder + filename;
 
