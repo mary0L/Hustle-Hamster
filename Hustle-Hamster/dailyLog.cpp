@@ -171,6 +171,58 @@ int dailyLog(){
 
     printHammy();
     printReport(dailyEntry);
-    exportEntry(dailyEntry);
+    confirm(dailyEntry);
+
     return 0;
+}
+
+void confirm(Journal &dailyEntry){
+    int temp;
+    bool validResponse = false;
+    TYPE("Did you want to go back and change any inputs?");
+    TYPE("[1] Daily Rating");
+    TYPE("[2] Sleep Rating");
+    TYPE("[3] Mood Input");
+    TYPE("[4] Activities");
+    TYPE("[5] Daily Reflection");
+    TYPE("[6] Save and Continue");
+
+    while(!validResponse){
+        cin >> temp;
+        if(!cin.fail() && (temp>=0 && temp<7)){
+            if (temp == 1){
+                dailyRating(dailyEntry);
+                confirm(dailyEntry);
+            }
+            if (temp == 2){
+                sleepRating(dailyEntry);
+                confirm(dailyEntry);
+            }
+            if(temp == 3){
+                moodRating(dailyEntry);
+                confirm(dailyEntry);
+            }
+            if (temp == 4){
+                dailyEntry.removeAllActivities(); 
+                for (const string& activity : defaultActivities) {
+                    didActivity(activity, dailyEntry);
+                }
+                confirm(dailyEntry);
+            }
+            if (temp == 5){
+                std::cin.ignore(10000000, '\n');
+                TYPE("New Reflection of the day:");
+                longAnswer(dailyEntry);
+                confirm(dailyEntry);
+            }
+            if(temp == 6){
+                exportEntry(dailyEntry);
+            }
+        
+        }else{
+            TYPE("Please enter a valid number between 1 and 6");
+            cin.clear();
+            std::cin.ignore(INT_MAX, '\n');
+        }
+    }
 }
