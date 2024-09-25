@@ -8,8 +8,9 @@
 
 #pragma once
 
-#include <string>
-#include <vector>
+#include <ctime>
+#include "all_includes.h"
+
 
 using namespace std;
 

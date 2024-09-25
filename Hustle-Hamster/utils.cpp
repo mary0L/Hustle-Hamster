@@ -6,17 +6,7 @@
 #define STD_DELAY 100
 #endif
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <iostream>
-#include <cctype> 
-#include <sstream>
-#include <vector>
-#include "utils.h"
-#include <fstream>
-#include <limits>
-#include <random>
-#include <sys/stat.h>
+#include "includes/all_includes.h"
 
 using namespace std;
 

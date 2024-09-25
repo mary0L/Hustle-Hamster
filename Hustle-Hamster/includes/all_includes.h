@@ -1,5 +1,12 @@
-#ifndef ALL_INCLUDES_H
-#define ALL_INCLUDES_H
+#pragma once
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <cctype> 
 
 // all project includes located here to be reference
 #include "Date.h"
@@ -9,5 +16,3 @@
 #include "dailyLog.h"
 #include "feedback.h"
 #include "hammyDialogue.h"
-
-#endif 

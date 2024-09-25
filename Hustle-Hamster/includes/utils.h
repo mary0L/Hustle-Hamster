@@ -9,10 +9,13 @@
 
 #pragma once
 
-#include "Journal.h"
-#include "menuHelp.h"
-#include "dailyLog.h"
-#include "hammyDialogue.h"
+#include <fstream>
+#include <limits>
+#include <random>
+#include <sys/stat.h>
+
+
+#include "all_includes.h"
 
 /**
  *  Development Process only so that developers

@@ -1,5 +1,4 @@
-#include <ctime>
-#include "all_includes.h"
+#include "includes/all_includes.h"
 
 using namespace std;
 

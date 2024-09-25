@@ -9,13 +9,7 @@
 
 #pragma once
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <iostream>
-#include <sstream>
-
-#include "utils.h"
-#include "Journal.h"
+#include "all_includes.h"
 
 
 /**

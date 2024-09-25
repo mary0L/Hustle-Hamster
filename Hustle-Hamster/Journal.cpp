@@ -1,4 +1,4 @@
-#include "all_includes.h"
+#include "includes/all_includes.h"
 
 Journal:: Journal() {
 	date = Date();

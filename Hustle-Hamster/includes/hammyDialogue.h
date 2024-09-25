@@ -8,8 +8,7 @@
 
 #pragma once
 
-#include <vector>
-#include "utils.h"
+#include "all_includes.h"
 
 /* Vector with all responses to user selecting daily log */
 extern vector<string> dailyLogR;
