@@ -199,8 +199,15 @@ string getHamsterHangoutPath();
 * 
 * This is based on whether the HamsterHangout directory exists on their desktop.
 * 
-* @return 1 (true) if this is the first time that they've opened the app, 0 (false) otherwise.
+* @return 1 (true) if this is the first time that they've opened the app, 0 (false) otherwise. Will throw an exception if there is an issue with obtaining the path of the desktop directory.
 */
 bool isFirstOpen();
 
+/**
+* Check whether the user has already exported a journal entry today.
+*
+* This is based on whether the text file named based on the current date already exists.
+*
+* @return 1 (true) if they have already exported a journal entry today, 0 (false) otherwise. Will throw an exception if there is an issue with obtaining the path of the desktop directory.
+*/
 bool isFirstOfDay();

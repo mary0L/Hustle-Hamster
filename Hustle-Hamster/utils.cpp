@@ -276,13 +276,13 @@ void exportJournal(Journal& journalEntry) {
     string filename = getFileName();
 
     try {
-        string desktopPath = getDesktopPath();
+        string dirPath = getHamsterHangoutPath();
 
-        if (!itemExists(getDesktopPath() + "HamsterHangout/")) {
+        if (!itemExists(dirPath)) {
             createHamsterHangoutDirectory();
         }
 
-        string path = getHamsterHangoutPath() + filename;
+        string path = dirPath + filename;
 
         ofstream txtFile(path);
 
@@ -388,4 +388,16 @@ bool itemExists(string path) {
 
 string getHamsterHangoutPath() {
     return getDesktopPath() + "HamsterHangout/";
+}
+
+bool isFirstOpen() {
+    return itemExists(getHamsterHangoutPath());
+        // check if the dir exists
+        // this can throw an exception
+        // which says that there was an error getting the user's desktop path
+        // maybe then we give them the welcome but then also tell them that there was an error accessing their desktop, which means there might be issues saving, but you can still use the app 
+}
+
+bool isFirstOfDay() {
+    return itemExists(getHamsterHangoutPath() + getFileName());
 }
