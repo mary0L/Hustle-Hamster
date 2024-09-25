@@ -82,7 +82,6 @@ void menu();
  */
 string getDesktopPath();
 
-
 /////////////////////////////////
 //Code From Stacknoverflow
 //"https://stackoverflow.com/questions/38931856/disallow-input-at-certain-times"/>
@@ -179,9 +178,10 @@ void createHamsterHangoutDirectory();
  */
 string getFileName();
 
-
 /**
 * Check whether a file system item (such as a file or directory) exists with the given path. 
+* 
+* If checking a directory exists, ensure that the path ends with a forward or back slash, otherwise a file of the same name with no file extension would cause this method to return true. 
 * 
 * @return 1 (true) if the given item was found to exist, 0 (false) otherwise.
 */
