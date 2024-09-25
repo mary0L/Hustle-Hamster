@@ -193,3 +193,14 @@ bool itemExists(string path);
  * @return The HamsterHangout path of the current use. Will throw an exception if there is an issue with obtaining the path.
  */
 string getHamsterHangoutPath();
+
+/**
+* Check whether the user has opened Hamster Hangout before. 
+* 
+* This is based on whether the HamsterHangout directory exists on their desktop.
+* 
+* @return 1 (true) if this is the first time that they've opened the app, 0 (false) otherwise.
+*/
+bool isFirstOpen();
+
+bool isFirstOfDay();
