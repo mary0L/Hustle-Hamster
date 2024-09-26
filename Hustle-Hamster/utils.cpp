@@ -392,10 +392,6 @@ string getHamsterHangoutPath() {
 
 bool isFirstOpen() {
     return itemExists(getHamsterHangoutPath());
-        // check if the dir exists
-        // this can throw an exception
-        // which says that there was an error getting the user's desktop path
-        // maybe then we give them the welcome but then also tell them that there was an error accessing their desktop, which means there might be issues saving, but you can still use the app 
 }
 
 bool isFirstOfDay() {

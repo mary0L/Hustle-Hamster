@@ -25,7 +25,12 @@ int main(){
     printHammy();
     TYPE("Hi there!! It's so good to see you <3");
     cout << separator << "\n";
+
+    // have the check here for whether it's the first time
+    // so isFirstOpen
+    // if true, just print app walkthrough 
+    // would need to rework the help methods then to not call helpmenu() at the end, but rather within the helpmenu() loop itself
+    // need to wait until the help rework is merged into main...
+
     menu();
-
-
 }
