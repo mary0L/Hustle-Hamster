@@ -95,12 +95,12 @@ void discardInputBuffer(void) {
 #endif
 
 void discardInputLine(void) {
-    int c;
     #if defined(_WIN32) || defined(_WINDOWS)
         std::cin.clear(); // Clear the error flags
         std::cin.ignore(10000000, '\n'); // Ignore until newline
         FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
     #else
+        int c;
         while ((c = getchar()) != EOF && c != '\n');  // '\n' is Enter on Unix
     #endif
 }
@@ -175,7 +175,7 @@ void menu(){
     int temp;
     bool validResponse = false;
     TYPE("What can I help you with?");
-    TYPE("[1] Daily Log"); //if daily log has already been completed do not let them complete again!
+    TYPE("[1] Daily Log"); 
     TYPE("[2] How to Use");
     TYPE("[3] Quit");
 
@@ -184,15 +184,12 @@ void menu(){
         if(!cin.fail() && (temp>=0 && temp<4)){
             if (temp == 1){
                 cout << separator << "\n";
-                string line = dailyLogR[randomNumber(3)];
-                TYPE(line); 
-                delay(stdDelay);
 
-                // need to rework the order of these things to ask the quesiton before printing the line above 
                 try {
 
                     if (!isFirstOfDay()) {
-                        TYPE("It looks like you have already told me about your day, do you want to continue? This will overwrite your previous entry. (y/n)\n");
+                        TYPE("It looks like you have already told me about your day, do you want to continue?");
+                        TYPE("This will overwrite your previous entry. (y/n)\n");
 
                         char response;
                         bool validResponse = false;
@@ -211,11 +208,11 @@ void menu(){
                         }
 
                         if (response == 'y') {
-                            TYPE("Awesome. Let's Go!"); // like this should instead be the daily log message thing i htink
                             dailyLog();
                         }
                         else {
                             TYPE("I'll take you back to the main menu.\n");
+                            cout << separator << "\n";
                             menu();
                         }
                     } else {
@@ -225,6 +222,31 @@ void menu(){
                 catch (...) {
                     TYPE("It looks like there might be an issue with exporting your journals. This won't affect your ability to do your daily log, you just won't be able to save it.");
                     TYPE("Continue anyway? (y/n)\n");
+
+                    char response;
+                    bool validResponse = false;
+
+                    while (!validResponse) {
+                        cin >> response;
+                        response = tolower(response);
+                        if (response == 'y' || response == 'n') {
+                            validResponse = true;
+                        }
+                        else {
+                            TYPE("Please Enter a Valid input");
+                            TYPE("y or Y for Yes");
+                            TYPE("n or N for No");
+                        }
+                    }
+
+                    if (response == 'y') {
+                        dailyLog();
+                    }
+                    else {
+                        TYPE("I'll take you back to the main menu.\n");
+                        cout << separator << "\n";
+                        menu();
+                    }
                 }
             }
             if (temp == 2){
