@@ -149,19 +149,6 @@ void exportEntry(Journal &dailyEntry){
     #endif
 }
 
-void checkCompletion() {
-    // so call the isFirstOfDay
-    // needs to be in a try catch
-    // if the file exists, then
-        // ask if they want to overwrite : "You have already told me about your day, if you log again it will overwrite" or something
-        // if y, proceed
-        // if n, return back to main menu
-    // if it doesn't exist, proceed
-    // catch : it would be an error getting the desktop path 
-        // could say something like: warning: we found an issue with trying to get the desktop path, you might not to be export the journal,
-        // but you can continue logging your entry as per
-}
-
 int dailyLog(){
     Journal dailyEntry = Journal(); 
 

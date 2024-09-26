@@ -58,13 +58,6 @@ void didActivity(const string &activity, Journal &dailyEntry);
 void exportEntry(Journal &dailyEntry);
 
 /**
-* Checks whether the user has already completed a journal entry today. 
-* 
-* If they have, it asks them if the want to continue.
-*/
-void checkCompletion();
-
-/**
  * Runs through methods to complete the daily log
 */
 int dailyLog();

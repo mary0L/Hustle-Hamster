@@ -13,7 +13,6 @@
 
 #include "all_includes.h"
 
-void testMethod();
 /**
  * Method to display the help menu.
 */

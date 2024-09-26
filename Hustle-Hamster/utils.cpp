@@ -187,7 +187,45 @@ void menu(){
                 string line = dailyLogR[randomNumber(3)];
                 TYPE(line); 
                 delay(stdDelay);
-                dailyLog();
+
+                // need to rework the order of these things to ask the quesiton before printing the line above 
+                try {
+
+                    if (!isFirstOfDay()) {
+                        TYPE("It looks like you have already told me about your day, do you want to continue? This will overwrite your previous entry. (y/n)\n");
+
+                        char response;
+                        bool validResponse = false;
+
+                        while (!validResponse) {
+                            cin >> response;
+                            response = tolower(response);
+                            if (response == 'y' || response == 'n') {
+                                validResponse = true;
+                            }
+                            else {
+                                TYPE("Please Enter a Valid input");
+                                TYPE("y or Y for Yes");
+                                TYPE("n or N for No");
+                            }
+                        }
+
+                        if (response == 'y') {
+                            TYPE("Awesome. Let's Go!"); // like this should instead be the daily log message thing i htink
+                            dailyLog();
+                        }
+                        else {
+                            TYPE("I'll take you back to the main menu.\n");
+                            menu();
+                        }
+                    } else {
+                        dailyLog();
+                    }
+                }
+                catch (...) {
+                    TYPE("It looks like there might be an issue with exporting your journals. This won't affect your ability to do your daily log, you just won't be able to save it.");
+                    TYPE("Continue anyway? (y/n)\n");
+                }
             }
             if (temp == 2){
                 cout << separator << "\n"; 
@@ -391,9 +429,9 @@ string getHamsterHangoutPath() {
 }
 
 bool isFirstOpen() {
-    return itemExists(getHamsterHangoutPath());
+    return !itemExists(getHamsterHangoutPath());
 }
 
 bool isFirstOfDay() {
-    return itemExists(getHamsterHangoutPath() + getFileName());
+    return !itemExists(getHamsterHangoutPath() + getFileName());
 }
