@@ -264,10 +264,6 @@ void menu(){
                 string dir = getHamsterHangoutPath();
                 string file = dir + getFileName();
 
-                cout << "dir (" << dir << ") exists: " << itemExists(dir);
-                cout << " file (" << file << ") exists: " << itemExists(file);
-
-
                 Journal devEntry = Journal();
                 devEntry.setDayRating(3);
                 devEntry.setMood("Happy");
@@ -279,12 +275,6 @@ void menu(){
 
 
                 exportJournal(devEntry);
-
-
-                cout << "dir (" << dir << ") exists: " << itemExists(dir);
-                cout << " file (" << file << ") exists: " << itemExists(file);
-
-
             }
             break;
         }else{
