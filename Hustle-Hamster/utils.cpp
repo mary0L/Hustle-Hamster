@@ -16,6 +16,8 @@ vector<string> defaultActivities = {"do something productive (e.g. work, study, 
 
 char separator[] = "----------------------------------------------------------"; 
 
+bool devMode = false; // Manual boolean for developers
+
 void delay(int time) {
     Sleep(time);
 }
@@ -122,9 +124,14 @@ void enableInput(void) {
 void TYPE(const string& p) {
     disableInput();
     cout << "       ";
-    for (char c : p) {
-        cout << c << flush;
-        Sleep(SLEEP_DURATION);
+    if(devMode == true){
+        cout << p; 
+    }
+    else{
+        for (char c : p) {
+            cout << c << flush;
+            Sleep(SLEEP_DURATION);
+        }
     }
     cout << endl;
     enableInput(); 
@@ -178,6 +185,9 @@ void menu(){
     TYPE("[1] Daily Log"); //if daily log has already been completed do not let them complete again!
     TYPE("[2] How to Use");
     TYPE("[3] Quit");
+    if(devMode){
+        TYPE("[0] Developer Test Journal Export");
+    }
 
     while(!validResponse){
         cin >> temp;
@@ -200,18 +210,26 @@ void menu(){
             }
             // Dev mode
             if (temp == 0) {
-                Journal devEntry = Journal();
-                devEntry.setDayRating(3);
-                devEntry.setMood("Happy");
-                devEntry.setSleepRating(5);
-                devEntry.setTextEntry("Today was a good day. just hung around tbh.");
-                devEntry.addActivity("Nap");
-                devEntry.addActivity("Art");
-                devEntry.addActivity("Work");
+                if(devMode){
+                    Journal devEntry = Journal();
+                    devEntry.setDayRating(3);
+                    devEntry.setMood("Happy");
+                    devEntry.setSleepRating(5);
+                    devEntry.setTextEntry("Today was a good day. just hung around tbh.");
+                    devEntry.addActivity("Nap");
+                    devEntry.addActivity("Art");
+                    devEntry.addActivity("Work");
 
-                exportJournal(devEntry);
+                    exportJournal(devEntry);
+                    break;
+                }
+                else{
+                    validResponse = false; 
+                    TYPE("Please enter a valid number between 1 and 3");
+                    cin.clear();
+                    std::cin.ignore(INT_MAX, '\n');
+                }
             }
-            break;
         }else{
             TYPE("Please enter a valid number between 1 and 3");
             cin.clear();

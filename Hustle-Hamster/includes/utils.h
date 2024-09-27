@@ -37,6 +37,8 @@ extern unsigned int stdDelay;
 extern vector<string> defaultActivities; 
 /* Separator for formatting */
 extern char separator[]; 
+/* Boolean that can be set to true or false by the developer */
+extern bool devMode; 
 
 /**
  * Print the report for the given journal entry.
