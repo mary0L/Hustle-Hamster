@@ -27,8 +27,7 @@ void howToUse(){
     TYPE("[3] Exit");
     howToUseExit();
     
-    TYPE("I'll now return you to the help menu and you can let me know what you wanna do next!\n");
-    printHelpMenu();
+    TYPE("I'll now take you to the menu and you can let me know what you wanna do next!\n");
 }
 
 void howToUseExit(){
@@ -106,8 +105,13 @@ void whereIsOurDataFrom(){
 
 void whereAreMyFilesSaved(){
     TYPE("Your files are saved to: ");
-    string temporary = "" + getDesktopPath() + "\n\n"; 
-    TYPE(temporary); 
+    try{
+        string temporary = "" + getDesktopPath() + "\n\n"; 
+        TYPE(temporary); 
+    }
+    catch (...) {
+        TYPE("It looks like there might be an issue with exporting your journals. This won't affect your ability to do your daily log, you just won't be able to save it.");
+    }
 }
 
 void printHelpMenu(){
@@ -130,6 +134,7 @@ void printHelpMenu(){
         if(!cin.fail() && (temp>0 && temp<6)){
                 if(temp == 1){
                     howToUse();
+                    printHelpMenu();
                 }
                 if(temp == 2){
                     whereAreMyFilesSaved();

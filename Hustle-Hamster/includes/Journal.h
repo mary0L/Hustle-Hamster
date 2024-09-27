@@ -12,7 +12,6 @@
 
 
 /**
- * @author Abby Fernandes
  * 
  * This class stores all of the associated information for a single Journal entry.
  * 

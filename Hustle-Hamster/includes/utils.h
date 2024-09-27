@@ -78,10 +78,9 @@ void menu();
 /**
  * Get the desktop path of the current user. 
  * 
- * @return The desktop path of the current use. Will throw an exception if there is an issue with obtaining the path.
+ * @return The desktop path of the current user. Will throw an exception if there is an issue with obtaining the path.
  */
 string getDesktopPath();
-
 
 /////////////////////////////////
 //Code From Stacknoverflow
@@ -178,3 +177,37 @@ void createHamsterHangoutDirectory();
  * @return The file name for the  daily journal.
  */
 string getFileName();
+
+/**
+* Check whether a file system item (such as a file or directory) exists with the given path. 
+* 
+* If checking a directory exists, ensure that the path ends with a forward or back slash, otherwise a file of the same name with no file extension would cause this method to return true. 
+* 
+* @return 1 (true) if the given item was found to exist, 0 (false) otherwise.
+*/
+bool itemExists(string path);
+
+/**
+ * Get the full path for the HamsterHangout directory on the user's desktop.
+ *
+ * @return The HamsterHangout path of the current use. Will throw an exception if there is an issue with obtaining the path.
+ */
+string getHamsterHangoutPath();
+
+/**
+* Check whether the user has opened Hamster Hangout before. 
+* 
+* This is based on whether the HamsterHangout directory exists on their desktop.
+* 
+* @return 1 (true) if this is the first time that they've opened the app, 0 (false) otherwise. Will throw an exception if there is an issue with obtaining the path of the desktop directory.
+*/
+bool isFirstOpen();
+
+/**
+* Check whether the user has already exported a journal entry today.
+*
+* This is based on whether the text file named based on the current date already exists.
+*
+* @return 1 (true) if they have already exported a journal entry today, 0 (false) otherwise. Will throw an exception if there is an issue with obtaining the path of the desktop directory.
+*/
+bool isFirstOfDay();

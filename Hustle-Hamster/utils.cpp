@@ -95,12 +95,12 @@ void discardInputBuffer(void) {
 #endif
 
 void discardInputLine(void) {
-    int c;
     #if defined(_WIN32) || defined(_WINDOWS)
         std::cin.clear(); // Clear the error flags
         std::cin.ignore(10000000, '\n'); // Ignore until newline
         FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
     #else
+        int c;
         while ((c = getchar()) != EOF && c != '\n');  // '\n' is Enter on Unix
     #endif
 }
@@ -175,7 +175,7 @@ void menu(){
     int temp;
     bool validResponse = false;
     TYPE("What can I help you with?");
-    TYPE("[1] Daily Log"); //if daily log has already been completed do not let them complete again!
+    TYPE("[1] Daily Log"); 
     TYPE("[2] How to Use");
     TYPE("[3] Quit");
 
@@ -184,10 +184,70 @@ void menu(){
         if(!cin.fail() && (temp>=0 && temp<4)){
             if (temp == 1){
                 cout << separator << "\n";
-                string line = dailyLogR[randomNumber(3)];
-                TYPE(line); 
-                delay(stdDelay);
-                dailyLog();
+
+                try {
+
+                    if (!isFirstOfDay()) {
+                        TYPE("It looks like you have already told me about your day, do you want to continue?");
+                        TYPE("This will overwrite your previous entry. (y/n)\n");
+
+                        char response;
+                        bool validResponse = false;
+
+                        while (!validResponse) {
+                            cin >> response;
+                            response = tolower(response);
+                            if (response == 'y' || response == 'n') {
+                                validResponse = true;
+                            }
+                            else {
+                                TYPE("Please Enter a Valid input");
+                                TYPE("y or Y for Yes");
+                                TYPE("n or N for No");
+                            }
+                        }
+
+                        if (response == 'y') {
+                            dailyLog();
+                        }
+                        else {
+                            TYPE("I'll take you back to the main menu.\n");
+                            cout << separator << "\n";
+                            menu();
+                        }
+                    } else {
+                        dailyLog();
+                    }
+                }
+                catch (...) {
+                    TYPE("It looks like there might be an issue with exporting your journals. This won't affect your ability to do your daily log, you just won't be able to save it.");
+                    TYPE("Continue anyway? (y/n)\n");
+
+                    char response;
+                    bool validResponse = false;
+
+                    while (!validResponse) {
+                        cin >> response;
+                        response = tolower(response);
+                        if (response == 'y' || response == 'n') {
+                            validResponse = true;
+                        }
+                        else {
+                            TYPE("Please Enter a Valid input");
+                            TYPE("y or Y for Yes");
+                            TYPE("n or N for No");
+                        }
+                    }
+
+                    if (response == 'y') {
+                        dailyLog();
+                    }
+                    else {
+                        TYPE("I'll take you back to the main menu.\n");
+                        cout << separator << "\n";
+                        menu();
+                    }
+                }
             }
             if (temp == 2){
                 cout << separator << "\n"; 
@@ -200,6 +260,10 @@ void menu(){
             }
             // Dev mode
             if (temp == 0) {
+
+                string dir = getHamsterHangoutPath();
+                string file = dir + getFileName();
+
                 Journal devEntry = Journal();
                 devEntry.setDayRating(3);
                 devEntry.setMood("Happy");
@@ -208,6 +272,7 @@ void menu(){
                 devEntry.addActivity("Nap");
                 devEntry.addActivity("Art");
                 devEntry.addActivity("Work");
+
 
                 exportJournal(devEntry);
             }
@@ -260,14 +325,14 @@ string getDesktopPath(){
 void exportJournal(Journal& journalEntry) {
     string filename = getFileName();
 
-    string subfolder = "HamsterHangout/";
-
     try {
-        string desktopPath = getDesktopPath();
+        string dirPath = getHamsterHangoutPath();
 
-        createHamsterHangoutDirectory();
+        if (!itemExists(dirPath)) {
+            createHamsterHangoutDirectory();
+        }
 
-        string path = desktopPath + subfolder + filename + ".txt";
+        string path = dirPath + filename;
 
         ofstream txtFile(path);
 
@@ -301,7 +366,7 @@ void exportJournal(Journal& journalEntry) {
         }
     }
     catch (const exception& e) {
-        TYPE("Sorry, there was an error writing your journal to a file at this time:\n");
+        TYPE("Sorry, there was an error exporting your journal at this time:\n");
         TYPE(e.what());
     }
 }
@@ -322,7 +387,7 @@ int randomNumber(int max) {
 }
 
 void createHamsterHangoutDirectory() {
-    string fullPath = getDesktopPath() + "HamsterHangout";
+    string fullPath = getHamsterHangoutPath();
 
     try {
         // _wmkdir requires wchar_t* argument, so converting to wstring, then converting to wchar
@@ -353,5 +418,32 @@ string getFileName() {
     string month = to_string(today.getMonth());
     string year = to_string(today.getYear());
 
-    return "journal-" + year + "-" + month + "-" + day;
+    return "journal-" + year + "-" + month + "-" + day + ".txt";
+}
+
+bool itemExists(string path) {
+    struct stat fileInfo;
+
+    const char* c_path = path.c_str();
+
+    int err = stat(c_path, &fileInfo);
+
+    if (err == 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+string getHamsterHangoutPath() {
+    return getDesktopPath() + "HamsterHangout/";
+}
+
+bool isFirstOpen() {
+    return !itemExists(getHamsterHangoutPath());
+}
+
+bool isFirstOfDay() {
+    return !itemExists(getHamsterHangoutPath() + getFileName());
 }
