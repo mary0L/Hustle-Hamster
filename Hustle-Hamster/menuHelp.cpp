@@ -37,7 +37,7 @@ void howToUseExit(){
 
 void howToUseHowToUse(){
     TYPE("This is where you can get help for anything you don’t understand or anything you forget how to do!");
-    TYPE("You can have a look at what our where our data is from, refresh yourself on where your data is asaved or run through this walk through again!\n\n");
+    TYPE("You can have a look at what our where our data is from, refresh yourself on where your data is saved or run through this walk through again!\n\n");
 }
 
 void howToUseDailyLog(){
