@@ -88,6 +88,10 @@ void exportEntry(Journal &dailyEntry){
 }
 
 int dailyLog(){
+    string line = dailyLogR[randomNumber(3)];
+    TYPE(line);
+    delay(stdDelay);
+
     Journal dailyEntry = Journal(); 
 
     delay(stdDelay);

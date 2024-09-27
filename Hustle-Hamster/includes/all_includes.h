@@ -1,3 +1,11 @@
+/**
+ * @file all_includes.h
+ * @author Mary O’Leary
+ *
+ * @brief Includes all header files and commonly used libraries
+ * 
+ */
+
 #pragma once
 
 #include <stdio.h>

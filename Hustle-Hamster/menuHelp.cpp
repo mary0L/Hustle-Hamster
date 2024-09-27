@@ -27,8 +27,7 @@ void howToUse(){
     TYPE("[3] Exit");
     howToUseExit();
     
-    TYPE("I'll now return you to the help menu and you can let me know what you wanna do next!\n");
-    printHelpMenu();
+    TYPE("I'll now take you to the menu and you can let me know what you wanna do next!\n");
 }
 
 void howToUseExit(){
@@ -106,23 +105,26 @@ void whereIsOurDataFrom(){
 
 void whereAreMyFilesSaved(){
     TYPE("Your files are saved to: ");
-    string temporary = "" + getDesktopPath() + "\n\n"; 
-    TYPE(temporary); 
+    try{
+        string temporary = "" + getDesktopPath() + "\n\n"; 
+        TYPE(temporary); 
+    }
+    catch (...) {
+        TYPE("It looks like there might be an issue with exporting your journals. This won't affect your ability to do your daily log, you just won't be able to save it.");
+    }
 }
 
-void printHelpMenu(){
+void printHelpMenu() {
     TYPE("[1] App Walkthrough");
     TYPE("[2] Where are my Diaries Saved?");
     TYPE("[3] How to use Daily Log");
     TYPE("[4] Where is our data from?");
     TYPE("[5] Return to Main Menu");
 
-    #ifdef TEST_RUNNING
-        exit(0);
-    #endif
+#ifdef TEST_RUNNING
+    exit(0);
+#endif
 
-    bool validResponse = false;
-    int temp; 
     discardInputLine();
 
     int response = readInt(1, 5);

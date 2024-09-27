@@ -25,7 +25,11 @@ int main(){
     printHammy();
     TYPE("Hi there!! It's so good to see you <3");
     cout << separator << "\n";
+
+    if (isFirstOpen()) {
+        howToUse();
+        cout << separator << "\n";
+    }
+
     menu();
-
-
 }
