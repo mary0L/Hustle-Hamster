@@ -28,6 +28,10 @@ vector<string> Journal::getActivities() {
 	return this->activities;
 }
 
+void Journal::removeAllActivities() {
+    this->activities.clear();
+}
+
 
 string Journal::getTextEntry() {
 	return this->textEntry;
