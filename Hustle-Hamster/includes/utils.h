@@ -178,3 +178,37 @@ void createHamsterHangoutDirectory();
  * @return The file name for the  daily journal.
  */
 string getFileName();
+
+/**
+* Read character from user input. 
+* 
+* Only accepts 'y' or 'n' (case insensitive).
+* 
+* @returns The character entered by the user.
+*/
+char readYN();
+
+/**
+* Read integer from user input.
+*
+* Only accepts integers within the specified range (inclusive).
+* 
+* @param min The minimum value allowable.
+* @param max The maximum value allowable.
+*
+* @returns The integer entered by the user.
+*/
+int readInt(int min, int max);
+
+/**
+* Read string from user imput.
+* 
+* Will only take the first line of user input. i.e. anything preceeding a '\n'.
+* 
+* Will also reject empty strings;
+* 
+* @returns The string entered by the user.
+*/
+string readString();
+
+string readWord();

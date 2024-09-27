@@ -1,9 +1,6 @@
 #include "includes/all_includes.h"
 
 void dailyRating(Journal &dailyEntry){
-    int temp; 
-    bool validResponse = false; 
-
     #ifndef TEST_RUNNING
         discardInputLine(); 
     #endif
@@ -11,19 +8,9 @@ void dailyRating(Journal &dailyEntry){
     string line = dailyRatingQ[randomNumber(3)];
     TYPE(line);
     TYPE(ratingSystem);
-    while(!validResponse){
-        cin >> temp;
-        if(!cin.fail() && (temp>0 && temp<6)){
-            dailyEntry.setDayRating(temp);
-            validResponse = true;
-            break;
-        }else{
-            TYPE("Please enter a valid number between 1 and 5");
-            cin.clear();
-            std::cin.ignore(INT_MAX, '\n');
-        }
-    }
 
+    int response = readInt(1, 5);
+    dailyEntry.setDayRating(response);
 }
 
 void sleepRating(Journal &dailyEntry){
@@ -37,20 +24,9 @@ void sleepRating(Journal &dailyEntry){
     string line = sleepRatingQ[randomNumber(2)];
     TYPE(line);
     TYPE(ratingSystem);
-    while(!validResponse){
-        cin >> temp;
-        if(!cin.fail() && (temp>0 && temp<6)){
-            dailyEntry.setSleepRating(temp);
-            validResponse = true;
-            break;
-        }else{
-            TYPE("Please enter a valid number between 1 and 5");
-            cin.clear();
-            std::cin.ignore(INT_MAX, '\n');
-        }
-    }
 
-
+    int response = readInt(1, 5);
+    dailyEntry.setSleepRating(response);
 }
 
 void moodRating(Journal &dailyEntry){
@@ -63,84 +39,46 @@ void moodRating(Journal &dailyEntry){
     
     string line = moodQ[randomNumber(3)];
     TYPE(line);
-    while(!validResponse){
-        cin >> temp;
-        if(!cin.fail()){
-                dailyEntry.setMood(temp);
-                validResponse = true;
-                break;
-        }else{
-            TYPE("Please enter a word");
-            cin.clear();
-            std::cin.ignore(10000, '\n');
-            }
-    }
+
+    string response = readWord();
+    dailyEntry.setMood(response);
 }
 
 void longAnswer(Journal &dailyEntry) {
-    string textInput; 
-
-    getline(cin, textInput);
-    if (!textInput.empty()) {
-        dailyEntry.setTextEntry(textInput);
-    } else {
-        cout << "No input provided." << endl;
-    }
+    string response = readString();
+    dailyEntry.setTextEntry(response);
 }
 
 
 void didActivity(const string &activity, Journal &dailyEntry){
-    char response;
     stringstream message;
-    bool validResponse = false;
 
     #ifndef TEST_RUNNING
         discardInputLine(); 
     #endif
     
     message << "Did you " << activity << " today? (y/n)";
-    while(!validResponse){
-        TYPE(message.str());
-        cin >> response; 
-        char lower = tolower(response); 
-        if(lower == 'y'){
-            dailyEntry.addActivity(activity);
-            validResponse = true;
-            break;
-        } if(lower == 'n') {
-            validResponse = true;
-            break;
-        }else{
-            TYPE("Please Enter a Valid input");
-            TYPE("y or Y for Yes");
-            TYPE("n or N for No");
-        }
-    }
+    TYPE(message.str());
+    
+    char response = readYN();
 
+    if (response == 'y') {
+        dailyEntry.addActivity(activity);
+    }
 }
 
 void exportEntry(Journal &dailyEntry){
-    char response;
     stringstream message;
-    bool validResponse = false;
     message << "Do you want to export today's entry? (y/n)";
-    while(!validResponse){
-        TYPE(message.str());
-        cin >> response; 
-        char lower = tolower(response); 
-        if(lower == 'y'){
-            exportJournal(dailyEntry);
-            validResponse = true;
-            break;
-        } if(lower == 'n') {
-            validResponse = true;
-            break;
-        }else{
-            TYPE("Please Enter a Valid input");
-            TYPE("y or Y for Yes");
-            TYPE("n or N for No");
-        }
+
+    TYPE(message.str());
+    
+    char response = readYN();
+
+    if (response == 'y') {
+        exportJournal(dailyEntry);
     }
+
     TYPE("");
     TYPE("I'll return you to the main menu now and you can decide to keep hanging out, or leave whenever you want!\n");
     
@@ -177,8 +115,6 @@ int dailyLog(){
 }
 
 void confirm(Journal &dailyEntry){
-    int temp;
-    bool validResponse = false;
     TYPE("Did you want to go back and change any inputs?");
     TYPE("[1] Daily Rating");
     TYPE("[2] Sleep Rating");
@@ -187,42 +123,34 @@ void confirm(Journal &dailyEntry){
     TYPE("[5] Daily Reflection");
     TYPE("[6] Save and Continue");
 
-    while(!validResponse){
-        cin >> temp;
-        if(!cin.fail() && (temp>=0 && temp<7)){
-            if (temp == 1){
-                dailyRating(dailyEntry);
-                confirm(dailyEntry);
-            }
-            if (temp == 2){
-                sleepRating(dailyEntry);
-                confirm(dailyEntry);
-            }
-            if(temp == 3){
-                moodRating(dailyEntry);
-                confirm(dailyEntry);
-            }
-            if (temp == 4){
-                dailyEntry.removeAllActivities(); 
-                for (const string& activity : defaultActivities) {
-                    didActivity(activity, dailyEntry);
-                }
-                confirm(dailyEntry);
-            }
-            if (temp == 5){
-                std::cin.ignore(10000000, '\n');
-                TYPE("New Reflection of the day:");
-                longAnswer(dailyEntry);
-                confirm(dailyEntry);
-            }
-            if(temp == 6){
-                exportEntry(dailyEntry);
-            }
-        
-        }else{
-            TYPE("Please enter a valid number between 1 and 6");
-            cin.clear();
-            std::cin.ignore(INT_MAX, '\n');
+    int resonse = readInt(1, 6);
+
+    if (resonse == 1){
+        dailyRating(dailyEntry);
+        confirm(dailyEntry);
+    }
+    if (resonse == 2){
+        sleepRating(dailyEntry);
+        confirm(dailyEntry);
+    }
+    if (resonse == 3){
+        moodRating(dailyEntry);
+        confirm(dailyEntry);
+    }
+    if (resonse == 4){
+        dailyEntry.removeAllActivities(); 
+        for (const string& activity : defaultActivities) {
+            didActivity(activity, dailyEntry);
         }
+        confirm(dailyEntry);
+    }
+    if (resonse == 5){
+        std::cin.ignore(10000000, '\n');
+        TYPE("New Reflection of the day:");
+        longAnswer(dailyEntry);
+        confirm(dailyEntry);
+    }
+    if(resonse == 6){
+        exportEntry(dailyEntry);
     }
 }

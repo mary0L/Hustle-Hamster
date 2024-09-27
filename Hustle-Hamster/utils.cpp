@@ -172,54 +172,41 @@ void printReport(Journal& dailyEntry) {
 }
 
 void menu(){
-    int temp;
-    bool validResponse = false;
     TYPE("What can I help you with?");
     TYPE("[1] Daily Log"); //if daily log has already been completed do not let them complete again!
     TYPE("[2] How to Use");
     TYPE("[3] Quit");
 
-    while(!validResponse){
-        cin >> temp;
-        if(!cin.fail() && (temp>=0 && temp<4)){
-            if (temp == 1){
-                cout << separator << "\n";
-                string line = dailyLogR[randomNumber(3)];
-                TYPE(line); 
-                delay(stdDelay);
-                dailyLog();
-            }
-            if (temp == 2){
-                cout << separator << "\n"; 
-                delay(stdDelay);
-                helpMenu();
-            }
-            if(temp == 3){
-                TYPE("It was fun hanging out! See you tomorrow!");
-                exit(0);
-            }
-            // Dev mode
-            if (temp == 0) {
-                Journal devEntry = Journal();
-                devEntry.setDayRating(3);
-                devEntry.setMood("Happy");
-                devEntry.setSleepRating(5);
-                devEntry.setTextEntry("Today was a good day. just hung around tbh.");
-                devEntry.addActivity("Nap");
-                devEntry.addActivity("Art");
-                devEntry.addActivity("Work");
+    int response = readInt(1, 3);
 
-                exportJournal(devEntry);
-            }
-            break;
-        }else{
-            TYPE("Please enter a valid number between 1 and 3");
-            cin.clear();
-            std::cin.ignore(INT_MAX, '\n');
-        }
+    if (response == 1) {
+        cout << separator << "\n";
+        string line = dailyLogR[randomNumber(3)];
+        TYPE(line);
+        delay(stdDelay);
+        dailyLog();
     }
+    else if (response == 2) {
+        cout << separator << "\n";
+        delay(stdDelay);
+        helpMenu();
+    }
+    else if (response == 3) {
+        TYPE("It was fun hanging out! See you tomorrow!");
+        exit(0);
+    }
+    else if (response == 0) { // Dev mode <3
+        Journal devEntry = Journal();
+        devEntry.setDayRating(3);
+        devEntry.setMood("Happy");
+        devEntry.setSleepRating(5);
+        devEntry.setTextEntry("Today was a good day. just hung around tbh.");
+        devEntry.addActivity("Nap");
+        devEntry.addActivity("Art");
+        devEntry.addActivity("Work");
 
-
+        exportJournal(devEntry);
+    }
 }
 
 string getDesktopPath(){
@@ -354,4 +341,88 @@ string getFileName() {
     string year = to_string(today.getYear());
 
     return "journal-" + year + "-" + month + "-" + day;
+}
+
+char readYN() {
+    char response;
+    bool validResponse = false;
+
+    while (!validResponse) {
+        cin >> response;
+        response = tolower(response);
+        if (response == 'y' || response == 'n') {
+            validResponse = true;
+            break;
+        }
+        else {
+            TYPE("Please Enter a Valid input");
+            TYPE("y or Y for Yes");
+            TYPE("n or N for No");
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+        }
+    }
+
+    return response;
+}
+
+int readInt(int min, int max) {
+    int response;
+    bool validResponse = false;
+
+    while (!validResponse) {
+        cin >> response;
+        if (!cin.fail() && (response >= min && response <= max)) {
+            validResponse = true;
+            break;
+        }
+        else {
+            string message = "Please enter a valid number between " + to_string(min) + " and " + to_string(max);
+            TYPE(message);
+            cin.clear();
+            std::cin.ignore(INT_MAX, '\n');
+        }
+    }
+
+    return response;
+}
+
+string readString() {
+    string response;
+    bool validResponse = false;
+
+    while (!validResponse) {
+        getline(cin, response);
+        
+        if (!response.empty()) {
+            validResponse = true;
+            break;
+        }
+        else {
+            TYPE("Please enter some text");
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+        }
+    }
+    return response;
+}
+
+string readWord() {
+    string response;
+    bool validResponse = false;
+
+    while (!validResponse) {
+        cin >> response;
+
+        if (cin.fail() || response.empty()) {
+            TYPE("Please enter a word");
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+        }
+        else {
+            validResponse = true;
+            break;
+        }
+    }
+    return response;
 }
