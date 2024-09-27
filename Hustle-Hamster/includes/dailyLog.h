@@ -61,3 +61,8 @@ void exportEntry(Journal &dailyEntry);
  * Runs through methods to complete the daily log
 */
 int dailyLog();
+
+/**
+ * Checks to see if the user wants to change anything before continuing
+*/
+void confirm(Journal &dailyEntry);
