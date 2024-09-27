@@ -404,26 +404,31 @@ bool isFirstOfDay() {
 }
 
 char readYN() {
-    char response;
+    string response;
+    char c_response;
+
     bool validResponse = false;
 
+    cin.clear();
+    cin.ignore(INT_MAX, '\n');
+
     while (!validResponse) {
-        cin >> response;
-        response = tolower(response);
-        if (response == 'y' || response == 'n') {
-            validResponse = true;
-            break;
+        getline(cin, response);
+
+        if (response.length() == 1) {
+            c_response = tolower(response[0]);
+
+            if (c_response == 'y' || c_response == 'n') {
+                validResponse = true;
+                break;
+            }
         }
-        else {
-            TYPE("Please Enter a Valid input");
-            TYPE("y or Y for Yes");
-            TYPE("n or N for No");
-            cin.clear();
-            cin.ignore(INT_MAX, '\n');
-        }
+        TYPE("Please Enter a Valid input");
+        TYPE("y or Y for Yes");
+        TYPE("n or N for No");
     }
 
-    return response;
+    return c_response;
 }
 
 int readInt(int min, int max) {
