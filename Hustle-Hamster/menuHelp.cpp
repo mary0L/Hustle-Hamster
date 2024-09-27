@@ -101,7 +101,7 @@ void whereIsOurDataFrom(){
     std::cout << "  Hydration" << std::endl;
     std::cout << "      How Hydration & Nutrition Affect Your Mental Health. (2023, October 10)." << std::endl;
     std::cout << "      JUST WATER. https://justwater.com/blogs/news/how-hydration-nutrition-affect-your-mental-health \n\n" << std::endl;
-
+    delay(stdDelay);
 }
 
 void whereAreMyFilesSaved(){
