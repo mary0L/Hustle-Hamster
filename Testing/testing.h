@@ -1,3 +1,11 @@
+/**
+ * @file testing.h
+ * @author Rebekah Rolleston
+ *
+ * @brief Testing header file
+ * 
+ */
+
 #ifndef TESTING_H
 #define TESTING_H
 
