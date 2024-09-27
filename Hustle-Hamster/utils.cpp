@@ -12,7 +12,7 @@ using namespace std;
 
 unsigned int stdDelay = STD_DELAY;
 
-vector<string> defaultActivities = {"Study", "Work", "Socialise", "Exercise", "Drink Water", "Go Outside"}; 
+vector<string> defaultActivities = {"do something productive (e.g. work, study, etc.)", "do something for yourself (e.g. hobby or self care)", "Socialise", "Exercise", "Drink Water", "Go Outside"}; 
 
 char separator[] = "----------------------------------------------------------"; 
 

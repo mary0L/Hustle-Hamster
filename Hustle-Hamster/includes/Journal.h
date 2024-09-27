@@ -111,6 +111,11 @@ public:
 	void addActivity(string activity);
 
 	/**
+	 * Remove all activities entered
+	*/
+	void removeAllActivities();
+
+	/**
 	* Set the text entry for this day. 
 	* 
 	* @param The text entry to add. 
