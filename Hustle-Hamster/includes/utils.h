@@ -25,6 +25,7 @@
 #define WIN32_LEAN_AND_MEAN // Necessary to remove ambiguity errors caused in windows.h library
 #include <windows.h>
 #include <conio.h>
+#undef max // necessary for handling user input using the max function from <limits> as windows has a defined macro
 #else
 #include <unistd.h>
 #include <termios.h>

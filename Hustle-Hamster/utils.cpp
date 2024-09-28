@@ -409,9 +409,6 @@ char readYN() {
 
     bool validResponse = false;
 
-    cin.clear();
-    cin.ignore(INT_MAX, '\n');
-
     while (!validResponse) {
         getline(cin, response);
 
@@ -423,20 +420,38 @@ char readYN() {
                 break;
             }
         }
+
         TYPE("Please Enter a Valid input");
         TYPE("y or Y for Yes");
         TYPE("n or N for No");
+
     }
 
     return c_response;
 }
 
 int readInt(int min, int max) {
-    int response;
+    string response;
+    int i_response;
     bool validResponse = false;
 
     while (!validResponse) {
-        cin >> response;
+        //cin >> response;
+        getline(cin, response);
+
+        // check that each character is a number lmao
+        //this current solution only works for < 10 ...
+
+        if (response.length() == 1) {
+            if (response[0] >= min && response[0] <= max) {
+                i_response = stoi(response);
+                validResponse = true;
+                break;
+            }
+        }
+
+
+
         if (!cin.fail() && (response >= min && response <= max)) {
             validResponse = true;
             break;
@@ -444,12 +459,9 @@ int readInt(int min, int max) {
         else {
             string message = "Please enter a valid number between " + to_string(min) + " and " + to_string(max);
             TYPE(message);
-            cin.clear();
-            std::cin.ignore(INT_MAX, '\n');
         }
     }
-
-    return response;
+    return i_response;
 }
 
 string readString() {
@@ -461,12 +473,11 @@ string readString() {
         
         if (!response.empty()) {
             validResponse = true;
+
             break;
         }
         else {
             TYPE("Please enter some text");
-            cin.clear();
-            cin.ignore(INT_MAX, '\n');
         }
     }
     return response;
@@ -477,17 +488,25 @@ string readWord() {
     bool validResponse = false;
 
     while (!validResponse) {
-        cin >> response;
+        getline(cin, response);
 
-        if (cin.fail() || response.empty()) {
-            TYPE("Please enter a word");
-            cin.clear();
-            cin.ignore(INT_MAX, '\n');
+        bool isWord = true;
+
+        for (char ch : response) {
+            if (isspace(ch)) {
+                isWord = false;
+                break;
+            }
         }
-        else {
+
+        if (!response.empty() && isWord) {
             validResponse = true;
             break;
         }
+        else {
+            TYPE("Please enter a single word");
+        }
+
     }
     return response;
 }
