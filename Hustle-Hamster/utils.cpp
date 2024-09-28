@@ -96,8 +96,8 @@ void discardInputBuffer(void) {
 
 void discardInputLine(void) {
     #if defined(_WIN32) || defined(_WINDOWS)
-        std::cin.clear(); // Clear the error flags
-        std::cin.ignore(10000000, '\n'); // Ignore until newline
+        cin.clear(); // Clear the error flags
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore until newline
         FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
     #else
         while ((c = getchar()) != EOF && c != '\n');  // '\n' is Enter on Unix
@@ -430,38 +430,38 @@ char readYN() {
     return c_response;
 }
 
-int readInt(int min, int max) {
+int readInt(int min, int max) {    
     string response;
     int i_response;
     bool validResponse = false;
 
     while (!validResponse) {
-        //cin >> response;
         getline(cin, response);
 
-        // check that each character is a number lmao
-        //this current solution only works for < 10 ...
+        bool isInt = true;
 
-        if (response.length() == 1) {
-            if (response[0] >= min && response[0] <= max) {
-                i_response = stoi(response);
-                validResponse = true;
-                break;
+        if (!response.empty()) {
+            for (int i = 0; i < response.length() - 1; i++) {
+                if (!(response[i] >= 0 && response[i] <= 9)) {
+                    isInt = false;
+                    break;
+                }
             }
+
+            if (isInt) {
+                i_response = stoi(response);
+
+                if (i_response >= min && i_response <= max) {
+                    return i_response;
+                }
+            }
+
         }
 
-
-
-        if (!cin.fail() && (response >= min && response <= max)) {
-            validResponse = true;
-            break;
-        }
-        else {
-            string message = "Please enter a valid number between " + to_string(min) + " and " + to_string(max);
-            TYPE(message);
-        }
+        
+        string message = "Please enter a valid number between " + to_string(min) + " and " + to_string(max);
+        TYPE(message);
     }
-    return i_response;
 }
 
 string readString() {
