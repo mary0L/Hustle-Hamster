@@ -438,29 +438,33 @@ int readInt(int min, int max) {
     while (!validResponse) {
         getline(cin >> ws, response);
 
-        bool isInt = true;
+        if (!response.empty()){
+                try {
+                    // attempt conversion
+                    i_response = stoi(response);
 
-        if (!response.empty()) {
-            for (int i = 0; i < response.length() - 1; i++) {
-                if (!(response[i] >= 0 && response[i] <= 9)) {
-                    isInt = false;
-                    break;
+                    // check within range
+                    if (i_response >= min && i_response <= max) {
+                        validResponse = true;
+                    }
+
+                    // final check: that the user hasn't entered characters following a sequence of integers, which stoi would accept
+                    // e.g. for 4.5 or 4sdgdff, stoi would succeed and return 4
+                    for (int i = 0; i < response.length() - 1; i++) {
+                        if (!(response[i] >= int('0') && response[i] <= int('9'))) {
+                            validResponse = false;
+                            break;
+                        }
+                    }
                 }
-            }
-
-            if (isInt) {
-                i_response = stoi(response);
-
-                if (i_response >= min && i_response <= max) {
-                    return i_response;
+                catch (...) {
+                    validResponse = false;
                 }
-            }
-
         }
-
-        
-        string message = "Please enter a valid number between " + to_string(min) + " and " + to_string(max);
-        TYPE(message);
+        if (!validResponse) {
+            string message = "Please enter a valid number between " + to_string(min) + " and " + to_string(max);
+            TYPE(message);
+        }
     }
 
     return i_response;

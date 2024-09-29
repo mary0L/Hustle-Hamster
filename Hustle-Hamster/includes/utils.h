@@ -246,4 +246,11 @@ int readInt(int min, int max);
 */
 string readString();
 
+/**
+* Read a single word from user input.
+*
+* Will also reject empty strings;
+*
+* @returns The word entered by the user.
+*/
 string readWord();
