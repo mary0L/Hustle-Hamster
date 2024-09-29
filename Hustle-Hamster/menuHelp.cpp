@@ -125,8 +125,6 @@ void printHelpMenu() {
     exit(0);
 #endif
 
-    discardInputLine();
-
     int response = readInt(1, 5);
 
     if (response == 1) {

@@ -1,10 +1,6 @@
 #include "includes/all_includes.h"
 
 void dailyRating(Journal &dailyEntry){
-    #ifndef TEST_RUNNING
-        discardInputLine(); 
-    #endif
-
     string line = dailyRatingQ[randomNumber(3)];
     TYPE(line);
     TYPE(ratingSystem);
@@ -14,13 +10,6 @@ void dailyRating(Journal &dailyEntry){
 }
 
 void sleepRating(Journal &dailyEntry){
-    int temp; 
-    bool validResponse = false; 
-
-    #ifndef TEST_RUNNING
-        discardInputLine(); 
-    #endif
-
     string line = sleepRatingQ[randomNumber(2)];
     TYPE(line);
     TYPE(ratingSystem);
@@ -30,13 +19,6 @@ void sleepRating(Journal &dailyEntry){
 }
 
 void moodRating(Journal &dailyEntry){
-    string temp; 
-    bool validResponse = false;
-
-    #ifndef TEST_RUNNING
-        discardInputLine(); 
-    #endif
-    
     string line = moodQ[randomNumber(3)];
     TYPE(line);
 
@@ -52,10 +34,6 @@ void longAnswer(Journal &dailyEntry) {
 
 void didActivity(const string &activity, Journal &dailyEntry){
     stringstream message;
-
-    #ifndef TEST_RUNNING
-        discardInputLine(); 
-    #endif
     
     message << "Did you " << activity << " today? (y/n)";
     TYPE(message.str());
@@ -107,8 +85,6 @@ int dailyLog(){
 
     /*put in the Hammy derivations from the activity and mood ratings*/
 
-
-    std::cin.ignore(10000000, '\n');
     longAnswer(dailyEntry);
 
     printHammy();

@@ -410,7 +410,7 @@ char readYN() {
     bool validResponse = false;
 
     while (!validResponse) {
-        getline(cin, response);
+        getline(cin >> ws, response);
 
         if (response.length() == 1) {
             c_response = tolower(response[0]);
@@ -436,7 +436,7 @@ int readInt(int min, int max) {
     bool validResponse = false;
 
     while (!validResponse) {
-        getline(cin, response);
+        getline(cin >> ws, response);
 
         bool isInt = true;
 
@@ -462,6 +462,8 @@ int readInt(int min, int max) {
         string message = "Please enter a valid number between " + to_string(min) + " and " + to_string(max);
         TYPE(message);
     }
+
+    return i_response;
 }
 
 string readString() {
@@ -469,7 +471,7 @@ string readString() {
     bool validResponse = false;
 
     while (!validResponse) {
-        getline(cin, response);
+        getline(cin >> ws, response);
         
         if (!response.empty()) {
             validResponse = true;
@@ -488,7 +490,7 @@ string readWord() {
     bool validResponse = false;
 
     while (!validResponse) {
-        getline(cin, response);
+        getline(cin >> ws, response);
 
         bool isWord = true;
 
