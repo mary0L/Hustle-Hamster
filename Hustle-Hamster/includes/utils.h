@@ -25,6 +25,7 @@
 #define WIN32_LEAN_AND_MEAN // Necessary to remove ambiguity errors caused in windows.h library
 #include <windows.h>
 #include <conio.h>
+#undef max // necessary for handling user input using the max function from <limits> as windows has a defined macro
 #else
 #include <unistd.h>
 #include <termios.h>
@@ -211,3 +212,45 @@ bool isFirstOpen();
 * @return 1 (true) if they have already exported a journal entry today, 0 (false) otherwise. Will throw an exception if there is an issue with obtaining the path of the desktop directory.
 */
 bool isFirstOfDay();
+string getFileName();
+
+/**
+* Read character from user input. 
+* 
+* Only accepts 'y' or 'n' (case insensitive).
+* 
+* @returns The character entered by the user.
+*/
+char readYN();
+
+/**
+* Read integer from user input.
+*
+* Only accepts integers within the specified range (inclusive).
+* 
+* @param min The minimum value allowable.
+* @param max The maximum value allowable.
+*
+* @returns The integer entered by the user.
+*/
+int readInt(int min, int max);
+
+/**
+* Read string from user imput.
+* 
+* Will only take the first line of user input. i.e. anything preceeding a '\n'.
+* 
+* Will also reject empty strings;
+* 
+* @returns The string entered by the user.
+*/
+string readString();
+
+/**
+* Read a single word from user input.
+*
+* Will also reject empty strings;
+*
+* @returns The word entered by the user.
+*/
+string readWord();

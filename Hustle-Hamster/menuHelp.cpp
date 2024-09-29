@@ -114,49 +114,36 @@ void whereAreMyFilesSaved(){
     }
 }
 
-void printHelpMenu(){
+void printHelpMenu() {
     TYPE("[1] App Walkthrough");
     TYPE("[2] Where are my Diaries Saved?");
     TYPE("[3] How to use Daily Log");
     TYPE("[4] Where is our data from?");
     TYPE("[5] Return to Main Menu");
 
-    #ifdef TEST_RUNNING
-        exit(0);
-    #endif
+#ifdef TEST_RUNNING
+    exit(0);
+#endif
 
-    bool validResponse = false;
-    int temp; 
-    discardInputLine();
+    int response = readInt(1, 5);
 
-    while(!validResponse){
-        cin >> temp;
-        if(!cin.fail() && (temp>0 && temp<6)){
-                if(temp == 1){
-                    howToUse();
-                    printHelpMenu();
-                }
-                if(temp == 2){
-                    whereAreMyFilesSaved();
-                    printHelpMenu();
-                }
-                if(temp == 3){
-                    howToUseDailyLog();
-                    printHelpMenu();
-                }
-                if(temp == 4){
-                    whereIsOurDataFrom();
-                    printHelpMenu();
-                }
-                if(temp == 5){
-                    menu(); 
-                }
-                validResponse = true;
-                break;
-        }else{
-            TYPE("Please enter a valid number between 1 and 5");
-            cin.clear();
-            std::cin.ignore(10000, '\n');
-            }
+    if (response == 1) {
+        howToUse();
+        printHelpMenu();
+    }
+    else if (response == 2) {
+        whereAreMyFilesSaved();
+        printHelpMenu();
+    }
+    else if (response == 3) {
+        howToUseDailyLog();
+        printHelpMenu();
+    }
+    else if (response == 4) {
+        whereIsOurDataFrom();
+        printHelpMenu();
+    }
+    else if (response == 5) {
+        menu();
     }
 }

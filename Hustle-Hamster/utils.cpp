@@ -96,11 +96,10 @@ void discardInputBuffer(void) {
 
 void discardInputLine(void) {
     #if defined(_WIN32) || defined(_WINDOWS)
-        std::cin.clear(); // Clear the error flags
-        std::cin.ignore(10000000, '\n'); // Ignore until newline
+        cin.clear(); // Clear the error flags
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore until newline
         FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
     #else
-        int c;
         while ((c = getchar()) != EOF && c != '\n');  // '\n' is Enter on Unix
     #endif
 }
@@ -171,120 +170,76 @@ void printReport(Journal& dailyEntry) {
     cout << separator << "\n";
 }
 
-void menu(){
-    int temp;
-    bool validResponse = false;
+void menu() {
     TYPE("What can I help you with?");
-    TYPE("[1] Daily Log"); 
+    TYPE("[1] Daily Log");
     TYPE("[2] How to Use");
     TYPE("[3] Quit");
 
-    while(!validResponse){
-        cin >> temp;
-        if(!cin.fail() && (temp>=0 && temp<4)){
-            if (temp == 1){
+    int response = readInt(1, 3);
+
+    if (response == 1) {
+        try {
+            if (!isFirstOfDay()) {
+                TYPE("It looks like you have already told me about your day, do you want to continue?");
+                TYPE("This will overwrite your previous entry. (y/n)\n");
+
+                char overwriteResponse = readYN();
+
+                if (overwriteResponse == 'y') {
+                    dailyLog();
+                }
+                else {
+                    TYPE("I'll take you back to the main menu.\n");
+                    cout << separator << "\n";
+                    menu();
+                }
+            }
+            else {
+                dailyLog();
+            }
+        }
+        catch (...) {
+            TYPE("It looks like there might be an issue with exporting your journals. This won't affect your ability to do your daily log, you just won't be able to save it.");
+            TYPE("Continue anyway? (y/n)\n");
+
+            char errorResponse = readYN();
+
+            if (errorResponse == 'y') {
+                dailyLog();
+            }
+            else {
+                TYPE("I'll take you back to the main menu.\n");
                 cout << separator << "\n";
-
-                try {
-
-                    if (!isFirstOfDay()) {
-                        TYPE("It looks like you have already told me about your day, do you want to continue?");
-                        TYPE("This will overwrite your previous entry. (y/n)\n");
-
-                        char response;
-                        bool validResponse = false;
-
-                        while (!validResponse) {
-                            cin >> response;
-                            response = tolower(response);
-                            if (response == 'y' || response == 'n') {
-                                validResponse = true;
-                            }
-                            else {
-                                TYPE("Please Enter a Valid input");
-                                TYPE("y or Y for Yes");
-                                TYPE("n or N for No");
-                            }
-                        }
-
-                        if (response == 'y') {
-                            dailyLog();
-                        }
-                        else {
-                            TYPE("I'll take you back to the main menu.\n");
-                            cout << separator << "\n";
-                            menu();
-                        }
-                    } else {
-                        dailyLog();
-                    }
-                }
-                catch (...) {
-                    TYPE("It looks like there might be an issue with exporting your journals. This won't affect your ability to do your daily log, you just won't be able to save it.");
-                    TYPE("Continue anyway? (y/n)\n");
-
-                    char response;
-                    bool validResponse = false;
-
-                    while (!validResponse) {
-                        cin >> response;
-                        response = tolower(response);
-                        if (response == 'y' || response == 'n') {
-                            validResponse = true;
-                        }
-                        else {
-                            TYPE("Please Enter a Valid input");
-                            TYPE("y or Y for Yes");
-                            TYPE("n or N for No");
-                        }
-                    }
-
-                    if (response == 'y') {
-                        dailyLog();
-                    }
-                    else {
-                        TYPE("I'll take you back to the main menu.\n");
-                        cout << separator << "\n";
-                        menu();
-                    }
-                }
+                menu();
             }
-            if (temp == 2){
-                cout << separator << "\n"; 
-                delay(stdDelay);
-                helpMenu();
-            }
-            if(temp == 3){
-                TYPE("It was fun hanging out! See you tomorrow!");
-                exit(0);
-            }
-            // Dev mode
-            if (temp == 0) {
-
-                string dir = getHamsterHangoutPath();
-                string file = dir + getFileName();
-
-                Journal devEntry = Journal();
-                devEntry.setDayRating(3);
-                devEntry.setMood("Happy");
-                devEntry.setSleepRating(5);
-                devEntry.setTextEntry("Today was a good day. just hung around tbh.");
-                devEntry.addActivity("Nap");
-                devEntry.addActivity("Art");
-                devEntry.addActivity("Work");
-
-
-                exportJournal(devEntry);
-            }
-            break;
-        }else{
-            TYPE("Please enter a valid number between 1 and 3");
-            cin.clear();
-            std::cin.ignore(INT_MAX, '\n');
         }
     }
+    else if (response == 2) {
+        cout << separator << "\n";
+        delay(stdDelay);
+        helpMenu();
+    }
+    else if (response == 3) {
+        TYPE("It was fun hanging out! See you tomorrow!");
+        exit(0);
+    }
+    else if (response == 0) { // Dev mode <3
+        string dir = getHamsterHangoutPath();
+        string file = dir + getFileName();
+
+        Journal devEntry = Journal();
+        devEntry.setDayRating(3);
+        devEntry.setMood("Happy");
+        devEntry.setSleepRating(5);
+        devEntry.setTextEntry("Today was a good day. just hung around tbh.");
+        devEntry.addActivity("Nap");
+        devEntry.addActivity("Art");
+        devEntry.addActivity("Work");
 
 
+        exportJournal(devEntry);
+    }
 }
 
 string getDesktopPath(){
@@ -446,4 +401,118 @@ bool isFirstOpen() {
 
 bool isFirstOfDay() {
     return !itemExists(getHamsterHangoutPath() + getFileName());
+}
+
+char readYN() {
+    string response;
+    char c_response;
+
+    bool validResponse = false;
+
+    while (!validResponse) {
+        getline(cin >> ws, response);
+
+        if (response.length() == 1) {
+            c_response = tolower(response[0]);
+
+            if (c_response == 'y' || c_response == 'n') {
+                validResponse = true;
+                break;
+            }
+        }
+
+        TYPE("Please Enter a Valid input");
+        TYPE("y or Y for Yes");
+        TYPE("n or N for No");
+
+    }
+
+    return c_response;
+}
+
+int readInt(int min, int max) {    
+    string response;
+    int i_response;
+    bool validResponse = false;
+
+    while (!validResponse) {
+        getline(cin >> ws, response);
+
+        if (!response.empty()){
+                try {
+                    // attempt conversion
+                    i_response = stoi(response);
+
+                    // check within range
+                    if (i_response >= min && i_response <= max) {
+                        validResponse = true;
+                    }
+
+                    // final check: that the user hasn't entered characters following a sequence of integers, which stoi would accept
+                    // e.g. for 4.5 or 4sdgdff, stoi would succeed and return 4
+                    for (int i = 0; i < response.length() - 1; i++) {
+                        if (!(response[i] >= int('0') && response[i] <= int('9'))) {
+                            validResponse = false;
+                            break;
+                        }
+                    }
+                }
+                catch (...) {
+                    validResponse = false;
+                }
+        }
+        if (!validResponse) {
+            string message = "Please enter a valid number between " + to_string(min) + " and " + to_string(max);
+            TYPE(message);
+        }
+    }
+
+    return i_response;
+}
+
+string readString() {
+    string response;
+    bool validResponse = false;
+
+    while (!validResponse) {
+        getline(cin >> ws, response);
+        
+        if (!response.empty()) {
+            validResponse = true;
+
+            break;
+        }
+        else {
+            TYPE("Please enter some text");
+        }
+    }
+    return response;
+}
+
+string readWord() {
+    string response;
+    bool validResponse = false;
+
+    while (!validResponse) {
+        getline(cin >> ws, response);
+
+        bool isWord = true;
+
+        for (char ch : response) {
+            if (isspace(ch)) {
+                isWord = false;
+                break;
+            }
+        }
+
+        if (!response.empty() && isWord) {
+            validResponse = true;
+            break;
+        }
+        else {
+            TYPE("Please enter a single word");
+        }
+
+    }
+    return response;
 }
