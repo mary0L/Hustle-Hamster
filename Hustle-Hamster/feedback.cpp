@@ -93,8 +93,8 @@ vector<string> getUncompletedActivities(vector<string>& uncompletedActivities){
 void hammyEvaluation(Journal& dailyEntry) {
 	printHammy();
 	//check what the mood rating is, if less than three do a comprehensive feedback, if greater than three be encouraging
-	if (dailyEntry.getDayRating() <= 3) {
-		TYPE("It looks like today wasn't your best day, and that's okay.");
+	if (dailyEntry.getDayRating() < 3) {
+		TYPE("It looks like you rated your day a " + to_string(dailyEntry.getDayRating()) + " out of 5");
 		TYPE("Let's see if we can reflect on your day to delve deeper.");
 
 		#ifndef TEST_RUNNING
