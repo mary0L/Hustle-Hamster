@@ -254,3 +254,21 @@ string readString();
 * @returns The word entered by the user.
 */
 string readWord();
+
+/**
+* Convert a given string to lower case characters. 
+* 
+* @param s The string to convert. This variable will not be changed. 
+* 
+* @return The lower case version of the string.
+*/
+string stringToLower(const string& s);
+
+/**
+* Trim the trailing whitspace from a given string.
+* 
+* @param The string to trim. This variable will be changed. 
+* 
+* @return The trimmed string.
+*/
+string trim(string &s);

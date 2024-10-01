@@ -405,26 +405,30 @@ bool isFirstOfDay() {
 
 char readYN() {
     string response;
-    char c_response;
+    char c_response = ' ';
 
     bool validResponse = false;
 
     while (!validResponse) {
         getline(cin >> ws, response);
 
-        if (response.length() == 1) {
-            c_response = tolower(response[0]);
+        response = trim(response);
+        response = stringToLower(response);
 
-            if (c_response == 'y' || c_response == 'n') {
-                validResponse = true;
-                break;
-            }
+        if (response == "yes" || response == "y") {
+            c_response = 'y';
+            validResponse = true;
+            break;
+        }
+        else if (response == "no" || response == "n") {
+            c_response = 'n';
+            validResponse = true;
+            break;
         }
 
         TYPE("Please Enter a Valid input");
         TYPE("y or Y for Yes");
         TYPE("n or N for No");
-
     }
 
     return c_response;
@@ -437,6 +441,8 @@ int readInt(int min, int max) {
 
     while (!validResponse) {
         getline(cin >> ws, response);
+
+        response = trim(response);
 
         if (!response.empty()){
                 try {
@@ -476,6 +482,8 @@ string readString() {
 
     while (!validResponse) {
         getline(cin >> ws, response);
+
+        response = trim(response);
         
         if (!response.empty()) {
             validResponse = true;
@@ -496,6 +504,8 @@ string readWord() {
     while (!validResponse) {
         getline(cin >> ws, response);
 
+        response = trim(response);
+
         bool isWord = true;
 
         for (char ch : response) {
@@ -515,4 +525,25 @@ string readWord() {
 
     }
     return response;
+}
+
+string stringToLower(const string &s) {
+    string result = "";
+
+    for(char ch : s) {
+        result += tolower(ch);
+    }
+
+    return result;
+}
+
+string trim(string &s) {
+
+    int endpos = s.find_last_not_of(" \t\n\r\f\v");
+
+    if (endpos != string::npos) {
+        s.erase(endpos + 1);
+    }
+
+    return s;
 }
