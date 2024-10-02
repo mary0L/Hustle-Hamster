@@ -100,6 +100,7 @@ void discardInputLine(void) {
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore until newline
         FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
     #else
+        int c; 
         while ((c = getchar()) != EOF && c != '\n');  // '\n' is Enter on Unix
     #endif
 }
