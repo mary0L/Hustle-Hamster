@@ -212,14 +212,13 @@ bool isFirstOpen();
 * @return 1 (true) if they have already exported a journal entry today, 0 (false) otherwise. Will throw an exception if there is an issue with obtaining the path of the desktop directory.
 */
 bool isFirstOfDay();
-string getFileName();
 
 /**
-* Read character from user input. 
+* Read yes/no from user input. 
 * 
-* Only accepts 'y' or 'n' (case insensitive).
+* Only accepts "y"/"yes" or "n"/"no" (case insensitive).
 * 
-* @returns The character entered by the user.
+* @returns The characters 'y'/'n' based on word/character entered by the user.
 */
 char readYN();
 
@@ -236,7 +235,7 @@ char readYN();
 int readInt(int min, int max);
 
 /**
-* Read string from user imput.
+* Read string from user input.
 * 
 * Will only take the first line of user input. i.e. anything preceeding a '\n'.
 * 
@@ -254,3 +253,21 @@ string readString();
 * @returns The word entered by the user.
 */
 string readWord();
+
+/**
+* Convert a given string to lower case characters. 
+* 
+* @param s The string to convert. This variable will not be changed. 
+* 
+* @return The lower case version of the string.
+*/
+string stringToLower(const string& s);
+
+/**
+* Trim the trailing whitspace from a given string.
+* 
+* @param The string to trim. This variable will be changed. 
+* 
+* @return The trimmed string.
+*/
+string trim(string &s);
