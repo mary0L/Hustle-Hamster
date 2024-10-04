@@ -16,6 +16,8 @@ vector<string> defaultActivities = {"do something productive (e.g. work, study, 
 
 char separator[] = "----------------------------------------------------------"; 
 
+bool typingAnimationOn = true;
+
 void delay(int time) {
     Sleep(time);
 }
@@ -122,9 +124,14 @@ void enableInput(void) {
 void TYPE(const string& p) {
     disableInput();
     cout << "       ";
-    for (char c : p) {
-        cout << c << flush;
-        Sleep(SLEEP_DURATION);
+    if(!typingAnimationOn){
+        cout << p; 
+    }
+    else{
+        for (char c : p) {
+            cout << c << flush;
+            Sleep(SLEEP_DURATION);
+        }
     }
     cout << endl;
     enableInput(); 
@@ -172,12 +179,20 @@ void printReport(Journal& dailyEntry) {
 }
 
 void menu() {
+    string message;
+    if(typingAnimationOn){
+        message = "[3] Skip Typing Animation (ON)";
+    }
+    else{
+        message = "[3] Skip Typing Animation (OFF)";
+    }
     TYPE("What can I help you with?");
     TYPE("[1] Daily Log");
     TYPE("[2] How to Use");
-    TYPE("[3] Quit");
+    TYPE(message);
+    TYPE("[4] Quit");
 
-    int response = readInt(1, 3);
+    int response = readInt(1, 4);
 
     if (response == 1) {
         try {
@@ -221,7 +236,17 @@ void menu() {
         delay(stdDelay);
         helpMenu();
     }
-    else if (response == 3) {
+    else if (response == 3){
+        if(typingAnimationOn){
+            typingAnimationOn = false; 
+        }
+        else{
+            typingAnimationOn = true;
+        }
+        menu();
+    }
+
+    else if (response == 4) {
         TYPE("It was fun hanging out! See you tomorrow!");
         exit(0);
     }
