@@ -181,10 +181,10 @@ void printReport(Journal& dailyEntry) {
 void menu() {
     string message;
     if(typingAnimationOn){
-        message = "[3] Skip Typing Animation (ON)";
+        message = "[3] Skip Typing Animation (OFF)";
     }
     else{
-        message = "[3] Skip Typing Animation (OFF)";
+        message = "[3] Skip Typing Animation (ON)";
     }
     TYPE("What can I help you with?");
     TYPE("[1] Daily Log");
