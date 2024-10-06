@@ -1,6 +1,6 @@
 #include "includes/all_includes.h"
 
-string ratingSystem = "[1] Terrible [2] Bad [3] Fine [4] Good [5] AMAZING!";
+string ratingSystem = "[1] Terrible    [2] Bad    [3] Fine    [4] Good    [5] AMAZING!";
 
 vector<string> dailyLogR = {
     "Awesome, let's see how your day has been!",
