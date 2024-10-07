@@ -14,7 +14,8 @@ void howToUse(){
     TYPE("When you first join the hangout you’ll be presented with a menu that will let you do a couple of things!\n");
     TYPE("[1] Daily Log");
     TYPE("[2] How to Use");
-    TYPE("[3] Exit");
+    TYPE("[3] Skip Typing Animation");
+    TYPE("[4] Exit");
 
     TYPE("Let's start at 1 and work our way down!\n\n");
 
@@ -24,7 +25,10 @@ void howToUse(){
     TYPE("[2] How to Use:");
     howToUseHowToUse();
 
-    TYPE("[3] Exit");
+    TYPE("[3] Skip Typing Animation");
+    howToUseAnimationToggle(); 
+    
+    TYPE("[4] Exit");
     howToUseExit();
     
     TYPE("I'll now take you to the menu and you can let me know what you wanna do next!\n");
@@ -51,10 +55,12 @@ void howToUseDailyLog(){
     TYPE("Finally, I will ask you a simple question and you can write whatever you want! This can be long or short, and will just be a little blurb about your day!");
     TYPE("Once you complete your log I will show you a daily summary!");
     TYPE("I will then ask if you need to change anything, and if you want to save your journal to a .txt file on your desktop!\n");
-    TYPE("If you choose to save your entry it will be saved to this location:");
-    string temporary = "" + getDesktopPath() + "\n\n"; 
-    TYPE(temporary); 
+    TYPE("If you choose to save your entry it will be saved to your Desktop.");
+    TYPE("(for more detail about journal export, select \"Where are my diaries saved\" in the help menu)\n\n");
+}
 
+void howToUseAnimationToggle() {
+    TYPE("Choosing this option will toggle the typing animation on and off! Please note that the typing animation will always be on when you first open the app!\n\n");
 }
 
 void whereIsOurDataFrom(){
@@ -104,9 +110,9 @@ void whereIsOurDataFrom(){
 }
 
 void whereAreMyFilesSaved(){
-    TYPE("Your files are saved to: ");
+    TYPE("Your files are saved to your Desktop;");
     try{
-        string temporary = "" + getDesktopPath() + "\n\n"; 
+        string temporary = "" + getHamsterHangoutPath() + "\n\n";
         TYPE(temporary); 
     }
     catch (...) {

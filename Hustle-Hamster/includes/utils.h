@@ -17,20 +17,11 @@
 
 #include "all_includes.h"
 
-/**
- *  Development Process only so that developers
- *  can use MACOS and Windows
- */
-#if defined(_WIN32) || defined(_WINDOWS)
 #define WIN32_LEAN_AND_MEAN // Necessary to remove ambiguity errors caused in windows.h library
 #include <windows.h>
 #include <conio.h>
 #undef max // necessary for handling user input using the max function from <limits> as windows has a defined macro
-#else
-#include <unistd.h>
-#include <termios.h>
-#define Sleep(x) usleep((x)*1000)
-#endif
+
 
 /* The standard delay used for printing */
 extern unsigned int stdDelay;
@@ -97,13 +88,6 @@ void disableInput(void);
 */
 void enableInput(void);
 
-/**
- * Discards the last line that was input
-*/
-void discardInputLine(void);
-
-#if defined(_WIN32) || defined(_WINDOWS)
-
 /** 
  * Sets console mode
  * 
@@ -118,22 +102,6 @@ void setConsoleMode(DWORD bit, bool onElseOff);
 */
 void discardInputBuffer(); 
 
-#else
-/**
- * Sets terminal settings
- * 
- * @param fd the terminal that we are configuring
- * @param bit flag to change to off or on
- * @param onElseOff if flag is on otherwise off
-*/
-void setTermiosBit(int fd, tcflag_t bit, int onElseOff );
-
-/**
- * Discards the input buffer that has anything that has been previously input
-*/
-void discardInputBuffer(void);
-
-#endif
 /**
  * Turns off Echo so user input is not seen in terminal
 */

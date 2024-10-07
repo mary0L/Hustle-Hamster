@@ -24,8 +24,6 @@ void delay(int time) {
 
 //#########  Following code from stackoverflow: bgoldst  ############################################################
 
-#if defined(_WIN32) || defined(_WINDOWS)
-
 HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
 DWORD g_consoleMode;
 
@@ -52,61 +50,6 @@ void turnCanonOn(void) { setConsoleMode(ENABLE_LINE_INPUT, true); }
 void discardInputBuffer() {
     FlushConsoleInputBuffer(hStdin);
 }
-
-#else
-struct termios g_terminalSettings;
-
-void turnEchoOff(void) { setTermiosBit(0,ECHO,0); }
-    
-void turnEchoOn(void) { setTermiosBit(0,ECHO,1);}
-
-void turnCanonOff(void) { setTermiosBit(0,ICANON,0); }
-
-void turnCanonOn(void) {setTermiosBit(0,ICANON,1); }
-
-void setTermiosBit(int fd, tcflag_t bit, int onElseOff ) {
-    static int first = 1;
-    if (first) {
-        first = 0;
-        tcgetattr(fd,&g_terminalSettings);
-    } 
-    if (onElseOff)
-        g_terminalSettings.c_lflag |= bit;
-    else
-        g_terminalSettings.c_lflag &= ~bit;
-    tcsetattr(fd,TCSANOW,&g_terminalSettings);
-} 
-
-void discardInputBuffer(void) {
-    struct timeval tv;
-    fd_set rfds;
-    while (1) {
-        FD_ZERO(&rfds);
-        FD_SET(0,&rfds);
-        tv.tv_sec = 0;
-        tv.tv_usec = 0;
-        if (select(1,&rfds,0,0,&tv) == -1) { fprintf(stderr, "[error] select() failed: %s", strerror(errno) ); exit(1); }
-        if (!FD_ISSET(0,&rfds)) break; // can break if the input buffer is clean
-        // select() doesn't tell us how many characters are ready to be read; just grab a big chunk of whatever is there
-        char buf[500];
-        ssize_t numRead = read(0,buf,500);
-        if (numRead == -1) { fprintf(stderr, "[error] read() failed: %s", strerror(errno) ); exit(1); }
-    } // end while
-} // end discardInputBuffer()
-
-#endif
-
-void discardInputLine(void) {
-    #if defined(_WIN32) || defined(_WINDOWS)
-        cin.clear(); // Clear the error flags
-        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore until newline
-        FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-    #else
-        int c; 
-        while ((c = getchar()) != EOF && c != '\n');  // '\n' is Enter on Unix
-    #endif
-}
-
 
 void disableInput(void) {
     turnEchoOff();
@@ -270,8 +213,6 @@ void menu() {
 
 string getDesktopPath(){
     try {
-        /* For development purposes only, so that we can develop on both mac and windows */
- #ifdef _WINDOWS
         char* path;
         size_t len;
         int err = _dupenv_s(&path, &len, "USERPROFILE");
@@ -283,19 +224,7 @@ string getDesktopPath(){
         string pathStr = string(path);
 
         free(path); // as per _dupenv_s specification
- #else
-        // Note that this is considered an "unsafe" method, but as this is for development processes 
-        // only, if it works on MACOS, I'm happy to leave it here. 
-        const char* path = getenv("HOME");
-
-        if (!path) {
-            throw exception();
-    }
-
-        string pathStr = string(path);
-#endif
         
-
         return pathStr + "/Desktop/";
     }
     catch(...) {
@@ -376,12 +305,7 @@ void createHamsterHangoutDirectory() {
 
         const wchar_t* wc_fullPath = w_fullPath.c_str();
 
-#if defined(_WIN32) || defined(_WINDOWS)
         int err = _wmkdir(wc_fullPath);
-#else
-        const char* c_fullPath = fullPath.c_str();
-        int err = mkdir(c_fullPath, S_IRWXU | S_IRWXG | S_IRWXO);
-#endif
 
         // If directory creation fails for any reason other than the directory already exists, throw and exception
         if (err != 0 && errno != EEXIST) {
