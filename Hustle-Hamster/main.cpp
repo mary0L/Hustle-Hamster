@@ -24,6 +24,8 @@ int main(){
     delay(stdDelay);
     printHammy();
     TYPE("Hi there!! It's so good to see you <3");
+    TYPE("This is your personal space for daily journaling, where you can reflect, jot down thoughts, and track your journey each day.");
+    TYPE("Ready to dive in and start writing? Let's do this!");
     cout << separator << "\n";
 
     if (isFirstOpen()) {
