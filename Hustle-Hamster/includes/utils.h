@@ -154,7 +154,7 @@ string getFileName();
 * 
 * @return 1 (true) if the given item was found to exist, 0 (false) otherwise.
 */
-bool itemExists(string path);
+bool itemExists(const string& path);
 
 /**
  * Get the full path for the HamsterHangout directory on the user's desktop.

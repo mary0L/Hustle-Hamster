@@ -326,7 +326,7 @@ string getFileName() {
     return "journal-" + year + "-" + month + "-" + day + ".txt";
 }
 
-bool itemExists(string path) {
+bool itemExists(const string& path) {
     struct stat fileInfo;
 
     const char* c_path = path.c_str();
