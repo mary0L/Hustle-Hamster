@@ -39,7 +39,7 @@ void activityAdvice(vector<string>& uncompletedActivities) {
 	if (uncompletedActivities.size() > 0) {
 		int maxIndex = uncompletedActivities.size();
 
-		int randActivity = randomNumber(maxIndex - 1); //need to add the randomiser in here
+		int randActivity = randomNumber(maxIndex - 1); 
 		TYPE(uncompletedActivities[randActivity]);
 		if (uncompletedActivities[randActivity] == "Socialise") {
 			socialiseFeedback();
@@ -77,7 +77,7 @@ void checkCompletion(Journal& dailyEntry) {
 	for (string activity : defaultActivities)
 	{
 		if (!dailyEntry.didActivity(activity)) {
-			if (activity !=  "Work" && activity != "Study") {
+			if (activity !=  "do something productive (e.g. work, study, etc.)" && activity != "do something for yourself (e.g. hobby or self care)") {
 				uncompletedActivities.push_back(activity);
 			}
 		}
@@ -91,9 +91,9 @@ vector<string> getUncompletedActivities(vector<string>& uncompletedActivities){
 }
 
 void hammyEvaluation(Journal& dailyEntry) {
-	printHammy();
 	//check what the mood rating is, if less than three do a comprehensive feedback, if greater than three be encouraging
 	if (dailyEntry.getDayRating() < 3) {
+		printHammySad();
 		TYPE("It looks like you rated your day a " + to_string(dailyEntry.getDayRating()) + " out of 5");
 		TYPE("Let's see if we can reflect on your day to delve deeper.");
 
@@ -102,12 +102,13 @@ void hammyEvaluation(Journal& dailyEntry) {
 		#endif
 	}
 	else {
+		printHammyHappy();
 		TYPE("I see you're feeling positive today-amazing! It's great to see you having a good day.");
 		TYPE("Keep up the momentum, but remember to pace yourself. Staying balanced is key!");
 		TYPE("Celebrate your wins and keep doing what feels right for you.");
 	}
 	printHammy();
 	TYPE("Now that you've had a moment to reflect on today, it's a great time to write out what's been on your mind.");
-	TYPE("This could be thoughts, feelings or just something you need to get off your chest");
+	TYPE("This could be thoughts, feelings, what you're grateful for, or just something you need to get off your chest");
 	TYPE("this is your space to express yourself freely!");
 }
