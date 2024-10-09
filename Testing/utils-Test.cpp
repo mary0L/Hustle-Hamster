@@ -46,6 +46,52 @@ void testPrintHammy()
     assert(output.str() == expectedOutput.str());
 }
 
+void testPrintHammyHappy()
+{
+
+    std::stringstream output; // Capture cout output
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
+    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
+
+    // Call function being tested
+    printHammy();
+
+    // Reset cout buffer
+    std::cout.rdbuf(coutbuf);
+
+    // Check the output
+    std::stringstream expectedOutput;
+    expectedOutput << "   o _ o\n";
+    expectedOutput << "  ( ^.^)\n";
+    expectedOutput << "o_(\")(\")\n";
+    expectedOutput << "       \\\n";
+
+    assert(output.str() == expectedOutput.str());
+}
+
+void testPrintHammySad()
+{
+
+    std::stringstream output; // Capture cout output
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
+    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
+
+    // Call function being tested
+    printHammy();
+
+    // Reset cout buffer
+    std::cout.rdbuf(coutbuf);
+
+    // Check the output
+    std::stringstream expectedOutput;
+    expectedOutput << "   o _ o\n";
+    expectedOutput << "  ( >.<)\n";
+    expectedOutput << "o_(\")(\")\n";
+    expectedOutput << "       \\\n";
+
+    assert(output.str() == expectedOutput.str());
+}
+
 // Test printReport method by checking the terminal output
 void testPrintReport(Journal &journal)
 {
@@ -210,6 +256,8 @@ int main()
     testPrintReport(dailyEntry);
     testTYPE();
     testPrintHammy();
+    testPrintHammyHappy();
+    testPrintHammySad();
     testReadInt();
     testGetFileName();
     testReadString();
