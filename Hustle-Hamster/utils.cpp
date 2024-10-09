@@ -144,6 +144,21 @@ void printHammy() {
     cout << "       \\\n";
 }
 
+void printHammyHappy() {
+    cout << "   o _ o\n";
+    cout << "  ( ^.^)\n";
+    cout << "o_(\")(\")\n";
+    cout << "       \\\n";
+}
+
+void printHammySad() {
+    cout << "   o _ o\n";
+    cout << "  ( >.<)\n";
+    cout << "o_(\")(\")\n";
+    cout << "       \\\n";
+}
+
+
 void printReport(Journal& dailyEntry) {
     stringstream dayRate;
     stringstream sleepRate;

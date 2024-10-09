@@ -63,9 +63,19 @@ void TYPE(const string& p);
 void delay(int time);
 
 /**
- * Method to print Hammy the Hamster Friend.
+ * Method to print generic Hammy the Hamster Friend.
  */
 void printHammy();
+
+/**
+ * Method to print a happy Hammy the Hamster Friend.
+ */
+void printHammyHappy();
+
+/**
+ * Method to print a sad Hammy the Hamster Friend.
+ */
+void printHammySad();
 
 /**
  * Prints the menu and calls method based on user input
