@@ -120,6 +120,12 @@ void whereAreMyFilesSaved(){
     }
 }
 
+void mockHowToUse() { std::cout << "Mock How To Use Called" << std::endl; }
+void mockWhereAreMyFilesSaved() { std::cout << "Mock Where Are My Files Saved Called" << std::endl; }
+void mockHowToUseDailyLog() { std::cout << "Mock How To Use Daily Log Called" << std::endl; }
+void mockWhereIsOurDataFrom() { std::cout << "Mock Where Is Our Data From Called" << std::endl; }
+void mockMenu() { std::cout << "Mock Menu Called" << std::endl; }
+
 void printHelpMenu() {
     TYPE("[1] App Walkthrough");
     TYPE("[2] Where are my Diaries Saved?");
@@ -127,29 +133,46 @@ void printHelpMenu() {
     TYPE("[4] Where is our data from?");
     TYPE("[5] Return to Main Menu");
 
-#ifdef TEST_RUNNING
-    exit(0);
-#endif
-
     int response = readInt(1, 5);
 
     if (response == 1) {
+        #ifndef TEST_RUNNING
         howToUse();
+        #else
+        mockHowToUse();
         printHelpMenu();
+        #endif
     }
     else if (response == 2) {
+        #ifndef TEST_RUNNING
         whereAreMyFilesSaved();
+        #else
+        mockWhereAreMyFilesSaved();
         printHelpMenu();
+        #endif
     }
     else if (response == 3) {
+        #ifndef TEST_RUNNING
         howToUseDailyLog();
+        #else
+        mockHowToUseDailyLog(); 
         printHelpMenu();
+        #endif
     }
+
     else if (response == 4) {
+        #ifndef TEST_RUNNING
         whereIsOurDataFrom();
+        #else
+        mockWhereIsOurDataFrom(); 
         printHelpMenu();
+        #endif
     }
     else if (response == 5) {
+        #ifndef TEST_RUNNING
         menu();
+        #else
+        mockMenu();
+        #endif
     }
 }
