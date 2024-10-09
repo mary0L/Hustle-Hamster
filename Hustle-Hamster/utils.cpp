@@ -136,6 +136,9 @@ void printReport(Journal& dailyEntry) {
     cout << separator << "\n";
 }
 
+void mockDailyLog() { cout << "Mock daily log" << endl; }
+void mockHelpMenu() { cout << "Mock help menu" << endl; }
+
 void menu() {
     string message;
     if(typingAnimationOn){
@@ -170,7 +173,12 @@ void menu() {
                 }
             }
             else {
+#ifndef TEST_RUNNING
                 dailyLog();
+#else
+                mockDailyLog();
+                menu();
+#endif
             }
         }
         catch (...) {
@@ -190,9 +198,14 @@ void menu() {
         }
     }
     else if (response == 2) {
+#ifndef TEST_RUNNING
         cout << separator << "\n";
         delay(stdDelay);
         helpMenu();
+#else
+        mockHelpMenu();
+        menu();
+#endif
     }
     else if (response == 3){
         if(typingAnimationOn){
@@ -206,7 +219,9 @@ void menu() {
 
     else if (response == 4) {
         TYPE("It was fun hanging out! See you tomorrow!");
+#ifndef TEST_RUNNING
         exit(0);
+#endif
     }
     else if (response == 0) { // Dev mode <3
         string dir = getHamsterHangoutPath();
