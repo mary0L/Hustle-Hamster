@@ -16,13 +16,13 @@ void testHammyEval(Journal &journal, int rating)
     hammyEvaluation(journal);
 
     string expectedOutput;
-    if (rating == 3){
+    if (rating < 3){
         expectedOutput = 
             "   o _ o\n"
-            "  ( -.-)\n"
+            "  ( >.<)\n"
             "o_(\")(\")\n"
             "       \\\n"
-            "       It looks like today wasn't your best day, and that's okay.\n"
+            "       It looks like you rated your day a 2 out of 5\n"
             "       Let's see if we can reflect on your day to delve deeper.\n"
             "   o _ o\n"
             "  ( -.-)\n"
@@ -34,7 +34,7 @@ void testHammyEval(Journal &journal, int rating)
     } else if (rating == 5) {
         expectedOutput = 
             "   o _ o\n"
-            "  ( -.-)\n"
+            "  ( ^.^)\n"
             "o_(\")(\")\n"
             "       \\\n"
             "       I see you're feeling positive today-amazing! It's great to see you having a good day.\n"
@@ -50,7 +50,6 @@ void testHammyEval(Journal &journal, int rating)
     }
 
     cout.rdbuf(coutbuf); // Set buffer back to original
-
     assert(output.str() == expectedOutput);
 }
 
@@ -183,10 +182,10 @@ int main()
     dailyEntry.setDayRating(5); //Setup: set day rating to check condition response in hammyEvaluation
     testHammyEval(dailyEntry, 5); // Run test
 
-    dailyEntry.setDayRating(3); // Setup: change day rating to check conditional response in hammyEvaluation
-    testHammyEval(dailyEntry, 3); // Run test with modifications
+    dailyEntry.setDayRating(2); // Setup: change day rating to check conditional response in hammyEvaluation
+    testHammyEval(dailyEntry, 2); // Run test with modifications
 
-    dailyEntry.setSleepRating(3); //Setup: set sleep rating to envoke pushback to uncompleted activities
+    dailyEntry.setSleepRating(2); //Setup: set sleep rating to envoke pushback to uncompleted activities
     dailyEntry.addActivity("Socialise"); //Setup: Add activities
     dailyEntry.addActivity("Exercise");
     testUncompleted(dailyEntry);
