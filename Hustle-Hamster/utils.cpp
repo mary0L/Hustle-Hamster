@@ -365,7 +365,11 @@ void createHamsterHangoutDirectory() {
 }
 
 string getFileName() {
+#ifndef TEST_RUNNING
     Date today = Date();
+#else
+    Date today = Date(30, 9, 2024, 1);
+#endif
     string day = to_string(today.getDay());
     string month = to_string(today.getMonth());
     string year = to_string(today.getYear());
