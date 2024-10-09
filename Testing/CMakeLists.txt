@@ -34,6 +34,7 @@ set(TEST_SOURCES_FEEDBACK
 set(TEST_INC_DIRS
     ${PROJECT_DIR}/Hustle-Hamster
     ${PROJECT_DIR}/Testing)
+    ${PROJECT_DIR}/Hustle-Hamster/includes
 
 
 add_definitions(-DTEST_RUNNING)
