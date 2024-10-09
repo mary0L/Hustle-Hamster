@@ -241,6 +241,23 @@ void menu() {
     }
 }
 
+//Mock method for getting desktop path
+int mock_dupenv_s(char **path, size_t *len, const char *varname)
+{
+    // Simulate success: return a mock user profile path
+    if (string(varname) == "USERPROFILE")
+    {
+        string mockPath = "C:\\MockUser";
+        *len = mockPath.size();
+        *path = (char *)malloc(mockPath.size() + 1);
+        strcpy_s(*path, mockPath.size() + 1, mockPath.c_str());
+
+        return 0;
+    }
+
+    return -1;
+}
+
 string getDesktopPath(){
     try {
         char* path;
