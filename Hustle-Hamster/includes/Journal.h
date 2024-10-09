@@ -20,7 +20,7 @@
  */
 class Journal {
 private:
-	Date date;
+	Date date = Date();
 	int dayRating = 0;
 	int sleepRating = 0;
 	string mood = "";

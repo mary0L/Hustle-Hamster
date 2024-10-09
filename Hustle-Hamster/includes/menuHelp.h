@@ -39,6 +39,11 @@ void howToUseHowToUse();
 void howToUseDailyLog();
 
 /**
+* Lets the user know how the animation toggle option works.
+*/
+void howToUseAnimationToggle();
+
+/**
  * Lets the user know where our data is from.
  */
 void whereIsOurDataFrom();
