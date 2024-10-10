@@ -233,8 +233,25 @@ void testPrintHelpMenu()
     assert(output.str() == expectedOutput);
 }
 
+void testHelpMenu()
+{
+    std::stringstream output; // Capture cout output
+    std::streambuf *coutbuf = std::cout.rdbuf();
+    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
+
+    helpMenu();
+
+    string expectedOutput =
+        "       Welcome to the Help Menu!\n"
+        "       I can give you a hand with lots of stuff! Such as...\n\n";
+    
+    std::cout.rdbuf(coutbuf);
+    assert(output.str() == expectedOutput);
+}
+
 int main()
 {
+
     testHowToUseExit();
     testHowToUseToUse();
     testHowToUseDailyLog();
@@ -242,5 +259,6 @@ int main()
     testWhereAreMyFilesSaved();
     testHowToUse();
     testPrintHelpMenu();
+    testHelpMenu();
     return 0;
 }

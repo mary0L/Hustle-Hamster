@@ -4,7 +4,9 @@ void helpMenu()
 {
     TYPE("Welcome to the Help Menu!");
     TYPE("I can give you a hand with lots of stuff! Such as...\n");
+    #ifndef TEST_RUNNING
     printHelpMenu();
+    #endif
 }
 
 void howToUse()

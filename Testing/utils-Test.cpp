@@ -278,6 +278,12 @@ void testMenu()
     menu();
 }
 
+void testFirstEntry()
+{
+    bool first = isFirstOpen();
+    assert(first == false);
+}
+
 void testCreateHamsterHangoutDirectory()
 {   
     createHamsterHangoutDirectory();
@@ -316,6 +322,7 @@ int main()
     testExportJournal(dailyEntry);
     testMenu();
     testCreateHamsterHangoutDirectory();
+    testFirstEntry();
 
     // Tear down - Delete the journal object
     dailyEntry.~Journal();

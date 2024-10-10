@@ -204,12 +204,7 @@ void menu()
             }
             else
             {
-#ifndef TEST_RUNNING
                 dailyLog();
-#else
-                mockDailyLog();
-                menu();
-#endif
             }
         }
         catch (...)
@@ -233,9 +228,9 @@ void menu()
     }
     else if (response == 2)
     {
-#ifndef TEST_RUNNING
         cout << separator << "\n";
         delay(stdDelay);
+#ifndef TEST_RUNNING
         helpMenu();
 #else
         mockHelpMenu();
