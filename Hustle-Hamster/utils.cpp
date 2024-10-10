@@ -173,7 +173,7 @@ void menu()
     TYPE(message);
     TYPE("[4] Quit");
 
-    int response = readInt(1, 4);
+    int response = readInt(0, 4);
 
     if (response == 1)
     {
@@ -325,6 +325,30 @@ string getDesktopPath()
     }
 }
 
+void writeToFile(std::ostream &file, Journal &journalEntry)
+{
+    file << "============ " << journalEntry.getDate().getMonthName() << " " << journalEntry.getDate().getDay() << " " << journalEntry.getDate().getYear() << " ============\n";
+    file << "You rated your day a " << journalEntry.getDayRating() << "/5\n";
+    file << "You rated your sleep a " << journalEntry.getSleepRating() << "/5\n";
+    file << "You said that today you felt: " << journalEntry.getMood() << "\n";
+
+    file << "\n";
+
+    if (!journalEntry.getActivities().empty())
+    {
+        file << "Here are the activities you completed today:\n";
+        for (string activity : journalEntry.getActivities())
+        {
+            file << " * " << activity << "\n";
+        }
+    }
+
+    file << "\n";
+
+    file << "And finally, here is your daily journal entry:\n";
+    file << journalEntry.getTextEntry();
+}
+
 void exportJournal(Journal &journalEntry)
 {
     string filename = getFileName();
@@ -344,29 +368,8 @@ void exportJournal(Journal &journalEntry)
 
         if (!txtFile.fail())
         {
-            txtFile << "============ " << journalEntry.getDate().getMonthName() << " " << journalEntry.getDate().getDay() << " " << journalEntry.getDate().getYear() << " ============\n";
-            txtFile << "You rated your day a " << journalEntry.getDayRating() << "/5\n";
-            txtFile << "You rated your sleep a " << journalEntry.getSleepRating() << "/5\n";
-            txtFile << "You said that today you felt: " << journalEntry.getMood() << "\n";
-
-            txtFile << "\n";
-
-            if (!journalEntry.getActivities().empty())
-            {
-                txtFile << "Here are the activities you completed today:\n";
-                for (string activity : journalEntry.getActivities())
-                {
-                    txtFile << " * " << activity << "\n";
-                }
-            }
-
-            txtFile << "\n";
-
-            txtFile << "And finally, here is your daily journal entry:\n";
-            txtFile << journalEntry.getTextEntry();
-
+            writeToFile(txtFile, journalEntry);
             txtFile.close();
-
             TYPE("Your journal has been exported successfully! Saved to:\n");
             TYPE(path + "\n");
         }
