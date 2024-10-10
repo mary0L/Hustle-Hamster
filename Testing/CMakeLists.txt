@@ -30,6 +30,12 @@ set(TEST_SOURCES_FEEDBACK
     ${PROJECT_DIR}/Hustle-Hamster/feedback.cpp
     ${PROJECT_DIR}/Hustle-Hamster/Journal.cpp
     )
+
+set(TEST_SOURCES_EXPORT
+    ${PROJECT_DIR}/Hustle-Hamster/utils.cpp
+    ${PROJECT_DIR}/Hustle-Hamster/Journal.cpp
+    ${PROJECT_DIR}/Testing/testJournalExport.cpp 
+)
     
 set(TEST_INC_DIRS
     ${PROJECT_DIR}/Hustle-Hamster
@@ -69,9 +75,15 @@ target_include_directories(TestFeedback PRIVATE ${TEST_INC_DIRS})
 target_compile_definitions(TestFeedback PRIVATE TEST_RUNNING)
 target_link_libraries(TestFeedback src)
 
+add_executable(TestExport ${TEST_SOURCES_EXPORT})
+target_include_directories(TestExport PRIVATE ${TEST_INC_DIRS})
+target_link_libraries(TestExport src)
+
+
 add_test(NAME TestJournal COMMAND TestJournal)
 add_test(NAME TestDailyLog COMMAND TestDailyLog)
 add_test(NAME TestUtils COMMAND TestUtils)
 add_test(NAME TestMenuHelp COMMAND TestMenuHelp)
 add_test(NAME TestFeedback COMMAND TestFeedback)
+add_test(NAME TestExport COMMAND TestExport)
 
