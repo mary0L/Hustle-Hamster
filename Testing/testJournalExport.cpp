@@ -7,7 +7,7 @@
 #include <filesystem>
 
 
-void testExportJournal(Journal &journal)
+void testExportJournal()
 {
     Date date = Date(30, 9, 2024, 1);
     Journal dailyEntry = Journal(date);
@@ -21,7 +21,7 @@ void testExportJournal(Journal &journal)
 
     std::ostringstream mockFile;
 
-    writeToFile(mockFile, journal);
+    writeToFile(mockFile, dailyEntry);
 
     string expectedOutput =
         "============ September 30 2024 ============\n"
@@ -31,7 +31,7 @@ void testExportJournal(Journal &journal)
         "Here are the activities you completed today:\n"
         " * Activity 1\n"
         " * Activity 2\n\n"
-        "And finally, here is your daily journal entry:"
+        "And finally, here is your daily journal entry:\n"
         "This is a test entry.";
 
     assert(mockFile.str() == expectedOutput);
@@ -39,6 +39,6 @@ void testExportJournal(Journal &journal)
 }
 
 int main(){
-
+    testExportJournal();
     return 0;
 }

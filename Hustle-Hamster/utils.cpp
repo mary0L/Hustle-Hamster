@@ -401,6 +401,25 @@ int randomNumber(int max)
     return distribute(generator);
 }
 
+// Mocked version of _wmkdir
+int mock_wmkdir(const wchar_t *path)
+{
+    std::wstring mockPath = path;
+
+    if (mockPath == L"/mock/fail")
+    {
+        errno = EACCES;  // Simulate permission denied error
+        return -1;
+    }
+    else if (mockPath == L"/mock/already_exists")
+    {
+        errno = EEXIST;  // Simulate directory already exists
+        return -1;
+    }
+
+    return 0;  // Simulate successful directory creation
+}
+
 void createHamsterHangoutDirectory()
 {
     string fullPath = getHamsterHangoutPath();
@@ -409,10 +428,14 @@ void createHamsterHangoutDirectory()
     {
         // _wmkdir requires wchar_t* argument, so converting to wstring, then converting to wchar
         wstring w_fullPath = wstring(fullPath.begin(), fullPath.end());
-
         const wchar_t *wc_fullPath = w_fullPath.c_str();
 
+        #ifndef TEST_RUNNING
         int err = _wmkdir(wc_fullPath);
+        #else
+        int err = mock_wmkdir(wc_fullPath);
+        #endif
+        
 
         // If directory creation fails for any reason other than the directory already exists, throw and exception
         if (err != 0 && errno != EEXIST)
