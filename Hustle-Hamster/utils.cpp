@@ -173,7 +173,7 @@ void menu()
     TYPE(message);
     TYPE("[4] Quit");
 
-    int response = readInt(0, 4);
+    int response = readInt(1, 4);
 
     if (response == 1)
     {
