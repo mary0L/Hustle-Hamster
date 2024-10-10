@@ -51,6 +51,8 @@ void didActivity(const string &activity, Journal &dailyEntry)
     }
 }
 
+void mockExportJournal(){ cout << "Mock export Journal" << endl; }
+
 void exportEntry(Journal &dailyEntry)
 {
     stringstream message;
@@ -62,7 +64,11 @@ void exportEntry(Journal &dailyEntry)
 
     if (response == 'y')
     {
+        #ifndef TEST_RUNNING
         exportJournal(dailyEntry);
+        #else 
+        mockExportJournal();
+        #endif
     }
 
     TYPE("");

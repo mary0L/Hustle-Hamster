@@ -41,7 +41,7 @@ void testHowToUseToUse()
     assert(output.str() == expectedOutput);
 }
 
-voi testHowToUseAnimationToggle()
+void testHowToUseAnimationToggle()
 {
     std::stringstream output; // Capture cout output
     std::streambuf *coutbuf = std::cout.rdbuf();
@@ -146,7 +146,7 @@ void testWhereAreMyFilesSaved()
 
     string expectedOutput =
         "       Your files are saved to your Desktop;\n"
-        "       test_path\n\n\n";
+        "       test_path\n";
 
     std::cout.rdbuf(coutbuf);
     assert(output.str() == expectedOutput);
@@ -181,7 +181,7 @@ void testHowToUse()
         "       Once you complete your log I will show you a daily summary!\n"
         "       I will then ask if you need to change anything, and if you want to save your journal to a .txt file on your desktop!\n\n"
         "       If you choose to save your entry it will be saved to your Desktop.\n"
-        "       (for more detail about journal export, select \"Where are my diaries saved\" in the help menu)\n\n\n";
+        "       (for more detail about journal export, select \"Where are my diaries saved\" in the help menu)\n\n\n"
         "       [2] How to Use:\n"
         "       This is where you can get help for anything you don’t understand or anything you forget how to do!\n"
         "       You can have a look at what our where our data is from, refresh yourself on where your data is saved or run through this walk through again!\n\n\n"

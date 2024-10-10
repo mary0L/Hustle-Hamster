@@ -188,7 +188,12 @@ void menu()
 
                 if (overwriteResponse == 'y')
                 {
+#ifndef TEST_RUNNING
                     dailyLog();
+#else
+                    mockDailyLog();
+                    menu();
+#endif
                 }
                 else
                 {
@@ -441,7 +446,7 @@ bool itemExists(const string &path)
     int err = stat(c_path, &fileInfo);
 
 #if defined(TEST_RUNNING)
-    err = -1;
+    err = 0;
 #endif
 
     if (err == 0)

@@ -29,9 +29,9 @@ void testHammyEval(Journal &journal, int rating)
             "o_(\")(\")\n"
             "       \\\n"
             "       Now that you've had a moment to reflect on today, it's a great time to write out what's been on your mind.\n"
-            "       This could be thoughts, feelings or just something you need to get off your chest\n"
+            "       This could be thoughts, feelings, what you're grateful for, or just something you need to get off your chest\n"
             "       this is your space to express yourself freely!\n";
-    } else if (rating == 5) {
+    } else if (rating >= 3) {
         expectedOutput = 
             "   o _ o\n"
             "  ( ^.^)\n"
@@ -45,7 +45,7 @@ void testHammyEval(Journal &journal, int rating)
             "o_(\")(\")\n"
             "       \\\n"
             "       Now that you've had a moment to reflect on today, it's a great time to write out what's been on your mind.\n"
-            "       This could be thoughts, feelings or just something you need to get off your chest\n"
+            "       This could be thoughts, feelings, what you're grateful for, or just something you need to get off your chest\n"
             "       this is your space to express yourself freely!\n";
     }
 
@@ -203,6 +203,6 @@ int main()
     testExercise();
     testSocialise();
     testSleep();
-    
+   
     return 0;
 }

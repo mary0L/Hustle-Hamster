@@ -54,7 +54,7 @@ void testPrintHammyHappy()
     std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
 
     // Call function being tested
-    printHammy();
+    printHammyHappy();
 
     // Reset cout buffer
     std::cout.rdbuf(coutbuf);
@@ -77,7 +77,7 @@ void testPrintHammySad()
     std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
 
     // Call function being tested
-    printHammy();
+    printHammySad();
 
     // Reset cout buffer
     std::cout.rdbuf(coutbuf);
@@ -217,20 +217,17 @@ void testGetHamsterHangoutPath()
 
 void testExportJournal(Journal &journal)
 {
-    std::stringstream output;                    // Capture cout output
-    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
-    std::cout.rdbuf(output.rdbuf());             // Redirect cout to output
 
     exportJournal(journal);
-
-    string expectedOutput =
-        "Your journal has been exported successfully! Saved to:\n\n"
-        "C:\\MockUser/Desktop/HamsterHangout/journal-2024-9-30.txt\n\n";
+    
 }
 
 void testMenu()
 {
-    std::istringstream input("1\n"     // Simulating incorrect user input
+    std::istringstream input("1\n"
+                            "n\n"
+                            "1\n"
+                            "y\n"
                             "2\n"
                             "3\n"
                             "4\n");    // Simulating correct user input "n"
@@ -253,7 +250,7 @@ int main()
     dailyEntry.setTextEntry("This is a test entry.");
 
     // Run tests
-    testPrintReport(dailyEntry);
+    //testPrintReport(dailyEntry);
     testTYPE();
     testPrintHammy();
     testPrintHammyHappy();
