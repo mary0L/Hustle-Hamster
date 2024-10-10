@@ -1,8 +1,6 @@
 #include "includes/all_includes.h"
 
-Journal:: Journal() {
-	date = Date();
-}
+Journal::Journal() = default;
 
 Journal::Journal(const Date &date) {
 	this->date = date;
