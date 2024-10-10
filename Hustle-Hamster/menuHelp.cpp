@@ -1,12 +1,14 @@
 #include "includes/all_includes.h"
 
-void helpMenu(){
+void helpMenu()
+{
     TYPE("Welcome to the Help Menu!");
     TYPE("I can give you a hand with lots of stuff! Such as...\n");
     printHelpMenu();
 }
 
-void howToUse(){
+void howToUse()
+{
 
     TYPE("I’m glad you are here to hang out!\n");
     TYPE("Let's go on a quick tour so you can get familiar with things!\n");
@@ -26,26 +28,28 @@ void howToUse(){
     howToUseHowToUse();
 
     TYPE("[3] Skip Typing Animation");
-    howToUseAnimationToggle(); 
-    
+    howToUseAnimationToggle();
+
     TYPE("[4] Exit");
     howToUseExit();
-    
+
     TYPE("I'll now take you to the menu and you can let me know what you wanna do next!\n");
 }
 
-void howToUseExit(){
+void howToUseExit()
+{
     TYPE("This will exit out of the app!");
 }
 
-void howToUseHowToUse(){
+void howToUseHowToUse()
+{
     TYPE("This is where you can get help for anything you don’t understand or anything you forget how to do!");
     TYPE("You can have a look at what our where our data is from, refresh yourself on where your data is saved or run through this walk through again!\n\n");
 }
 
-void howToUseDailyLog(){
+void howToUseDailyLog()
+{
 
-    
     TYPE("The daily log is your daily diary entry!");
     TYPE("Here I will ask you simple questions about your day, and you will give me simple answers!");
     TYPE("I will start with some daily ratings! I will ask you to rate your day and sleep on a scale of 1-5!");
@@ -59,11 +63,13 @@ void howToUseDailyLog(){
     TYPE("(for more detail about journal export, select \"Where are my diaries saved\" in the help menu)\n\n");
 }
 
-void howToUseAnimationToggle() {
+void howToUseAnimationToggle()
+{
     TYPE("Choosing this option will toggle the typing animation on and off! Please note that the typing animation will always be on when you first open the app!\n\n");
 }
 
-void whereIsOurDataFrom(){
+void whereIsOurDataFrom()
+{
     std::cout << "  Social" << std::endl;
     std::cout << "      A Social Support System Is Imperative for Health and Well-Being. (2024)." << std::endl;
     std::cout << "      Verywell Mind. Retrieved September 25, 2024, from" << std::endl;
@@ -109,47 +115,82 @@ void whereIsOurDataFrom(){
     delay(stdDelay);
 }
 
-void whereAreMyFilesSaved(){
+void whereAreMyFilesSaved()
+{
     TYPE("Your files are saved to your Desktop;");
-    try{
+    try
+    {
         string temporary = "" + getHamsterHangoutPath() + "\n\n";
-        TYPE(temporary); 
+#if defined(TEST_RUNNING)
+        temporary = "test_path";
+#endif
+        TYPE(temporary);
     }
-    catch (...) {
+    catch (...)
+    {
         TYPE("It looks like there might be an issue with exporting your journals. This won't affect your ability to do your daily log, you just won't be able to save it.");
     }
 }
 
-void printHelpMenu() {
+void mockHowToUse() { std::cout << "Mock How To Use Called" << std::endl; }
+void mockWhereAreMyFilesSaved() { std::cout << "Mock Where Are My Files Saved Called" << std::endl; }
+void mockHowToUseDailyLog() { std::cout << "Mock How To Use Daily Log Called" << std::endl; }
+void mockWhereIsOurDataFrom() { std::cout << "Mock Where Is Our Data From Called" << std::endl; }
+void mockMenu() { std::cout << "Mock Menu Called" << std::endl; }
+
+void printHelpMenu()
+{
     TYPE("[1] App Walkthrough");
     TYPE("[2] Where are my Diaries Saved?");
     TYPE("[3] How to use Daily Log");
     TYPE("[4] Where is our data from?");
     TYPE("[5] Return to Main Menu");
 
-#ifdef TEST_RUNNING
-    exit(0);
-#endif
-
     int response = readInt(1, 5);
 
-    if (response == 1) {
+    if (response == 1)
+    {
+#ifndef TEST_RUNNING
         howToUse();
+#else
+        mockHowToUse();
         printHelpMenu();
+#endif
     }
-    else if (response == 2) {
+    else if (response == 2)
+    {
+#ifndef TEST_RUNNING
         whereAreMyFilesSaved();
+#else
+        mockWhereAreMyFilesSaved();
         printHelpMenu();
+#endif
     }
-    else if (response == 3) {
+    else if (response == 3)
+    {
+#ifndef TEST_RUNNING
         howToUseDailyLog();
+#else
+        mockHowToUseDailyLog();
         printHelpMenu();
+#endif
     }
-    else if (response == 4) {
+
+    else if (response == 4)
+    {
+#ifndef TEST_RUNNING
         whereIsOurDataFrom();
+#else
+        mockWhereIsOurDataFrom();
         printHelpMenu();
+#endif
     }
-    else if (response == 5) {
+    else if (response == 5)
+    {
+#ifndef TEST_RUNNING
         menu();
+#else
+        mockMenu();
+#endif
     }
 }
