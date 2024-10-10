@@ -86,10 +86,6 @@ void checkCompletion(Journal& dailyEntry) {
 	activityAdvice(uncompletedActivities);
 }
 
-vector<string> getUncompletedActivities(vector<string>& uncompletedActivities){
-	return uncompletedActivities;
-}
-
 void hammyEvaluation(Journal& dailyEntry) {
 	//check what the mood rating is, if less than three do a comprehensive feedback, if greater than three be encouraging
 	if (dailyEntry.getDayRating() < 3) {

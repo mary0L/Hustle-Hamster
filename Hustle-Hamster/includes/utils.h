@@ -38,6 +38,15 @@ extern char separator[];
 void printReport(Journal &journalEntry);
 
 /**
+ * Writes to the text file
+ * 
+ * @param journalEntry the journal entry to export.
+ * @param ostream to write to 
+*/
+void writeToFile(std::ostream &file, Journal &journalEntry);
+
+
+/**
  * Export the given journal entry to a text file.
  * 
  * @param journalEntry the journal entry to export.

@@ -1,5 +1,5 @@
 #include "testing.h"
-#include "all_includes.h"
+#include "../Hustle-Hamster/includes/all_includes.h"
 #include <iostream>
 #include <cassert>
 #include <sstream>
@@ -46,6 +46,85 @@ void testPrintHammy()
     assert(output.str() == expectedOutput.str());
 }
 
+void testPrintHammyHappy()
+{
+
+    std::stringstream output; // Capture cout output
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
+    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
+
+    // Call function being tested
+    printHammyHappy();
+
+    // Reset cout buffer
+    std::cout.rdbuf(coutbuf);
+
+    // Check the output
+    std::stringstream expectedOutput;
+    expectedOutput << "   o _ o\n";
+    expectedOutput << "  ( ^.^)\n";
+    expectedOutput << "o_(\")(\")\n";
+    expectedOutput << "       \\\n";
+
+    assert(output.str() == expectedOutput.str());
+}
+
+void testPrintHammySad()
+{
+
+    std::stringstream output; // Capture cout output
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
+    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
+
+    // Call function being tested
+    printHammySad();
+
+    // Reset cout buffer
+    std::cout.rdbuf(coutbuf);
+
+    // Check the output
+    std::stringstream expectedOutput;
+    expectedOutput << "   o _ o\n";
+    expectedOutput << "  ( >.<)\n";
+    expectedOutput << "o_(\")(\")\n";
+    expectedOutput << "       \\\n";
+
+    assert(output.str() == expectedOutput.str());
+}
+
+// Test printReport method by checking the terminal output
+void testPrintReportNoActivities(Journal &journal)
+{
+
+    std::stringstream output; // Capture cout output
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
+    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
+
+    // Call function being tested
+    printReport(journal);
+
+    // Reset cout buffer
+    std::cout.rdbuf(coutbuf);
+
+    // Check the output
+    string expectedOutput =
+        "       You rated your day a 5/5\n"
+        "       You rated your sleep a 3/5\n"
+        "       You said your mood today was: Sad\n"
+        "----------------------------------------------------------\n"
+        "       You didn't complete any activities today!\n"
+        "       Tomorrow is a new day and you can start fresh!\n"
+        "----------------------------------------------------------\n"
+        "       Your thoughts on the day:\n"
+        "       This is a test entry.\n"
+        "----------------------------------------------------------\n";
+
+    std::cerr << output.str() << std::endl;
+    std::cerr << expectedOutput << std::endl;
+
+    assert(output.str() == expectedOutput);
+}
+
 // Test printReport method by checking the terminal output
 void testPrintReport(Journal &journal)
 {
@@ -62,66 +141,188 @@ void testPrintReport(Journal &journal)
 
     // Check the output
     string expectedOutput =
-    "       You rated your day a 5/5\n"
-    "       You rated your sleep a 3/5\n"
-    "       You said your mood today was: Sad\n"
-    "----------------------------------------------------------\n"
-    "       Here are the activities you completed today:\n"
-    "       Activity 1\n"
-    "       Activity 2\n"
-    "----------------------------------------------------------\n"
-    "       Your thoughts on the day:\n"
-    "       This is a test entry.\n"
-    "----------------------------------------------------------\n";
+        "       You rated your day a 5/5\n"
+        "       You rated your sleep a 3/5\n"
+        "       You said your mood today was: Sad\n"
+        "----------------------------------------------------------\n"
+        "       Here are the activities you completed today:\n"
+        "       Activity 1\n"
+        "       Activity 2\n"
+        "----------------------------------------------------------\n"
+        "       Your thoughts on the day:\n"
+        "       This is a test entry.\n"
+        "----------------------------------------------------------\n";
 
     assert(output.str() == expectedOutput);
 }
 
-// Test menu method by check ther terminal output
-void testMenu(){
-    std::istringstream input("3\n"); // Input 3 to quit after menu is called
-    std::streambuf *cinbuf = std::cin.rdbuf(); // Save original cin buffer
+void testReadInt()
+{
+    stringstream input("p\n10\n"); // 2 invalid inputs, should prompt again
+    cin.rdbuf(input.rdbuf());
+    int check = readInt(1, 10);
+    assert(check == 10); // After 0, it should take the second input
+
+    cin.clear();
+    cin.rdbuf(cin.rdbuf());
+}
+
+void testReadString()
+{
+    stringstream input("\ntesting\n"); // First input is empty, followed by valid input
+    cin.rdbuf(input.rdbuf());
+    string check = readString();
+    assert(check == "testing");
+
+    cin.clear();
+    cin.rdbuf(cin.rdbuf());
+}
+
+void testReadWord()
+{
+    stringstream input("two words\ntesting\n"); // First input is two words, followed by valid input
+    cin.rdbuf(input.rdbuf());
+    string check = readWord();
+    assert(check == "testing");
+
+    cin.clear();
+    cin.rdbuf(cin.rdbuf());
+}
+
+void testReadYN()
+{
+
+    {
+        stringstream input("p\nyes\n"); // First input is invalid, followed by valid input
+        cin.rdbuf(input.rdbuf());
+        char check = readYN();
+        assert(check == 'y');
+
+        cin.clear();
+        cin.rdbuf(cin.rdbuf());
+    }
+
+    {
+        stringstream input("n\n");
+        cin.rdbuf(input.rdbuf());
+        char check = readYN();
+        assert(check == 'n');
+
+        cin.clear();
+        cin.rdbuf(cin.rdbuf());
+    }
+}
+
+void testStringToLower()
+{
+    string check = stringToLower("LOWER");
+    assert(check == "lower");
+}
+
+void testGetFileName()
+{
+    string expectedOutput = "journal-2024-9-30.txt";
+    string filename = getFileName();
+    assert(filename == expectedOutput);
+}
+
+void testRandomNumber()
+{
+    int rNum = randomNumber(5);
+    assert(rNum <= 5);
+}
+
+void testGetDesktopPath()
+{
+    string desktopPath = getDesktopPath();
+    string expectedOutcome = "C:\\MockUser/Desktop/";
+    assert(desktopPath == expectedOutcome);
+}
+
+void testGetHamsterHangoutPath()
+{
+    string hammyPath = getHamsterHangoutPath();
+    string expectedOutcome = "C:\\MockUser/Desktop/HamsterHangout/";
+    assert(hammyPath == expectedOutcome);
+}
+
+void testExportJournal(Journal &journal)
+{
+    std::stringstream output; // Capture cout output
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
+    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
+
+    exportJournal(journal);
+    
+    string expectedOutcome = 
+    "       Sorry, there was an error exporting your journal at this time:\n\n"
+    "       Error occured trying to create text file.\n\n";
+    
+    // Reset cout buffer
+    std::cout.rdbuf(coutbuf);
+    assert(output.str() == expectedOutcome);
+}
+
+void testMenu()
+{
+    std::istringstream input("1\n"
+                            "n\n"
+                            "1\n"
+                            "y\n"
+                            "2\n"
+                            "3\n"
+                            "4\n");    // Simulating correct user input "n"
+    std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
     std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
 
-    std::stringstream output;
-    std::streambuf *coutbuf = std::cout.rdbuf(); // Save original cout buffer
-    std::cout.rdbuf(output.rdbuf());             // Redirect std::cout to read from output
-
-    // Test menu function with mock input
     menu();
+}
 
-    // Restore cout buffer.
-    std::cout.rdbuf(coutbuf);
-    std::cin.rdbuf(cinbuf);
+void testFirstEntry()
+{
+    bool first = isFirstOpen();
+    assert(first == false);
+}
 
-    string expectedOutput = 
-        "       What can I help you with?\n"
-        "       [1] Daily Log\n"
-        "       [2] How to Use\n"
-        "       [3] Quit\n";
-
-    assert(output.str() == expectedOutput);
+void testCreateHamsterHangoutDirectory()
+{   
+    createHamsterHangoutDirectory();
 }
 
 int main()
-{   
-        // Set up Journal object
+{
+    // Set up Journal object
     Journal dailyEntry = Journal();
 
     dailyEntry.setDayRating(5);
     dailyEntry.setSleepRating(3);
     dailyEntry.setMood("Sad");
-    dailyEntry.addActivity("Activity 1");
-    dailyEntry.addActivity("Activity 2");
     dailyEntry.setTextEntry("This is a test entry.");
 
+    testPrintReportNoActivities(dailyEntry);
+
+    dailyEntry.addActivity("Activity 1");
+    dailyEntry.addActivity("Activity 2");
+    
     // Run tests
     testPrintReport(dailyEntry);
     testTYPE();
     testPrintHammy();
+    testPrintHammyHappy();
+    testPrintHammySad();
+    testReadInt();
+    testGetFileName();
+    testReadString();
+    testReadWord();
+    testReadYN();
+    testStringToLower();
+    testRandomNumber();
+    testGetDesktopPath();
+    testGetHamsterHangoutPath();
+    testExportJournal(dailyEntry);
     testMenu();
-    
-    //testExportJournal(journal);
+    testCreateHamsterHangoutDirectory();
+    testFirstEntry();
 
     // Tear down - Delete the journal object
     dailyEntry.~Journal();

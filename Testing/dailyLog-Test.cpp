@@ -75,7 +75,6 @@ void testLongAnswer(Journal &journal)
     std::cin.rdbuf(cinbuf);
 
     std::string answer = journal.getTextEntry();
-    std::cerr << "Actual output:" << answer << std::endl;
     assert(answer == "This is a long answer");
 }
 
@@ -111,8 +110,7 @@ void testDidActivity(Journal &journal)
 
 void testExportEntry(Journal& journal)
 {
-    std::istringstream input("g\n"     // Simulating incorrect user input
-                            "n\n");    // Simulating correct user input "n"
+    std::istringstream input("y\n");    // Simulating correct user input "n"
     std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
     std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
 
@@ -122,15 +120,47 @@ void testExportEntry(Journal& journal)
 
     exportEntry(journal);
 
-    string expectedOutcome =
+    string expectedOutput =
         "       Do you want to export today's entry? (y/n)\n"
-        "g\n"
-        "       Please Enter a Valid input\n"
-        "       y or Y for Yes\n"
-        "       n or N for No\n"
-        "n\n\n"
-        "I'll return you to the main menu now and you can decide to keep hanging out, or leave whenever you want!\n\n"
-        ;
+        "Mock export Journal\n\n"
+        "       I'll return you to the main menu now and you can decide to keep hanging out, or leave whenever you want!\n\n";
+
+    std::cout.rdbuf(coutbuf);
+}
+
+
+void testConfirm(Journal& journal){
+    std::istringstream input("1\n"     // Simulating incorrect user input
+                            "2\n"
+                            "3\n"
+                            "4\n"
+                            "5\n"
+                            "6\n");    // Simulating correct user input "n"
+    std::streambuf *cinbuf = std::cin.rdbuf(); // Save original buffer
+    std::cin.rdbuf(input.rdbuf());             // Redirect std::cin to read from input
+
+    confirm(journal);
+    
+    std::stringstream output; // Capture cout output
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
+    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
+
+    printReport(journal);
+
+    string expectedOutput = 
+        "       You rated your day a 1/5\n"
+        "       You rated your sleep a 1/5\n"
+        "       You said your mood today was: Changed\n"
+        "----------------------------------------------------------\n"
+        "       Here are the activities you completed today:\n"
+        "       Changed\n"
+        "----------------------------------------------------------\n"
+        "       Your thoughts on the day:\n"
+        "       Changed\n"
+        "----------------------------------------------------------\n";
+        
+    std::cout.rdbuf(coutbuf);
+    assert(output.str() == expectedOutput);
 }
 
 int main()
@@ -145,6 +175,7 @@ int main()
     testLongAnswer(journal);
     testDidActivity(journal);
     testExportEntry(journal);
+    testConfirm(journal);
 
     // Delete the journal object
     journal.~Journal();
