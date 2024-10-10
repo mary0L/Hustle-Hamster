@@ -262,8 +262,10 @@ string getDesktopPath(){
     try {
         char* path;
         size_t len;
+        #ifndef TEST_RUNNING
         int err = _dupenv_s(&path, &len, "USERPROFILE");
-
+        #else
+        int err = mock_dupenv_s(&path, &len, "USERPROFILE");
         if (err != 0 || !path) {
             throw exception();
         }
@@ -271,11 +273,6 @@ string getDesktopPath(){
         string pathStr = string(path);
 
         free(path); // as per _dupenv_s specification
-
-        #if defined(TEST_RUNNING)
-        pathStr = "C:\\MockUser";
-        #endif
-        
         return pathStr + "/Desktop/";
     }
     catch(...) {
