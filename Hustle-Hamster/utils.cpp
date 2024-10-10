@@ -273,7 +273,7 @@ string getDesktopPath(){
         free(path); // as per _dupenv_s specification
 
         #if defined(TEST_RUNNING)
-        pathStr = "C:\\MockUser"
+        pathStr = "C:\\MockUser";
         #endif
         
         return pathStr + "/Desktop/";
