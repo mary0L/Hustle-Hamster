@@ -93,6 +93,39 @@ void testPrintHammySad()
 }
 
 // Test printReport method by checking the terminal output
+void testPrintReportNoActivities(Journal &journal)
+{
+
+    std::stringstream output; // Capture cout output
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
+    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
+
+    // Call function being tested
+    printReport(journal);
+
+    // Reset cout buffer
+    std::cout.rdbuf(coutbuf);
+
+    // Check the output
+    string expectedOutput =
+        "       You rated your day a 5/5\n"
+        "       You rated your sleep a 3/5\n"
+        "       You said your mood today was: Sad\n"
+        "----------------------------------------------------------\n"
+        "       You didn't complete any activities today!\n"
+        "       Tomorrow is a new day and you can start fresh!\n"
+        "----------------------------------------------------------\n"
+        "       Your thoughts on the day:\n"
+        "       This is a test entry.\n"
+        "----------------------------------------------------------\n";
+
+    std::cerr << output.str() << std::endl;
+    std::cerr << expectedOutput << std::endl;
+
+    assert(output.str() == expectedOutput);
+}
+
+// Test printReport method by checking the terminal output
 void testPrintReport(Journal &journal)
 {
 
@@ -245,12 +278,16 @@ int main()
     dailyEntry.setDayRating(5);
     dailyEntry.setSleepRating(3);
     dailyEntry.setMood("Sad");
-    dailyEntry.addActivity("Activity 1");
-    dailyEntry.addActivity("Activity 2");
     dailyEntry.setTextEntry("This is a test entry.");
 
+    testPrintReportNoActivities(dailyEntry);
+
+    dailyEntry.addActivity("Activity 1");
+    dailyEntry.addActivity("Activity 2");
+    
+
     // Run tests
-    //testPrintReport(dailyEntry);
+    testPrintReport(dailyEntry);
     testTYPE();
     testPrintHammy();
     testPrintHammyHappy();
