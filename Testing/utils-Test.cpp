@@ -298,7 +298,6 @@ int main()
     dailyEntry.addActivity("Activity 1");
     dailyEntry.addActivity("Activity 2");
     
-/*
     // Run tests
     testPrintReport(dailyEntry);
     testTYPE();
@@ -316,7 +315,6 @@ int main()
     testGetHamsterHangoutPath();
     testExportJournal(dailyEntry);
     testMenu();
-*/
     testCreateHamsterHangoutDirectory();
 
     // Tear down - Delete the journal object
