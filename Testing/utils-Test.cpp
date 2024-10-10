@@ -236,7 +236,6 @@ void testGetDesktopPath()
 {
     string desktopPath = getDesktopPath();
     string expectedOutcome = "C:\\MockUser/Desktop/";
-    cout << desktopPath << endl;
     assert(desktopPath == expectedOutcome);
 }
 
@@ -244,15 +243,24 @@ void testGetHamsterHangoutPath()
 {
     string hammyPath = getHamsterHangoutPath();
     string expectedOutcome = "C:\\MockUser/Desktop/HamsterHangout/";
-    cout << hammyPath << endl;
     assert(hammyPath == expectedOutcome);
 }
 
 void testExportJournal(Journal &journal)
 {
+    std::stringstream output; // Capture cout output
+    std::streambuf *coutbuf = std::cout.rdbuf(); // Store original cout buffer
+    std::cout.rdbuf(output.rdbuf()); // Redirect cout to output
 
     exportJournal(journal);
     
+    string expectedOutcome = 
+    "       Sorry, there was an error exporting your journal at this time:\n\n"
+    "       Error occured trying to create text file.\n\n";
+    
+    // Reset cout buffer
+    std::cout.rdbuf(coutbuf);
+    assert(output.str() == expectedOutcome);
 }
 
 void testMenu()
@@ -270,6 +278,17 @@ void testMenu()
     menu();
 }
 
+void testFirstEntry()
+{
+    bool first = isFirstOpen();
+    assert(first == false);
+}
+
+void testCreateHamsterHangoutDirectory()
+{   
+    createHamsterHangoutDirectory();
+}
+
 int main()
 {
     // Set up Journal object
@@ -285,7 +304,6 @@ int main()
     dailyEntry.addActivity("Activity 1");
     dailyEntry.addActivity("Activity 2");
     
-
     // Run tests
     testPrintReport(dailyEntry);
     testTYPE();
@@ -303,6 +321,8 @@ int main()
     testGetHamsterHangoutPath();
     testExportJournal(dailyEntry);
     testMenu();
+    testCreateHamsterHangoutDirectory();
+    testFirstEntry();
 
     // Tear down - Delete the journal object
     dailyEntry.~Journal();

@@ -204,12 +204,7 @@ void menu()
             }
             else
             {
-#ifndef TEST_RUNNING
                 dailyLog();
-#else
-                mockDailyLog();
-                menu();
-#endif
             }
         }
         catch (...)
@@ -233,9 +228,9 @@ void menu()
     }
     else if (response == 2)
     {
-#ifndef TEST_RUNNING
         cout << separator << "\n";
         delay(stdDelay);
+#ifndef TEST_RUNNING
         helpMenu();
 #else
         mockHelpMenu();
@@ -325,6 +320,30 @@ string getDesktopPath()
     }
 }
 
+void writeToFile(std::ostream &file, Journal &journalEntry)
+{
+    file << "============ " << journalEntry.getDate().getMonthName() << " " << journalEntry.getDate().getDay() << " " << journalEntry.getDate().getYear() << " ============\n";
+    file << "You rated your day a " << journalEntry.getDayRating() << "/5\n";
+    file << "You rated your sleep a " << journalEntry.getSleepRating() << "/5\n";
+    file << "You said that today you felt: " << journalEntry.getMood() << "\n";
+
+    file << "\n";
+
+    if (!journalEntry.getActivities().empty())
+    {
+        file << "Here are the activities you completed today:\n";
+        for (string activity : journalEntry.getActivities())
+        {
+            file << " * " << activity << "\n";
+        }
+    }
+
+    file << "\n";
+
+    file << "And finally, here is your daily journal entry:\n";
+    file << journalEntry.getTextEntry();
+}
+
 void exportJournal(Journal &journalEntry)
 {
     string filename = getFileName();
@@ -344,29 +363,8 @@ void exportJournal(Journal &journalEntry)
 
         if (!txtFile.fail())
         {
-            txtFile << "============ " << journalEntry.getDate().getMonthName() << " " << journalEntry.getDate().getDay() << " " << journalEntry.getDate().getYear() << " ============\n";
-            txtFile << "You rated your day a " << journalEntry.getDayRating() << "/5\n";
-            txtFile << "You rated your sleep a " << journalEntry.getSleepRating() << "/5\n";
-            txtFile << "You said that today you felt: " << journalEntry.getMood() << "\n";
-
-            txtFile << "\n";
-
-            if (!journalEntry.getActivities().empty())
-            {
-                txtFile << "Here are the activities you completed today:\n";
-                for (string activity : journalEntry.getActivities())
-                {
-                    txtFile << " * " << activity << "\n";
-                }
-            }
-
-            txtFile << "\n";
-
-            txtFile << "And finally, here is your daily journal entry:\n";
-            txtFile << journalEntry.getTextEntry();
-
+            writeToFile(txtFile, journalEntry);
             txtFile.close();
-
             TYPE("Your journal has been exported successfully! Saved to:\n");
             TYPE(path + "\n");
         }
@@ -398,6 +396,25 @@ int randomNumber(int max)
     return distribute(generator);
 }
 
+// Mocked version of _wmkdir
+int mock_wmkdir(const wchar_t *path)
+{
+    std::wstring mockPath = path;
+
+    if (mockPath == L"/mock/fail")
+    {
+        errno = EACCES;  // Simulate permission denied error
+        return -1;
+    }
+    else if (mockPath == L"/mock/already_exists")
+    {
+        errno = EEXIST;  // Simulate directory already exists
+        return -1;
+    }
+
+    return 0;  // Simulate successful directory creation
+}
+
 void createHamsterHangoutDirectory()
 {
     string fullPath = getHamsterHangoutPath();
@@ -406,10 +423,14 @@ void createHamsterHangoutDirectory()
     {
         // _wmkdir requires wchar_t* argument, so converting to wstring, then converting to wchar
         wstring w_fullPath = wstring(fullPath.begin(), fullPath.end());
-
         const wchar_t *wc_fullPath = w_fullPath.c_str();
 
+        #ifndef TEST_RUNNING
         int err = _wmkdir(wc_fullPath);
+        #else
+        int err = mock_wmkdir(wc_fullPath);
+        #endif
+        
 
         // If directory creation fails for any reason other than the directory already exists, throw and exception
         if (err != 0 && errno != EEXIST)
