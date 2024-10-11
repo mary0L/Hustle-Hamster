@@ -16,6 +16,9 @@ Hamster Hangout can be easily used by responding to prompts given by Hammy (the 
 ### Feel free to give us feedback here!
 [Hamster Hangout Feedback Form](https://docs.google.com/forms/d/e/1FAIpQLScawwGY_azkGivVO9_lvc4nLEPHEgMZBat1EZp-lhMRXqnzLQ/viewform?usp=sf_link)
 
+### Shared Google Drive can be found here!
+[Hamster Hangout Google Drive](https://drive.google.com/drive/folders/11YawtJu7asfBDExXahlstc_FWiC0vD7X?usp=sharing)
+
 ## Reflection and Future Development 
 Looking back on the development of this app, there are several things that we have learnt and would improve upon in future.
 
