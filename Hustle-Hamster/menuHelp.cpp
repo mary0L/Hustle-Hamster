@@ -156,8 +156,9 @@ void printHelpMenu()
         howToUse();
 #else
         mockHowToUse();
-        printHelpMenu();
 #endif
+        printHelpMenu();
+
     }
     else if (response == 2)
     {
@@ -165,8 +166,8 @@ void printHelpMenu()
         whereAreMyFilesSaved();
 #else
         mockWhereAreMyFilesSaved();
-        printHelpMenu();
 #endif
+        printHelpMenu();
     }
     else if (response == 3)
     {
@@ -174,8 +175,9 @@ void printHelpMenu()
         howToUseDailyLog();
 #else
         mockHowToUseDailyLog();
-        printHelpMenu();
 #endif
+        printHelpMenu();
+
     }
 
     else if (response == 4)
@@ -184,8 +186,9 @@ void printHelpMenu()
         whereIsOurDataFrom();
 #else
         mockWhereIsOurDataFrom();
-        printHelpMenu();
 #endif
+        printHelpMenu();
+
     }
     else if (response == 5)
     {
